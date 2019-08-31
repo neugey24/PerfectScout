@@ -1,0 +1,32 @@
+{
+  "name": "perfect_scout",
+  "version": "1.0.0",
+  "description": "PerfectScount utility for Out of the Park Baseball Perfect Team 20",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "start": "electron .",
+    "rebuild": "electron-rebuild -f -w sqlite3"
+  },
+  "repository": {
+  "type": "git",
+  "url": "git+https://github.com/neugey24/PerfectScout.git"
+},"keywords": [
+    "Perfect",
+    "Team",
+    "OOTP"
+  ],
+  "author": "Mike A Neugebauer",
+  "license": "ISC",
+  "bugs": {
+  "url": "https://github.com/neugey24/PerfectScout/issues"
+}, "homepage": "https://github.com/neugey24/PerfectScout#readme",
+  "dependencies": {
+    "electron": "^6.0.7",
+    "electron-handlebars": "^2.0.0",
+    "sqlite3": "^4.1.0"
+  },
+  "devDependencies": {
+    "electron-rebuild": "^1.8.6"
+  }
+}
