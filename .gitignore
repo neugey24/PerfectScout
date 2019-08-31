@@ -65,3 +65,8 @@ ts-gen
 
 # Used to accelerate CI builds
 .depshash
+
+*.css.map
+*.out.css
+
+*.bak

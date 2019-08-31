@@ -1,0 +1,19 @@
+Tips and Tricks:
+
+considerations for UI and basic display tips:
+https://blog.avocode.com/4-must-know-tips-for-building-cross-platform-electron-apps-f3ae9c2bffff
+https://blog.dcpos.ch/how-to-make-your-electron-app-sexy
+
+utils:
+Bulma CSS https://bulma.io/
+https://wikiki.github.io/form/slider/
+
+SASS for CSS processing
+https://sass-lang.com/guide
+
+to rebuild stylesheet do this
+(separate window and stay active)
+sass --watch css/ps.scss css/ps.out.css
+
+(one time)
+sass css/ps.scss css/ps.out.css

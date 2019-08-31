@@ -9,9 +9,10 @@
     "rebuild": "electron-rebuild -f -w sqlite3"
   },
   "repository": {
-  "type": "git",
-  "url": "git+https://github.com/neugey24/PerfectScout.git"
-},"keywords": [
+    "type": "git",
+    "url": "git+https://github.com/neugey24/PerfectScout.git"
+  },
+  "keywords": [
     "Perfect",
     "Team",
     "OOTP"
@@ -19,11 +20,13 @@
   "author": "Mike A Neugebauer",
   "license": "ISC",
   "bugs": {
-  "url": "https://github.com/neugey24/PerfectScout/issues"
-}, "homepage": "https://github.com/neugey24/PerfectScout#readme",
+    "url": "https://github.com/neugey24/PerfectScout/issues"
+  },
+  "homepage": "https://github.com/neugey24/PerfectScout#readme",
   "dependencies": {
     "electron": "^6.0.7",
     "electron-handlebars": "^2.0.0",
+    "sass": "^1.22.10",
     "sqlite3": "^4.1.0"
   },
   "devDependencies": {

@@ -1,0 +1,31 @@
+$ps-text-color: #f02;
+
+body {
+  color: $ps-text-color;
+}
+
+#pitcher_display {
+  display: none;
+}
+
+#batter_display {
+  display: block;
+}
+
+#batter_player_filter_area {
+  display: block;
+}
+
+#batter_card_filter_area, #batter_batting_filter_area, #batter_field_filter_area,
+  #batter_pitching_filter_area {
+  display: none;
+}
+
+#pitcher_player_filter_area {
+  display: block;
+}
+
+#pitcher_card_filter_area, #pitcher_batting_filter_area, #pitcher_field_filter_area,
+  #pitcher_pitching_filter_area {
+  display: none;
+}

@@ -3,27 +3,126 @@
   <head>
     <meta charset="UTF-8">
     <title>{{ title }}</title>
-    <!-- <link rel = "stylesheet" type="text/css" href="ps.css" /> -->
+    <link rel="stylesheet" href="css/bulma.css" />
+    <link rel="stylesheet" href="css/ps.out.css" />
   </head>
   <body>
-    <h1>{{ title }}</h1>
-    <p>{{ body }}
-    </p>
-    <p>{{ dummie }}</p>
-TIERS: <br />
-<input type="text" id="tier_select_text" value="alpha" />
-<select id="tier_select">
-<option value="-9">(Any Tier)</option>
-{{#each tiers}}
-<option value="{{this.tier_id}}">{{this.tier_name}} ({{this.tier_id}})</option>
-{{/each}}
-</select>
-<button id="filter_button">Filter</button>
-<div id="read_it">hey there!!!!!!!!</div>
-<br />
-******* FILTER REPLY**<br />
-<div id="filter_reply">abc</div>
 
-<script src='./renderer.js'></script>
+<section class="section">
+
+  <div class="tabs is-toggle is-toggle-rounded is-medium is-fullwidth">
+    <ul>
+      <li id="batter_main_tab" class="is-active"><a>Batters</a></li>
+      <li id="pitcher_main_tab"><a>Pitchers</a></li>
+    </ul>
+  </div>
+
+  <div class="container" id="main_display">
+    <div class="columns" id="batter_display">
+        <div class="column is-half" id="batter_filter">
+
+          <div class="tabs is-boxed">
+            <ul>
+              <li id="batter_player_filter" class="batter-filter-tab is-active"><a>Player</a></li>
+              <li id="batter_card_filter" class="batter-filter-tab"><a>Card</a></li>
+              <li id="batter_batting_filter" class="batter-filter-tab"><a>Batting</a></li>
+              <li id="batter_field_filter" class="batter-filter-tab"><a>Fielding</a></li>
+              <li id="batter_pitching_filter" class="batter-filter-tab"><a>Pitching</a></li>
+            </ul>
+          </div>
+          <div class="container" id="batter_filter_area">
+            <div id="batter_player_filter_area">
+
+
+                        <h1>{{ title }}</h1>
+                        <p>{{ body }}
+                        </p>
+                        <p>{{ dummie }}</p>
+                        TIERS: <br />
+                        <input type="text" id="tier_select_text" value="alpha" />
+                        <select id="tier_select">
+                        <option value="-9">(Any Tier)</option>
+                        {{#each tiers}}
+                        <option value="{{this.tier_id}}">{{this.tier_name}} ({{this.tier_id}})</option>
+                        {{/each}}
+                        </select>
+                        <button id="filter_button">Filter</button>
+                        <div id="read_it">hey there!!!!!!!!</div>
+                        <br />
+                        ******* FILTER REPLY**<br />
+                        <div id="filter_reply">abc</div>
+
+
+            </div>
+            <div id="batter_card_filter_area">
+              Batting - Filter by CARD
+            </div>
+            <div id="batter_batting_filter_area">
+              Batting - Filter by BATTING RATINGS
+            </div>
+            <div id="batter_field_filter_area">
+              Batting - Filter by FIELDING RATINGS
+            </div>
+            <div id="batter_pitching_filter_area">
+              Batting - Filter by PITCHING RATINGS
+            </div>
+
+          </div> <!-- end batting_filter_area -->
+
+      </div> <!-- end batter filter column -->
+      <div class="column is-half" id="batter_results">
+        *some results here*
+      </div> <!-- end batter results column -->
+    </div> <!-- end batter div -->
+
+    <div class="columns" id="pitcher_display">
+        <div class="column is-half" id="pitcher_filter">
+            <div class="tabs is-boxed">
+              <ul id="pitcher_filters_tabs">
+                <li id="pitcher_player_filter" class="pitcher-filter-tab player-filter-tab is-active"><a>Player</a></li>
+                <li id="pitcher_card_filter" class="pitcher-filter-tab card-filter-tab"><a>Card</a></li>
+                <li id="pitcher_pitching_filter" class="pitcher-filter-tab pitching-filter-tab"><a>Pitching</a></li>
+                <li id="pitcher_field_filter" class="pitcher-filter-tab fielding-filter-tab"><a>Fielding</a></li>
+                <li id="pitcher_batting_filter" class="pitcher-filter-tab batting-filter-tab"><a>Batting</a></li>
+              </ul>
+            </div>
+
+            <div class="container" id="pitcher_filter_area">
+              <div id="pitcher_player_filter_area">
+                  Pitching - Filter by PLAYER
+
+              </div>
+              <div id="pitcher_card_filter_area">
+                Pitching - Filter by CARD
+              </div>
+              <div id="pitcher_pitching_filter_area">
+                Pitching - Filter by PITCHING RATINGS
+              </div>
+
+              <div id="pitcher_field_filter_area">
+                Pitching - Filter by FIELDING RATINGS
+              </div>
+
+              <div id="pitcher_batting_filter_area">
+                Pitching - Filter by BATTING RATINGS
+              </div>
+
+            </div> <!-- end batting_filter_area -->
+
+
+        </div>
+        <div class="column" id="pitcher_results">
+          Pitcher *results* stuff here
+        </div>
+    </div> <!-- end pitcher div -->
+
+  </div> <!-- end main display container -->
+
+</section> <!-- end single page app main section -->
+
+
+
+<script src='fe-js/ui-toggles.js'></script>
+<script src='fe-js/renderer.js'></script>
 </body>
 </html>
