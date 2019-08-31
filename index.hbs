@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="UTF-8">
+    <title>{{ title }}</title>
+    <!-- <link rel = "stylesheet" type="text/css" href="ps.css" /> -->
+  </head>
+  <body>
+    <h1>{{ title }}</h1>
+    <p>{{ body }}
+    </p>
+    <p>{{ dummie }}</p>
+TIERS: <br />
+<input type="text" id="tier_select_text" value="alpha" />
+<select id="tier_select">
+<option value="-9">(Any Tier)</option>
+{{#each tiers}}
+<option value="{{this.tier_id}}">{{this.tier_name}} ({{this.tier_id}})</option>
+{{/each}}
+</select>
+<button id="filter_button">Filter</button>
+<div id="read_it">hey there!!!!!!!!</div>
+<br />
+******* FILTER REPLY**<br />
+<div id="filter_reply">abc</div>
+
+<script src='./renderer.js'></script>
+</body>
+</html>
