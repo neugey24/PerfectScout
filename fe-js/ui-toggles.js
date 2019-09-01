@@ -43,3 +43,7 @@ function setupFilterToggles(typeIn) {
       applicable_area.style.display='block';
   }));
 }
+
+function psUIReady() {
+  //var accordions = bulmaAccordion.attach();
+}

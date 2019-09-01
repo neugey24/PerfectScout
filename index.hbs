@@ -4,11 +4,13 @@
     <meta charset="UTF-8">
     <title>{{ title }}</title>
     <link rel="stylesheet" href="css/bulma.css" />
+    <link rel="stylesheet" href="css/bulma-switch.min.css" />
+    <!-- <link rel="stylesheet" href="css/bulma-accordion.min.css" /> -->
     <link rel="stylesheet" href="css/ps.out.css" />
 
     <script defer src="fontawesome/js/all.min.js"></script>
   </head>
-  <body>
+  <body onLoad="psUIReady();">
 <section class="section">
 
   <div class="tabs is-toggle is-toggle-rounded is-medium is-fullwidth">
@@ -117,7 +119,7 @@
 
             <!-- BEGIN: ********** Batter CARD Filters *********** -->
             <div id="batter_card_filter_area" style="background-color:aqua;">
- 
+
                   <div class="field">
                     <label for="batter_card_type_program">Card Type/Program:</label>
                     <div class="control">
@@ -182,20 +184,81 @@
                   </table>
                   </div>
 
-<!--
-                      <div class="select is-primary is-small custom-select">
-                        <select style="width:160px;" class="tiers" id="batter_card_tier">
-                          <option class="tier-select-one" value="*">(Any Tier)</option>
-                          <option class="tier-peak" value="p">Peak</option>
-                          <option class="tier-diamond" value="d">Diamond</option>
-                          <option class="tier-gold" value="g">Gold</option>
-                          <option class="tier-silver" value="s">Silver</option>
-                          <option class="tier-bronze" value="b">Bronze</option>
-                          <option class="tier-iron" value="i">Iron</option>
-                        </select>
-                      </div>
--->
+                  <div class="columns">
+                    <div class="column is-three-quarters">
 
+                      <div class="field">
+                        <div class="control">
+                          <label for="batter_card_ovr_min">Card Overall (minimum):</label>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="ps-slider-label" id="batter_card_ovr_min_output">64</span>
+                          <br />0 <input oninput="rangeChange(this);" class="ps-slider" id="batter_card_ovr_min" step="1" min="0" max="128" value="64" type="range" /> 128
+                        </div>
+                      </div>
+                    </div>
+                    <div class="column is-one-quarter">
+
+                      <div class="field"><br />
+                        <input id="batter_card_ovr_min_on" type="checkbox" name="switchExample" class="switch">
+                        <label for="batter_card_ovr_min_on">Use</label>
+                      </div>
+                    </div>
+                  </div>
+
+                  <div class="columns">
+                    <div class="column is-three-quarters">
+
+                      <div class="field">
+                        <div class="control">
+                          <label for="batter_card_ovr_min">Card Overall (maximum):</label>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="ps-slider-label" id="batter_card_ovr_max_output">64</span>
+                          <br />0 <input oninput="rangeChange(this);" class="ps-slider" id="batter_card_ovr_max" step="1" min="0" max="128" value="64" type="range" /> 128
+                        </div>
+                      </div>
+                    </div>
+                    <div class="column is-one-quarter">
+
+                      <div class="field"><br />
+                        <input id="batter_card_ovr_max_on" type="checkbox" name="switchExample" class="switch">
+                        <label for="batter_card_ovr_max_on">Use</label>
+                      </div>
+                    </div>
+                  </div>
+
+                  <div class="columns">
+                    <div class="column is-three-quarters">
+
+                      <div class="field">
+                        <div class="control">
+                          <label for="batter_card_year_min">Card Year (minimum):</label>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="ps-slider-label" id="batter_card_year_min_output">1954</span>
+                          <br />1886 <input oninput="rangeChange(this);" class="ps-slider year" id="batter_card_year_min" step="1" min="1886" max="2019" value="1954" type="range" /> 2019
+                        </div>
+                      </div>
+                    </div>
+                    <div class="column is-one-quarter">
+
+                      <div class="field"><br />
+                        <input id="batter_card_year_min_on" type="checkbox" name="switchExample" class="switch">
+                        <label for="batter_card_year_min_on">Use</label>
+                      </div>
+                    </div>
+                  </div>
+
+                  <div class="columns">
+                    <div class="column is-three-quarters">
+
+                      <div class="field">
+                        <div class="control">
+                          <label for="batter_card_year_min">Card Year (maximum):</label>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="ps-slider-label" id="batter_card_year_max_output">1954</span>
+                          <br />1886 <input oninput="rangeChange(this);" class="ps-slider year" id="batter_card_year_max" step="1" min="1886" max="2019" value="1954" type="range" /> 2019
+                        </div>
+                      </div>
+                    </div>
+                    <div class="column is-one-quarter">
+
+                      <div class="field"><br />
+                        <input id="batter_card_year_max_on" type="checkbox" name="switchExample" class="switch">
+                        <label for="batter_card_year_max_on">Use</label>
+                      </div>
+                    </div>
+                  </div>
 
 
 
@@ -232,7 +295,44 @@
 
       </div> <!-- end batter filter column -->
       <div class="column is-half" id="batter_results">
-        *some results here*
+<!--
+        <section class="accordions">
+          <article class="accordion is-active">
+            <div class="accordion-header toggle">
+              <p>Hello World</p>
+            </div>
+            <div class="accordion-body">
+              <div class="accordion-content">
+                Lorem ipsum dolor sit amet, consectetur adipiscing elit. <strong>Pellentesque risus mi</strong>, tempus quis placerat ut, porta nec nulla. Vestibulum rhoncus ac ex sit amet fringilla. Nullam gravida purus diam, et dictum <a>felis venenatis</a> efficitur. Aenean ac <em>eleifend lacus</em>, in mollis lectus. Donec sodales, arcu et sollicitudin porttitor, tortor urna tempor ligula, id porttitor mi magna a neque. Donec dui urna, vehicula et sem eget, facilisis sodales sem.
+              </div>
+            </div>
+          </article>
+          <article class="accordion">
+            <div class="accordion-header">
+              <p>Hello World</p>
+              <button class="toggle" aria-label="toggle"></button>
+            </div>
+            <div class="accordion-body">
+              <div class="accordion-content">
+                Lorem ipsum dolor sit amet, consectetur adipiscing elit. <strong>Pellentesque risus mi</strong>, tempus quis placerat ut, porta nec nulla. Vestibulum rhoncus ac ex sit amet fringilla. Nullam gravida purus diam, et dictum <a>felis venenatis</a> efficitur. Aenean ac <em>eleifend lacus</em>, in mollis lectus. Donec sodales, arcu et sollicitudin porttitor, tortor urna tempor ligula, id porttitor mi magna a neque. Donec dui urna, vehicula et sem eget, facilisis sodales sem.
+              </div>
+            </div>
+          </article>
+          <article class="accordion">
+            <div class="accordion-header">
+              <p>Hello World</p>
+              <button class="toggle" aria-label="toggle"></button>
+            </div>
+            <div class="accordion-body">
+              <div class="accordion-content">
+                Lorem ipsum dolor sit amet, consectetur adipiscing elit. <strong>Pellentesque risus mi</strong>, tempus quis placerat ut, porta nec nulla. Vestibulum rhoncus ac ex sit amet fringilla. Nullam gravida purus diam, et dictum <a>felis venenatis</a> efficitur. Aenean ac <em>eleifend lacus</em>, in mollis lectus. Donec sodales, arcu et sollicitudin porttitor, tortor urna tempor ligula, id porttitor mi magna a neque. Donec dui urna, vehicula et sem eget, facilisis sodales sem.
+              </div>
+            </div>
+          </article>
+        </section>
+      -->
+
+
       </div> <!-- end batter results column -->
     </div> <!-- end batter column group div -->
   </div> <!-- end batter display area -->
@@ -287,7 +387,7 @@
 
 <script src='fe-js/ui-toggles.js'></script>
 <script src='fe-js/filter-toggles.js'></script>
-
+<!-- <script src='fe-js/bulma-accordion.min.js'></script> -->
 
 <script src='fe-js/renderer.js'></script>
 </body>

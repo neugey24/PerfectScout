@@ -82,6 +82,24 @@ body {
 .tier-iron {
   background-color: #555;
 }
+
+.ps-slider {
+  width: 280px;
+}
+
+.ps-slider.year {
+  width: 240px;
+}
+
+.ps-slider-label {
+  text-align: right;
+  background-color: #d00;
+  color: #eee;
+  font-weight: 900;
+  font-size: 12px;
+  padding: 4px;
+}
+
 /*
 #mainselection select {
    border: 0;

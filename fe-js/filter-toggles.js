@@ -60,3 +60,12 @@ function toggleThrowingHand(handIn) {
 
   toggleHandGraphic('batter_player_throwing_hand_' + handIn, wasSelected ? 'remove' : 'add');
 }
+
+function rangeChange(sliderIn) {
+
+  let label = document.querySelector('#' + sliderIn.id + '_output');
+  label.innerHTML = sliderIn.value;
+
+  let toggle = document.querySelector('#' + sliderIn.id + '_on');
+  toggle.checked = 'checked';
+}
