@@ -1,8 +1,5 @@
 let batter_displayed = true;
 
-let hidden_main = document.querySelector('#hidden_main_display');
-let shown_main = document.querySelector('#main_display');
-
 let batter_toggle = document.querySelector('#batter_main_tab');
 let pitcher_toggle = document.querySelector('#pitcher_main_tab');
 
@@ -39,7 +36,7 @@ function setupFilterToggles(typeIn) {
       filter_toggle.forEach(alltab => alltab.classList.remove("is-active"));
       tab.classList.add("is-active");
 
-      let area_toggle = document.querySelectorAll('#' + typeIn + '_filter_area div');
+      let area_toggle = document.querySelectorAll('#' + typeIn + '_filter_area div.immed');
       area_toggle.forEach(allArea => allArea.style.display='none');
 
       let applicable_area = document.querySelector('#' + tab.id + '_area');

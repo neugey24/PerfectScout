@@ -29,3 +29,15 @@ body {
   #pitcher_pitching_filter_area {
   display: none;
 }
+
+.field label {
+  font-size: 11px;
+}
+
+.lefty {
+  transform: scaleX(-1);
+}
+
+.hand_icons {
+  font-size: 26px; color: Dodgerblue;
+}

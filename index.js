@@ -66,8 +66,9 @@ function createWindow () {
   // and load the index.html of the app.
   win.loadFile('index.hbs')
 
-  // Open the DevTools.
+  // ###### DEV TOOLS ############## Open the DevTools.
   //win.webContents.openDevTools()
+  // ###### DEV TOOLS ############## Open the DevTools.
 
   win.webContents.on('did-finish-load', () => {
     win.show();

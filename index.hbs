@@ -5,9 +5,10 @@
     <title>{{ title }}</title>
     <link rel="stylesheet" href="css/bulma.css" />
     <link rel="stylesheet" href="css/ps.out.css" />
+
+    <script defer src="fontawesome/js/all.min.js"></script>
   </head>
   <body>
-
 <section class="section">
 
   <div class="tabs is-toggle is-toggle-rounded is-medium is-fullwidth">
@@ -18,7 +19,7 @@
   </div>
 
   <div class="container" id="main_display">
-    <div id="batter_display">
+    <div id="batter_display" style="background-color: brown;">
     <div class="columns">
         <div class="column is-half" id="batter_filter">
 
@@ -32,40 +33,112 @@
             </ul>
           </div>
           <div class="container" id="batter_filter_area">
-            <div id="batter_player_filter_area">
+            <div class="immed" id="batter_player_filter_area" style="background-color:orange;">
+
+              <div class="columns">
+              <div class="column is-half">
+
+                <div class="field">
+                  <label for="batter_player_first_name">First Name:</label>
+                  <div class="control">
+                    <input id="batter_player_first_name" class="input is-primary is-small" type="text" placeholder="Player First Name">
+                  </div>
+                </div>
+
+                <div class="field">
+                  <label for="batter_player_last_name">Last Name:</label>
+                  <div class="control">
+                    <input id="batter_player_last_name" class="input is-primary is-small" type="text" placeholder="Player Last Name">
+                  </div>
+                </div>
+
+                <div class="field">
+                  <label for="batter_player_team">Team(s):</label>
+                  <div class="control">
+                    <div class="select is-primary is-small is-multiple" size="4">
+                      <select multiple id="batter_player_team">
+                        <option>Baltimore Orioles</option>
+                        <option>Boston Red Sox</option>
+                        <option>Miami Marlins</option>
+                        <option>Texas Rangers</option>
+                      </select>
+                    </div>
+                  </div>
+                </div>
+
+              </div>
+              <div class="column is-half">
+
+                <div class="field">
+                  <label for="batter_player_batting_hands">Batting Hand:</label>
+                  <div class="control">
+                    <div id="batter_player_batting_hands">
+                      <span class="hand_icons"><a href="javascript:toggleBattingHand('left');"><i id="batter_player_batting_hand_left" class="lefty far fa-hand-paper"></i></a></span> L
+                      &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; R
+                      <span class="hand_icons"><a href="javascript:toggleBattingHand('right');"><i id="batter_player_batting_hand_right" class="far fa-hand-paper"></i></a></span>
+                      &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; S
+                      <span class="hand_icons"><a href="javascript:toggleBattingHand('bswitch');"><i id="batter_player_batting_hand_bswitch" class="far fa-hand-paper"></i></a></span>
+                  </div>
+                </div>
+              </div>
+                <div class="field">
+                  <label for="batter_player_batting_hands">Throwing Hand:</label>
+                  <div class="control">
+                    <div id="batter_player_throwing_hands">
+                      <span class="hand_icons"><a href="javascript:toggleThrowingHand('left');"><i id="batter_player_throwing_hand_left" class="lefty far fa-hand-paper"></i></a></span> L
+                      &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; R
+                      <span class="hand_icons"><a href="javascript:toggleThrowingHand('right');"><i id="batter_player_throwing_hand_right" class="far fa-hand-paper"></i></a></span>
+                  </div>
+                </div>
+              </div>
 
 
-                        <h1>{{ title }}</h1>
-                        <p>{{ body }}
-                        </p>
-                        <p>{{ dummie }}</p>
-                        TIERS: <br />
-                        <input type="text" id="tier_select_text" value="alpha" />
-                        <select id="tier_select">
-                        <option value="-9">(Any Tier)</option>
-                        {{#each tiers}}
-                        <option value="{{this.tier_id}}">{{this.tier_name}} ({{this.tier_id}})</option>
-                        {{/each}}
-                        </select>
-                        <button id="filter_button">Filter</button>
-                        <div id="read_it">hey there!!!!!!!!</div>
-                        <br />
-                        ******* FILTER REPLY**<br />
-                        <div id="filter_reply">abc</div>
+                <div class="field">
+                  <label for="batter_player_prim_pos">Primary Position(s):</label>
+                  <div class="control">
+                    <div class="select is-multiple is-primary is-small" size="4">
+                      <select multiple id="batter_player_prim_pos">
+                        <option value="C">Catcher (C)</option>
+                        <option value="1B">First Base (1B)</option>
+                        <option value="2B">Second Base (2B)</option>
+                        <option value="3B">Third Base (3B)</option>
+                      </select>
+                    </div>
+                  </div>
+                </div>
 
-
+              </div>
             </div>
-            <div id="batter_card_filter_area">
-              Batting - Filter by CARD
+          </div>
+
+            <div class="immed" id="batter_card_filter_area" style="background-color:aqua;">
+              <div>Batting - Filter by CARD</div>
             </div>
-            <div id="batter_batting_filter_area">
+            <div class="immed" id="batter_batting_filter_area">
               Batting - Filter by BATTING RATINGS
             </div>
-            <div id="batter_field_filter_area">
+            <div class="immed" id="batter_field_filter_area">
               Batting - Filter by FIELDING RATINGS
             </div>
-            <div id="batter_pitching_filter_area">
-              Batting - Filter by PITCHING RATINGS
+            <div class="immed" id="batter_pitching_filter_area">
+
+                                      <h1>{{ title }}</h1>
+                                      <p>{{ body }}
+                                      </p>
+                                      <p>{{ dummie }}</p>
+                                      TIERS: <br />
+                                      <input type="text" id="tier_select_text" value="alpha" />
+                                      <select id="tier_select">
+                                      <option value="-9">(Any Tier)</option>
+                                      {{#each tiers}}
+                                      <option value="{{this.tier_id}}">{{this.tier_name}} ({{this.tier_id}})</option>
+                                      {{/each}}
+                                      </select>
+                                      <button id="filter_button">Filter</button>
+                                      <div id="read_it">hey there!!!!!!!!</div>
+                                      <br />
+                                      ******* FILTER REPLY**<br />
+                                      <div id="filter_reply">abc</div>
             </div>
 
           </div> <!-- end batting_filter_area -->
@@ -125,8 +198,8 @@
 </section> <!-- end single page app main section -->
 
 
-
 <script src='fe-js/ui-toggles.js'></script>
+<script src='fe-js/filter-toggles.js'></script>
 <script src='fe-js/renderer.js'></script>
 </body>
 </html>

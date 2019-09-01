@@ -17,3 +17,6 @@ sass --watch css/ps.scss css/ps.out.css
 
 (one time)
 sass css/ps.scss css/ps.out.css
+
+Font Awesome icons
+give credit, cite license https://fontawesome.com/license for use
