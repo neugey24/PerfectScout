@@ -36,7 +36,7 @@ function setupFilterToggles(typeIn) {
       filter_toggle.forEach(alltab => alltab.classList.remove("is-active"));
       tab.classList.add("is-active");
 
-      let area_toggle = document.querySelectorAll('#' + typeIn + '_filter_area div.immed');
+      let area_toggle = document.querySelectorAll('#' + typeIn + '_filter_area > div');
       area_toggle.forEach(allArea => allArea.style.display='none');
 
       let applicable_area = document.querySelector('#' + tab.id + '_area');
