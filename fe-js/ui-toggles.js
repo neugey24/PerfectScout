@@ -1,3 +1,4 @@
+/*
 let batter_displayed = true;
 
 let batter_toggle = document.querySelector('#batter_main_tab');
@@ -43,7 +44,7 @@ function setupFilterToggles(typeIn) {
       applicable_area.style.display='block';
   }));
 }
-
+*/
 function psUIReady() {
-  //var accordions = bulmaAccordion.attach();
+  var accordions = bulmaAccordion.attach();
 }

@@ -5,7 +5,7 @@
     <title>{{ title }}</title>
     <link rel="stylesheet" href="css/bulma.css" />
     <link rel="stylesheet" href="css/bulma-switch.min.css" />
-    <!-- <link rel="stylesheet" href="css/bulma-accordion.min.css" /> -->
+    <link rel="stylesheet" href="css/bulma-accordion.min.css" />
     <link rel="stylesheet" href="css/ps.out.css" />
 
     <script defer src="fontawesome/js/all.min.js"></script>
@@ -27,6 +27,10 @@
     <div class="columns">
         <div class="column is-half" id="batter_filter">
 
+          <!-- BEGIN: ********** Batter PLAYER Filters *********** -->
+          <section class="accordions">
+            <article class="accordion is-active">
+              <!--
           <div class="tabs is-boxed">
             <ul>
               <li id="batter_player_filter" class="batter-filter-tab is-active"><a>Player</a></li>
@@ -36,10 +40,12 @@
               <li id="batter_pitching_filter" class="batter-filter-tab"><a>Pitching</a></li>
             </ul>
           </div>
-
-          <!-- BEGIN: ********** Batter PLAYER Filters *********** -->
-          <div class="container" id="batter_filter_area">
-            <div id="batter_player_filter_area" style="background-color:orange;">
+        -->
+        <div class="accordion-header toggle">
+            <p>Filter by Player Information:</p>
+        </div>
+        <div class="accordion-body">
+          <div class="accordion-content">
 
               <div class="columns">
               <div class="column is-half">
@@ -116,9 +122,17 @@
               </div>
             </div>
           </div>
+      </div>
+    </article>
 
             <!-- BEGIN: ********** Batter CARD Filters *********** -->
-            <div id="batter_card_filter_area" style="background-color:aqua;">
+            <article class="accordion">
+            <div class="accordion-header">
+                <p>Filter by Card Information:</p>
+                <button class="toggle" aria-label="toggle"></button>
+            </div>
+            <div class="accordion-body">
+              <div class="accordion-content">
 
                   <div class="field">
                     <label for="batter_card_type_program">Card Type/Program:</label>
@@ -263,74 +277,57 @@
 
 
             </div>
+          </div>
+          </article>
 
-            <div id="batter_batting_filter_area">
-              Batting - Filter by BATTING RATINGS
+          <article class="accordion">
+          <div class="accordion-header">
+              <p>Filter by BATTING RATINGS:</p>
+              <button class="toggle" aria-label="toggle"></button>
+          </div>
+          <div class="accordion-body">
+            <div class="accordion-content">
+              Stuff
             </div>
-            <div id="batter_field_filter_area">
-              Batting - Filter by FIELDING RATINGS
-            </div>
-            <div id="batter_pitching_filter_area">
+          </div>
+        </article>
 
-                                      <h1>{{ title }}</h1>
-                                      <p>{{ body }}
-                                      </p>
-                                      <p>{{ dummie }}</p>
-                                      TIERS: <br />
-                                      <input type="text" id="tier_select_text" value="alpha" />
-                                      <select id="tier_select">
-                                      <option value="-9">(Any Tier)</option>
-                                      {{#each tiers}}
-                                      <option value="{{this.tier_id}}">{{this.tier_name}} ({{this.tier_id}})</option>
-                                      {{/each}}
-                                      </select>
-                                      <button id="filter_button">Filter</button>
-                                      <div id="read_it">hey there!!!!!!!!</div>
-                                      <br />
-                                      ******* FILTER REPLY**<br />
-                                      <div id="filter_reply">abc</div>
-            </div>
+        <article class="accordion">
+          <div class="accordion-header toggle">
+              <p>Filter by FIELDING RATINGS:</p>
+              <button class="toggle" aria-label="toggle"></button>
+          </div>
+          <div class="accordion-body">
+            <div class="accordion-content">
 
-          </div> <!-- end batting_filter_area -->
+              <h1>{{ title }}</h1>
+              <p>{{ body }}
+              </p>
+              <p>{{ dummie }}</p>
+              TIERS: <br />
+              <input type="text" id="tier_select_text" value="alpha" />
+              <select id="tier_select">
+              <option value="-9">(Any Tier)</option>
+              {{#each tiers}}
+              <option value="{{this.tier_id}}">{{this.tier_name}} ({{this.tier_id}})</option>
+              {{/each}}
+              </select>
+              <button id="filter_button">Filter</button>
+              <div id="read_it">hey there!!!!!!!!</div>
+              <br />
+              ******* FILTER REPLY**<br />
+              <div id="filter_reply">abc</div>
+
+            </div>
+          </div>
+        </article>
+      </section>
 
       </div> <!-- end batter filter column -->
       <div class="column is-half" id="batter_results">
-<!--
-        <section class="accordions">
-          <article class="accordion is-active">
-            <div class="accordion-header toggle">
-              <p>Hello World</p>
-            </div>
-            <div class="accordion-body">
-              <div class="accordion-content">
-                Lorem ipsum dolor sit amet, consectetur adipiscing elit. <strong>Pellentesque risus mi</strong>, tempus quis placerat ut, porta nec nulla. Vestibulum rhoncus ac ex sit amet fringilla. Nullam gravida purus diam, et dictum <a>felis venenatis</a> efficitur. Aenean ac <em>eleifend lacus</em>, in mollis lectus. Donec sodales, arcu et sollicitudin porttitor, tortor urna tempor ligula, id porttitor mi magna a neque. Donec dui urna, vehicula et sem eget, facilisis sodales sem.
-              </div>
-            </div>
-          </article>
-          <article class="accordion">
-            <div class="accordion-header">
-              <p>Hello World</p>
-              <button class="toggle" aria-label="toggle"></button>
-            </div>
-            <div class="accordion-body">
-              <div class="accordion-content">
-                Lorem ipsum dolor sit amet, consectetur adipiscing elit. <strong>Pellentesque risus mi</strong>, tempus quis placerat ut, porta nec nulla. Vestibulum rhoncus ac ex sit amet fringilla. Nullam gravida purus diam, et dictum <a>felis venenatis</a> efficitur. Aenean ac <em>eleifend lacus</em>, in mollis lectus. Donec sodales, arcu et sollicitudin porttitor, tortor urna tempor ligula, id porttitor mi magna a neque. Donec dui urna, vehicula et sem eget, facilisis sodales sem.
-              </div>
-            </div>
-          </article>
-          <article class="accordion">
-            <div class="accordion-header">
-              <p>Hello World</p>
-              <button class="toggle" aria-label="toggle"></button>
-            </div>
-            <div class="accordion-body">
-              <div class="accordion-content">
-                Lorem ipsum dolor sit amet, consectetur adipiscing elit. <strong>Pellentesque risus mi</strong>, tempus quis placerat ut, porta nec nulla. Vestibulum rhoncus ac ex sit amet fringilla. Nullam gravida purus diam, et dictum <a>felis venenatis</a> efficitur. Aenean ac <em>eleifend lacus</em>, in mollis lectus. Donec sodales, arcu et sollicitudin porttitor, tortor urna tempor ligula, id porttitor mi magna a neque. Donec dui urna, vehicula et sem eget, facilisis sodales sem.
-              </div>
-            </div>
-          </article>
-        </section>
-      -->
+          results n stuff
+
+
 
 
       </div> <!-- end batter results column -->
@@ -387,7 +384,7 @@
 
 <script src='fe-js/ui-toggles.js'></script>
 <script src='fe-js/filter-toggles.js'></script>
-<!-- <script src='fe-js/bulma-accordion.min.js'></script> -->
+<script src='fe-js/bulma-accordion.min.js'></script>
 
 <script src='fe-js/renderer.js'></script>
 </body>

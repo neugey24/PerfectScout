@@ -84,11 +84,11 @@ body {
 }
 
 .ps-slider {
-  width: 280px;
+  width: 230px;
 }
 
 .ps-slider.year {
-  width: 240px;
+  width: 190px;
 }
 
 .ps-slider-label {
@@ -98,6 +98,12 @@ body {
   font-weight: 900;
   font-size: 12px;
   padding: 4px;
+}
+
+#batter_display .accordion-body {
+  background-color: lime;
+  height: 428px;
+  vertical-align: top;
 }
 
 /*
