@@ -59,10 +59,10 @@
                   <div class="control">
                     <div class="select is-primary is-small is-multiple" size="4">
                       <select multiple id="batter_player_team">
-                        <option>Baltimore Orioles</option>
-                        <option>Boston Red Sox</option>
-                        <option>Miami Marlins</option>
-                        <option>Texas Rangers</option>
+                        <option value="Baltimore Orioles">Baltimore Orioles</option>
+                        <option value="Boston Red Sox">Boston Red Sox</option>
+                        <option value="Miami Marlins">Miami Marlins</option>
+                        <option value="Texas Rangers">Texas Rangers</option>
                       </select>
                     </div>
                   </div>
@@ -84,7 +84,7 @@
                 </div>
               </div>
                 <div class="field">
-                  <label for="batter_player_batting_hands">Throwing Hand:</label>
+                  <label for="batter_player_throwing_hands">Throwing Hand:</label>
                   <div class="control">
                     <div id="batter_player_throwing_hands">
                       <span class="hand_icons"><a href="javascript:toggleThrowingHand('left');"><i id="batter_player_throwing_hand_left" class="lefty far fa-hand-paper"></i></a></span> L
@@ -101,9 +101,13 @@
                     <div class="select is-multiple is-primary is-small" size="4">
                       <select multiple id="batter_player_prim_pos">
                         <option value="C">Catcher (C)</option>
-                        <option class="tryit" value="1B">First Base (1B)</option>
+                        <option class="1B" value="1B">First Base (1B)</option>
                         <option value="2B">Second Base (2B)</option>
                         <option value="3B">Third Base (3B)</option>
+                        <option value="SS">Shortstop (SS)</option>
+                        <option value="LF">Left Field (LF)</option>
+                        <option value="CF">Center Field (CF)</option>
+                        <option value="RF">Right Field (RF)</option>
                       </select>
                     </div>
                   </div>
@@ -145,43 +149,43 @@
                       <td align="center" class="tier-select-one">
                           <label class="radio">
                             Any<br />
-                            <input type="radio" name="batter_card_tier" checked="checked">
+                            <input type="radio" name="batter_card_tier" value="*" checked="checked" />
                           </label>
                       </td>
-                      <td align="center" class="tier-peak">
+                      <td align="center" class="tier-perfect">
                           <label class="radio">
-                            Peak<br />
-                            <input type="radio" name="batter_card_tier">
+                            Perfect<br />
+                            <input type="radio" name="batter_card_tier" value="p" />
                           </label>
                       </td>
                       <td align="center" class="tier-diamond">
                           <label class="radio">
                             Diamond<br />
-                            <input type="radio" name="batter_card_tier">
+                            <input type="radio" name="batter_card_tier" value="d" />
                           </label>
                       </td>
                       <td align="center" class="tier-gold">
                           <label class="radio">
                             Gold<br />
-                            <input type="radio" name="batter_card_tier">
+                            <input type="radio" name="batter_card_tier" value="g" />
                           </label>
                       </td>
                       <td align="center" class="tier-silver">
                           <label class="radio">
                             Silver<br />
-                            <input type="radio" name="batter_card_tier">
+                            <input type="radio" name="batter_card_tier" value="s" />
                           </label>
                       </td>
                       <td align="center" class="tier-bronze">
                           <label class="radio">
                             Bronze<br />
-                            <input type="radio" name="batter_card_tier">
+                            <input type="radio" name="batter_card_tier" value="b" />
                           </label>
                       </td>
                       <td align="center" class="tier-iron">
                           <label class="radio">
                             Iron<br />
-                            <input type="radio" name="batter_card_tier">
+                            <input type="radio" name="batter_card_tier" value="i" />
                           </label>
                       </td>
                     </tr>
@@ -212,7 +216,7 @@
 
                       <div class="field">
                         <div class="control">
-                          <label for="batter_card_ovr_min">Card Overall (maximum):</label>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="ps-slider-label" id="batter_card_ovr_max_output">64</span>
+                          <label for="batter_card_ovr_max">Card Overall (maximum):</label>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="ps-slider-label" id="batter_card_ovr_max_output">64</span>
                           <br />0 <input oninput="rangeChange(this);" class="ps-slider" id="batter_card_ovr_max" step="1" min="0" max="128" value="64" type="range" /> 128
                         </div>
                       </div>
@@ -250,7 +254,7 @@
 
                       <div class="field">
                         <div class="control">
-                          <label for="batter_card_year_min">Card Year (maximum):</label>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="ps-slider-label" id="batter_card_year_max_output">1954</span>
+                          <label for="batter_card_year_max">Card Year (maximum):</label>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="ps-slider-label" id="batter_card_year_max_output">1954</span>
                           <br />1886 <input oninput="rangeChange(this);" class="ps-slider year" id="batter_card_year_max" step="1" min="1886" max="2019" value="1954" type="range" /> 2019
                         </div>
                       </div>
@@ -619,7 +623,7 @@
   <section id="batter_bat_rat_group_tend" style="display:none;">
 
     <div class="field">
-      <label for="batter_card_type_program">Batted Ball Profile:</label>
+      <label>Batted Ball Profile:</label>
       <div class="control">
         <div class="select is-primary is-small">
           <select id="batter_batted_ball">
@@ -634,7 +638,7 @@
     </div>
 
     <div class="field">
-      <label for="batter_card_type_program">Groundball Tendency:</label>
+      <label>Groundball Tendency:</label>
       <div class="control">
         <div class="select is-primary is-small">
           <select id="batter_groundball_tend">
@@ -649,7 +653,7 @@
     </div>
 
     <div class="field">
-      <label for="batter_card_type_program">Flyball Tendency:</label>
+      <label>Flyball Tendency:</label>
       <div class="control">
         <div class="select is-primary is-small">
           <select id="batter_flyball_tend">
@@ -957,6 +961,9 @@
 
       </div> <!-- end batter filter column -->
       <div class="column is-half" id="batter_results">
+
+          <a class="button is-large" onclick="batterHarvest();">Search Now</a>
+
           results n stuff
 
 
@@ -1036,6 +1043,7 @@
 <script src='fe-js/filter-toggles.js'></script>
 <script src='fe-js/bulma-accordion.min.js'></script>
 
+<script src='fe-js/batter-harvest.js'></script>
 <script src='fe-js/renderer.js'></script>
 </body>
 </html>

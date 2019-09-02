@@ -1,4 +1,5 @@
 const { ipcRenderer } = require('electron');
+const console = require('console');
 
 let filter_button = document.querySelector('#filter_button');
 

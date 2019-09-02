@@ -1,13 +1,11 @@
 // Modules to control application life and create native browser window
-const {app, BrowserWindow} = require('electron');
+const {app, BrowserWindow, ipcMain} = require('electron');
 const path = require('path');
 const http = require('http');
-const { ipcMain } = require('electron')
 
 const sqlite3 = require('sqlite3');
 
-
-
+let psDebugMode = process.argv[2]=='debug' ? true : false;
 
 //Receive and reply to synchronous message
 ipcMain.on('filterMessage', (event, current_tier) => {
@@ -66,15 +64,15 @@ function createWindow () {
   // and load the index.html of the app.
   win.loadFile('index.hbs')
 
-  // ###### DEV TOOLS ############## Open the DevTools.
-  // win.webContents.openDevTools()
-  // ###### DEV TOOLS ############## Open the DevTools.
+  // ###### DEV TOOLS ############## Open the DevTools for debugging
+  if (psDebugMode) {
+    win.webContents.openDevTools()
+  }
 
   win.webContents.on('did-finish-load', () => {
     win.show();
     win.focus();
   });
-
 
     // Emitted when the window is closed.
     win.on('closed', () => {

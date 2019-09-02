@@ -27,8 +27,10 @@
     "bulma-accordion": "^2.0.1",
     "bulma-slider": "^2.0.0",
     "bulma-switch": "^2.0.0",
+    "csv-parser": "^2.3.0",
     "electron": "^6.0.7",
     "electron-handlebars": "^2.0.0",
+    "fast-csv": "^3.4.0",
     "sass": "^1.22.10",
     "sqlite3": "^4.1.0"
   },
