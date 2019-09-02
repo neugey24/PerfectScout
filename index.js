@@ -67,7 +67,7 @@ function createWindow () {
   win.loadFile('index.hbs')
 
   // ###### DEV TOOLS ############## Open the DevTools.
-  //win.webContents.openDevTools()
+  // win.webContents.openDevTools()
   // ###### DEV TOOLS ############## Open the DevTools.
 
   win.webContents.on('did-finish-load', () => {
