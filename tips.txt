@@ -20,3 +20,9 @@ sass css/ps.scss css/ps.out.css
 
 Font Awesome icons
 give credit, cite license https://fontawesome.com/license for use
+
+Abandoned default sqlite3 implementation for https://github.com/JoshuaWise/better-sqlite3
+It's much better!!!!
+
+// To rebuild Electron, run -
+// npm run elreb

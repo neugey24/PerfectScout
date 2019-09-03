@@ -8,6 +8,7 @@
     <link rel="stylesheet" href="css/bulma-accordion.min.css" />
     <link rel="stylesheet" href="css/ps.out.css" />
 
+    <script src='fe-js/template-helpers.js'></script>
     <script defer src="fontawesome/js/all.min.js"></script>
   </head>
   <body onLoad="psUIReady();">
@@ -59,10 +60,11 @@
                   <div class="control">
                     <div class="select is-primary is-small is-multiple" size="4">
                       <select multiple id="batter_player_team">
-                        <option value="Baltimore Orioles">Baltimore Orioles</option>
-                        <option value="Boston Red Sox">Boston Red Sox</option>
-                        <option value="Miami Marlins">Miami Marlins</option>
-                        <option value="Texas Rangers">Texas Rangers</option>
+                          {{#each teamNamesForFilter}}
+                          <option value="{{this.id}}">
+                            <script>jsIfElse('{{this.is_active}}','Y','{{this.name}} *', '{{this.name}}');</script>
+                          </option>
+                          {{/each}}
                       </select>
                     </div>
                   </div>

@@ -3,7 +3,8 @@ const {app, BrowserWindow, ipcMain} = require('electron');
 const path = require('path');
 const http = require('http');
 
-const sqlite3 = require('sqlite3');
+const Sqlite3Database = require('better-sqlite3');
+const psDataConn = new Sqlite3Database('db/ps.db', { verbose: console.log });
 
 let psDebugMode = process.argv[2]=='debug' ? true : false;
 
@@ -14,34 +15,19 @@ ipcMain.on('filterMessage', (event, current_tier) => {
  event.returnValue = 'Your current tier ID is ' + current_tier;
 });
 
-
-let db = new sqlite3.Database('ps.db', (err) => {
-  if (err) {
-    console.error(err.message);
-  }
-  console.log('Connected to the PerfectScout database.');
-});
+var dbLoader = require('./dbLoader');
+let teamNamesForFilter = dbLoader.teamNames(psDataConn);
+//console.log('team data stuff:' +  teamNamesForFilter.toString());
 
 var dummy = "hello mike!";
 var tiers = new Array();
-var tierCtr = 0;
-db.serialize(() => {
-  db.each(`SELECT tier_id, tier_name
-           FROM card_tier ORDER by tier_order ASC`, (err, row) => {
-    if (err) {
-      console.error(err.message);
-    }
-    tiers[tierCtr++] = {tier_id:row.tier_id, tier_name:row.tier_name};
-  });
-});
-console.log('@@@' + dummy);
-
 
 require('electron-handlebars')({
   // Template bindings go here!
   title: 'Hello, World!',
   body: 'The quick brown fox jumps over the lazy dog.',
-  tiers: tiers
+  tiers: tiers,
+  teamNamesForFilter: teamNamesForFilter
 });
 
 // Keep a global reference of the window object, if you don't, the window will
