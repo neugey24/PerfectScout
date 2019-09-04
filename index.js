@@ -6,6 +6,8 @@ const http = require('http');
 const Sqlite3Database = require('better-sqlite3');
 const psDataConn = new Sqlite3Database('db/ps.db', { verbose: console.log });
 
+var templateProcessor = require('./templateProcessor');
+
 let psDebugMode = process.argv[2]=='debug' ? true : false;
 
 var searchEngine = require('./searchEngine');
@@ -34,8 +36,9 @@ ipcMain.on('executeSearch', (event, typeIn, filters, sortBy) => {
   let additionalTables = searchEngine.buildAdditionalTables(typeIn, filtersMap);
   let additionalJoins = searchEngine.buildAdditionalJoins(additionalTables);
   let clauses = searchEngine.buildClauses(typeIn, filtersMap);
-  event.returnValue = searchEngine.executeSearch(psDataConn, typeIn, additionalTables,
+  let srData = searchEngine.executeSearch(psDataConn, typeIn, additionalTables,
     additionalJoins, clauses, sortBy);
+  event.returnValue = templateProcessor.processTemplate('search-results', {result_data:srData});
 });
 
 var dbLoader = require('./dbLoader');

@@ -31,6 +31,7 @@ function executeSearch(typeIn) {
     // convert Map to Object, ipcRenderer can only handle Object/JSON, Maps get destroyed
     var mapAsObject = Object.fromEntries(filters);
     let results = ipcRenderer.sendSync('executeSearch', typeIn, mapAsObject, sortBy);
-    replyDiv.innerHTML = `<h1>Search Results (${results.length} found):</h1><br />` + JSON.stringify(results);
+    replyDiv.innerHTML = results;
+    // JSON.stringify(results);
   }
 }

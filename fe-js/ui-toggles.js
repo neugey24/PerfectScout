@@ -1,4 +1,4 @@
-let currentRatingGroup = {'bat':'contact', 'fld':'if_pos'};
+let currentRatingGroup = {'bat':'contact', 'fld':'if_sk'};
 
 function toggleRatingGroup(selectItem, group) {
   let current = document.querySelector('#' + selectItem.id);

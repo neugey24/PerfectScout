@@ -1,0 +1,11 @@
+<h2>{{result_data.length}} results found.</h2>
+<table class="sr-table">
+  {{#each result_data}}
+  <tr onclick="alert('id {{card_id}}');">
+    <td class="tier-{{tier_abbrev}}">{{this.card_overall}}</td>
+    <td class="tier-{{tier_abbrev}}">{{this.position_abbrev}}</td>
+    <td class="tier-{{tier_abbrev}}">{{this.first_name}} {{this.last_name}}</td>
+    <td class="tier-{{tier_abbrev}}">{{this.card_type_name}}</td>
+  </tr>
+  {{/each}}
+</table>

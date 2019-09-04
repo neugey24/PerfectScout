@@ -113,6 +113,24 @@ module.exports = {
 
         case 'batter_if_range_min':
             clauses.push('PR.inf_range >= ?'); break;
+        case 'batter_if_error_min':
+            clauses.push('PR.inf_error >= ?'); break;
+        case 'batter_if_arm_min':
+            clauses.push('PR.inf_arm >= ?'); break;
+        case 'batter_if_turn_min':
+            clauses.push('PR.inf_turn >= ?'); break;
+        case 'batter_of_range_min':
+            clauses.push('PR.of_range >= ?'); break;
+        case 'batter_of_error_min':
+            clauses.push('PR.of_error >= ?'); break;
+        case 'batter_of_arm_min':
+            clauses.push('PR.of_arm >= ?'); break;
+        case 'batter_c_ab_min':
+            clauses.push('PR.catcher_ability >= ?'); break;
+        case 'batter_c_arm_min':
+            clauses.push('PR.catcher_arm >= ?'); break;
+
+
         // more later
 
         default: found = false; break;

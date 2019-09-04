@@ -58,28 +58,29 @@ body {
   color: #888;
 }
 
-.tier-perfect {
+.tier-perfect, .tier-p {
   background-color: #222;
   color: #ffff80;
 }
 
-.tier-diamond {
-  background-color: #00ace6;
+.tier-diamond, .tier-d {
+  background-color: #6ccad7;
+  color: #111;
 }
 
-.tier-gold {
+.tier-gold, .tier-g {
   background-color: #e6ac00;
 }
 
-.tier-silver {
+.tier-silver, .tier-s {
   background-color: #999;
 }
 
-.tier-bronze {
+.tier-bronze, .tier-b {
   background-color: #bf8040;
 }
 
-.tier-iron {
+.tier-iron, .tier-i {
   background-color: #555;
 }
 
@@ -106,6 +107,19 @@ body {
   vertical-align: top;
 }
 
+.sr-table {
+  width: 90%;
+  align: center;
+}
+
+.sr-table tr {
+  border: 2px solid #aaa;
+}
+
+.sr-table tr:hover {
+  border: 2px solid #fff;
+  cursor: pointer;
+}
 
 
 .tryit {
