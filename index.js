@@ -8,16 +8,39 @@ const psDataConn = new Sqlite3Database('db/ps.db', { verbose: console.log });
 
 let psDebugMode = process.argv[2]=='debug' ? true : false;
 
-//Receive and reply to synchronous message
+var searchEngine = require('./searchEngine');
+
+// Receive and reply to synchronous message
 ipcMain.on('filterMessage', (event, current_tier) => {
  //do something with args
  console.log('Current tier is ' + current_tier);
  event.returnValue = 'Your current tier ID is ' + current_tier;
 });
 
+function makeMap(jsonIn) {
+  let result = new Map();
+  for (var key in jsonIn) {
+    if (jsonIn.hasOwnProperty(key)) {
+      var val = jsonIn[key];
+      result.set(key, val);
+    }
+  }
+  return result;
+}
+
+// Receive and reply to synchronous message
+ipcMain.on('executeSearch', (event, typeIn, filters, sortBy) => {
+  let filtersMap = makeMap(filters);
+  let additionalTables = searchEngine.buildAdditionalTables(typeIn, filtersMap);
+  let additionalJoins = searchEngine.buildAdditionalJoins(additionalTables);
+  let clauses = searchEngine.buildClauses(typeIn, filtersMap);
+  event.returnValue = searchEngine.executeSearch(psDataConn, typeIn, additionalTables,
+    additionalJoins, clauses, sortBy);
+});
+
 var dbLoader = require('./dbLoader');
 let teamNamesForFilter = dbLoader.teamNames(psDataConn);
-//console.log('team data stuff:' +  teamNamesForFilter.toString());
+let cardTypesProgramsForFilter = dbLoader.cardTypesPrograms(psDataConn);
 
 var dummy = "hello mike!";
 var tiers = new Array();
@@ -27,7 +50,8 @@ require('electron-handlebars')({
   title: 'Hello, World!',
   body: 'The quick brown fox jumps over the lazy dog.',
   tiers: tiers,
-  teamNamesForFilter: teamNamesForFilter
+  teamNamesForFilter: teamNamesForFilter,
+  cardTypesProgramsForFilter: cardTypesProgramsForFilter
 });
 
 // Keep a global reference of the window object, if you don't, the window will

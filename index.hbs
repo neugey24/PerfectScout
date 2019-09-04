@@ -136,9 +136,9 @@
                       <div class="select is-primary is-small">
                         <select id="batter_card_type_program">
                           <option value="*">(Any Type/Program)</option>
-                          <option value="t:hh">Hardware Heroes</option>
-                          <option value="t:rs">Rookie Sensation</option>
-                          <option value="p:nls">All-Time Legend: Negro League Stars</option>
+                          {{#each cardTypesProgramsForFilter}}
+                            <option value="{{this.abbrev}}">{{this.name}}</option>
+                          {{/each}}
                         </select>
                       </div>
                     </div>
@@ -199,8 +199,8 @@
 
                       <div class="field">
                         <div class="control">
-                          <label for="batter_card_ovr_min">Card Overall (minimum):</label>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="ps-slider-label" id="batter_card_ovr_min_output">64</span>
-                          <br />0 <input oninput="rangeChange(this);" class="ps-slider" id="batter_card_ovr_min" step="1" min="0" max="128" value="64" type="range" /> 128
+                          <label for="batter_card_ovr_min">Card Overall (minimum):</label>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="ps-slider-label" id="batter_card_ovr_min_output">70</span>
+                          <br />40 <input oninput="rangeChange(this);" class="ps-slider" id="batter_card_ovr_min" step="1" min="40" max="100" value="70" type="range" /> 100
                         </div>
                       </div>
                     </div>
@@ -218,8 +218,8 @@
 
                       <div class="field">
                         <div class="control">
-                          <label for="batter_card_ovr_max">Card Overall (maximum):</label>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="ps-slider-label" id="batter_card_ovr_max_output">64</span>
-                          <br />0 <input oninput="rangeChange(this);" class="ps-slider" id="batter_card_ovr_max" step="1" min="0" max="128" value="64" type="range" /> 128
+                          <label for="batter_card_ovr_max">Card Overall (maximum):</label>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="ps-slider-label" id="batter_card_ovr_max_output">70</span>
+                          <br />40 <input oninput="rangeChange(this);" class="ps-slider" id="batter_card_ovr_max" step="1" min="40" max="100" value="70" type="range" /> 100
                         </div>
                       </div>
                     </div>
@@ -297,7 +297,7 @@
                       <option value="avoid-k">Avoid K Ratings</option>
                       <option value="runner">Runner Ratings</option>
                       <option value="bunter">Bunter Ratings</option>
-                      <option value="tend">Hitter Tendencies</option>
+                      <!-- <option value="tend">Hitter Tendencies</option> -->
                     </select>
                   </div>
                 </div>
@@ -622,6 +622,7 @@
   </section>
 
   <!-- Batter Hitter Tendendency Ratings group -->
+  <!--
   <section id="batter_bat_rat_group_tend" style="display:none;">
 
     <div class="field">
@@ -670,6 +671,7 @@
     </div>
 
   </section>
+  -->
 
             </div>
           </div>
@@ -689,8 +691,10 @@
                 <div class="control">
                   <div class="select is-primary is-small">
                     <select id="batter_fld_rat_group" onchange="toggleRatingGroup(this, 'fld');">
+                      <!--
                       <option value="if_pos">Infield Position Ratings</option>
                       <option value="of_pos">Outfield Position Ratings</option>
+                      -->
                       <option value="if_sk">Infield Skill Ratings</option>
                       <option value="of_sk">Outfield Skill Ratings</option>
                       <option value="c_rat">Catcher Position and Skill Ratings</option>
@@ -700,6 +704,7 @@
               </div>
 
               <!-- Batter Infield Position Ratings group -->
+              <!--
               <section id="batter_fld_rat_group_if_pos">
               <div class="columns">
                 <div class="column is-three-quarters">
@@ -756,8 +761,9 @@
                 </div>
               </div>
             </section>
-
+            -->
             <!-- Batter Outfield Position Ratings group -->
+            <!--
             <section id="batter_fld_rat_group_of_pos" style="display:none;">
             <div class="columns">
               <div class="column is-three-quarters">
@@ -803,9 +809,10 @@
               </div>
             </div>
           </section>
+          -->
 
           <!-- Batter Infield Skill Ratings group -->
-          <section id="batter_fld_rat_group_if_sk" style="display:none;">
+          <section id="batter_fld_rat_group_if_sk">
           <div class="columns">
             <div class="column is-three-quarters">
 
@@ -964,11 +971,11 @@
       </div> <!-- end batter filter column -->
       <div class="column is-half" id="batter_results">
 
-          <a class="button is-large" onclick="batterHarvest();">Search Now</a>
-
+          <a class="button is-large" onclick="executeSearch('batter');">Search Now</a>
+          <br clear="all" />
           results n stuff
 
-
+                  <!--
                         <h1>{{ title }}</h1>
                         <p>{{ body }}
                         </p>
@@ -983,8 +990,8 @@
                         </select>
                         <button id="filter_button">Filter</button>
                         <div id="read_it">hey there!!!!!!!!</div>
-                        <br />
-                        ******* FILTER REPLY**<br />
+                        <br /> -->
+                        ******* REPLY AREA *****<br />
                         <div id="filter_reply">abc</div>
 
 

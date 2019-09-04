@@ -11,7 +11,15 @@ module.exports = {
     }
     return result;
   },
-  bar: function () {
-    // whatever
+  cardTypesPrograms: function (conn) {
+    let result = Array();
+
+    const stmt = conn.prepare('SELECT card_type_id, card_type_name, card_type_abbrev ' +
+             ' FROM card_type ORDER by card_type_name ASC');
+    for (const row of stmt.iterate()) {
+      result.push({id:row.card_type_id, name:row.card_type_name,
+        abbrev:row.card_type_abbrev});
+    }
+    return result;
   }
 };

@@ -1,15 +1,17 @@
-let batterFilters = new Object();
+var batterFilters = new Map();
 
 function batterHarvest() {
-  batterFilters = new Object();
-  
+  batterFilters.clear();
+  batterFilters.set('joinToBatterRatings', false);
+  batterFilters.set('joinToPositionRatings', false);
+
   let current = document.querySelector('#batter_player_first_name');
   if (current.value.trim()!='') {
-    batterFilters.batter_player_first_name = current.value;
+    batterFilters.set('batter_player_first_name', current.value.trim());
   }
   current = document.querySelector('#batter_player_last_name');
   if (current.value.trim()!='') {
-    batterFilters.batter_player_last_name = current.value;
+    batterFilters.set('batter_player_last_name', current.value.trim());
   }
 
   processMultiSelect('batter_player_team');
@@ -20,7 +22,7 @@ function batterHarvest() {
   for (var ii=0, radioLength = radioItems.length; ii < radioLength; ii++) {
    if (radioItems[ii].checked) {
      if (radioItems[ii].value !='*') {
-       batterFilters.batter_card_tier = radioItems[ii].value;
+       batterFilters.set('batter_card_tier', radioItems[ii].value);
      }
      break;
    }
@@ -54,9 +56,11 @@ function batterHarvest() {
   processOnField('batter_sacbunt_min');
   processOnField('batter_bunthit_min');
 
+/*
   processSingleSelect('batter_batted_ball');
   processSingleSelect('batter_groundball_tend');
   processSingleSelect('batter_flyball_tend');
+
 
   processOnField('batter_1b_min');
   processOnField('batter_2b_min');
@@ -65,6 +69,8 @@ function batterHarvest() {
   processOnField('batter_lf_min');
   processOnField('batter_cf_min');
   processOnField('batter_rf_min');
+  */
+
   processOnField('batter_if_range_min');
   processOnField('batter_if_error_min');
   processOnField('batter_if_arm_min');
@@ -77,28 +83,35 @@ function batterHarvest() {
   processOnField('batter_c_arm_min');
 
   if (batter_player_batting_hand_controls.left) {
-    batterFilters.batter_player_batting_hand ='left';
+    batterFilters.set('batter_player_batting_hand', 'L');
   } else if (batter_player_batting_hand_controls.right) {
-    batterFilters.batter_player_batting_hand ='right';
+    batterFilters.set('batter_player_batting_hand', 'R');
   } else if (batter_player_batting_hand_controls.bswitch) {
-    batterFilters.batter_player_batting_hand ='switch';
+    batterFilters.set('batter_player_batting_hand', 'S');
   }
 
   if (batter_player_throwing_hand_controls.left) {
-    batterFilters.batter_player_throwing_hand ='left';
+    batterFilters.set('batter_player_throwing_hand', 'L');
   } else if (batter_player_throwing_hand_controls.right) {
-    batterFilters.batter_player_throwing_hand ='right';
+    batterFilters.set('batter_player_throwing_hand', 'R');
   }
+  
+  //console.log('batter filters: ' + batterFilters);
+  //batterFilters.forEach(mapToConsole);
 
-  console.log(batterFilters);
+  return batterFilters;
 
+}
+
+function mapToConsole(value, key) {
+   console.log(key + ':' + value);
 }
 
 function processSingleSelect(nameIn) {
   let current = document.querySelector('#' + nameIn);
   let value = current.options[current.selectedIndex].value;
   if (value != '*') {
-    eval("batterFilters." + nameIn + "=value;");
+    batterFilters.set(nameIn, value);
   }
 }
 
@@ -113,7 +126,7 @@ function processMultiSelect(nameIn) {
     }
   }
   if (teamArray.length > 0) {
-    eval("batterFilters." + nameIn + "=teamArray;");
+    batterFilters.set(nameIn, teamArray);
   }
 }
 
@@ -121,6 +134,16 @@ function processOnField(nameIn) {
   let current = document.querySelector('#' + nameIn + '_on');
   let valueField = document.querySelector('#' + nameIn);
   if (current.checked) {
-    eval("batterFilters." + nameIn + "='" + valueField.value + "';");
+    batterFilters.set(nameIn, valueField.value);
+    if (nameIn.includes("arm") || nameIn.includes("error") ||
+      nameIn.includes("range") || nameIn.includes("turn") ||
+      nameIn.includes("c_ab")) {
+        batterFilters.set('joinToPositionRatings', true);
+      } else if (nameIn.includes("ovr") || nameIn.includes("year")) {
+
+      } else {
+        batterFilters.set('joinToBatterRatings', true);
+      }
+
   }
 }
