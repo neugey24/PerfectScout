@@ -1,4 +1,5 @@
 let currentRatingGroup = {'bat':'contact', 'fld':'if_sk'};
+let sr_ids = new Array();
 
 function toggleRatingGroup(selectItem, group) {
   let current = document.querySelector('#' + selectItem.id);
@@ -15,4 +16,11 @@ function toggleRatingGroup(selectItem, group) {
 
 function psUIReady() {
   var accordions = bulmaAccordion.attach();
+}
+
+function toggleModal() {
+  let modalWindow = document.querySelector('.modal');
+
+  modalWindow.classList.toggle('is-clipped');
+  modalWindow.classList.toggle('is-active');
 }

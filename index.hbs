@@ -10,8 +10,17 @@
 
     <script src='fe-js/template-helpers.js'></script>
     <script defer src="fontawesome/js/all.min.js"></script>
+
+    <script src='fe-js/apexcharts.min.js'></script>
+
+
+
+
+
   </head>
   <body onLoad="psUIReady();">
+<!--
+    <script src="https://cdn.jsdelivr.net/npm/apexcharts"></script> -->
 <section class="section">
 
   <div class="tabs is-toggle is-toggle-rounded is-medium is-fullwidth">
@@ -993,6 +1002,97 @@
                         <br /> -->
                         ******* REPLY AREA *****<br />
                         <div id="filter_reply">abc</div>
+                        <br clear="all" />
+                        <div id="test_chart"></div>
+                        <script>
+                        /*
+                        var options = {
+            chart: {
+                height: 380,
+                type: 'bar'
+            },
+            plotOptions: {
+                bar: {
+                    barHeight: '100%',
+                    distributed: true,
+                    horizontal: true,
+                    dataLabels: {
+                        position: 'bottom'
+                    },
+                }
+            },
+            colors: ['#33b2df', '#546E7A', '#d4526e', '#13d8aa', '#A5978B', '#2b908f', '#f9a3a4', '#90ee7e', '#f48024', '#69d2e7'],
+            dataLabels: {
+                enabled: true,
+                textAnchor: 'start',
+                style: {
+                    colors: ['#fff']
+                },
+                formatter: function(val, opt) {
+                    return opt.w.globals.labels[opt.dataPointIndex] + ":  " + val
+                },
+                offsetX: 0,
+                dropShadow: {
+                  enabled: true
+                }
+            },
+            series: [{
+                data: [400, 430, 448, 470, 540, 580, 690, 1100, 1200, 1380]
+            }],
+            stroke: {
+                width: 1,
+              colors: ['#fff']
+            },
+            xaxis: {
+                categories: ['South Korea', 'Canada', 'United Kingdom', 'Netherlands', 'Italy', 'France', 'Japan', 'United States', 'China', 'India'],
+            },
+            yaxis: {
+                labels: {
+                    show: false
+                }
+            },
+            title: {
+                text: 'Custom DataLabels',
+                align: 'center',
+                floating: true
+            },
+            subtitle: {
+                text: 'Category Names as DataLabels inside bars',
+                align: 'center',
+            },
+            tooltip: {
+                theme: 'dark',
+                x: {
+                    show: false
+                },
+                y: {
+                    title: {
+                        formatter: function() {
+                            return ''
+                        }
+                    }
+                }
+            }
+        }
+
+        var options = {
+        chart: {
+          type: 'bar'
+        },
+        series: [{
+          data: [40,50,60]
+        }],
+        xaxis: {
+          categories: [1991,1992,1993,1994,1995,1996,1997, 1998,1999]
+        }
+      }
+
+
+    var chart = new ApexCharts(document.querySelector("#test_chart"), options);
+    chart.render();
+    */
+                           </script>
+
 
 
 
@@ -1047,7 +1147,16 @@
 
 </section> <!-- end single page app main section -->
 
+<div class="modal">
+  <div class="modal-background" onclick="toggleModal();"></div>
+  <div id="player_comparison_area" class="modal-content">
+    Bulma is awesome
+    <h4 class="sr_id_look">x</h4>
+  </div>
+  <button class="modal-close is-large" aria-label="close" onclick="toggleModal();"></button>
+</div>
 
+<script src='fe-js/ui-charting.js'></script>
 <script src='fe-js/ui-toggles.js'></script>
 <script src='fe-js/filter-toggles.js'></script>
 <script src='fe-js/bulma-accordion.min.js'></script>

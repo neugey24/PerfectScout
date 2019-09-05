@@ -2,3 +2,4 @@ fix Filter Accordion click responsiveness
 add LIKE % support for first and last name search
 make fname/lname case insensitive search
 add foolproof OVR min/max logic and Card Year min/max
+add Target player and Remove player Icons to player comparison UI

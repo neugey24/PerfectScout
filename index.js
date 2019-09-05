@@ -6,11 +6,10 @@ const http = require('http');
 const Sqlite3Database = require('better-sqlite3');
 const psDataConn = new Sqlite3Database('db/ps.db', { verbose: console.log });
 
-var templateProcessor = require('./templateProcessor');
-
 let psDebugMode = process.argv[2]=='debug' ? true : false;
 
 var searchEngine = require('./searchEngine');
+var playerRetrieval = require('./playerRetrieval');
 
 // Receive and reply to synchronous message
 ipcMain.on('filterMessage', (event, current_tier) => {
@@ -30,7 +29,7 @@ function makeMap(jsonIn) {
   return result;
 }
 
-// Receive and reply to synchronous message
+// Receive and reply to synchronous messages
 ipcMain.on('executeSearch', (event, typeIn, filters, sortBy) => {
   let filtersMap = makeMap(filters);
   let additionalTables = searchEngine.buildAdditionalTables(typeIn, filtersMap);
@@ -38,7 +37,26 @@ ipcMain.on('executeSearch', (event, typeIn, filters, sortBy) => {
   let clauses = searchEngine.buildClauses(typeIn, filtersMap);
   let srData = searchEngine.executeSearch(psDataConn, typeIn, additionalTables,
     additionalJoins, clauses, sortBy);
-  event.returnValue = templateProcessor.processTemplate('search-results', {result_data:srData});
+  event.returnValue = srData;
+});
+
+ipcMain.on('executePlayerCompare', (event, inputData) => {
+  let playerData = new Array();
+  playerData.push(playerRetrieval.retrieve(psDataConn, inputData.leftCard, 'left'));
+  if (inputData.midCard != null) {
+    playerData.push(playerRetrieval.retrieve(psDataConn, inputData.midCard, 'mid'));
+  }
+  if (inputData.rightCard != null) {
+    playerData.push(playerRetrieval.retrieve(psDataConn, inputData.rightCard, 'right'));
+  }
+  var dataReturn = {playerData:playerData, selPos:inputData.currentPosition};
+  if (inputData.beforeCards) {
+    dataReturn.beforeCards = 'Y';
+  }
+  if (inputData.afterCards) {
+    dataReturn.afterCards = 'Y';
+  }
+  event.returnValue = dataReturn;
 });
 
 var dbLoader = require('./dbLoader');

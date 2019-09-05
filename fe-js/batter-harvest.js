@@ -95,7 +95,7 @@ function batterHarvest() {
   } else if (batter_player_throwing_hand_controls.right) {
     batterFilters.set('batter_player_throwing_hand', 'R');
   }
-  
+
   //console.log('batter filters: ' + batterFilters);
   //batterFilters.forEach(mapToConsole);
 
@@ -104,7 +104,7 @@ function batterHarvest() {
 }
 
 function mapToConsole(value, key) {
-   console.log(key + ':' + value);
+   //console.log(key + ':' + value);
 }
 
 function processSingleSelect(nameIn) {

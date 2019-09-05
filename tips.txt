@@ -26,3 +26,6 @@ It's much better!!!!
 
 // To rebuild Electron, run -
 // npm run elreb
+
+Charting solution for player comparison - we may have a winner
+https://apexcharts.com/docs/datalabels/

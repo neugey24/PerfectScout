@@ -1,0 +1,161 @@
+<div class="compare-heading-wrapper">
+{{#if beforeCards}}<a style="float:left;" class="button" onClick="compareToHigher();">&lt;-- Compare to higher listed</a>{{/if}}
+{{#if afterCards}}<a style="float:right;" class="button" onClick="compareToLower();">Compare to lower listed --&gt;</a>{{/if}}
+<div class="compare-heading is-bigger">Player Comparison</div>
+</div>
+
+<div class="columns compare-panel">
+  {{#each playerData}}
+  <div class="column is-one-third compare-card {{comparison_spot}}">
+    <div class="player-stripe tier-{{tier_abbrev}}">{{card_overall}} ({{position_abbrev}}) {{first_name}} {{last_name}}</div>
+    <ul class="compare-card-details">
+      <li>{{card_year}} {{card_type_name}}</li>
+      <li>{{city_name}} {{team_name}}</li>
+      <li>Bats: {{batting_hand}} &middot; Throws: {{throwing_hand}}</li>
+    </ul>
+  </div>
+  {{/each}}
+</div>
+
+<div class="columns rating-panel">
+  <div class="column compare-rating right-divider">
+    <h3 class="rating-group-heading">Overall Batting</h3>
+    <div>
+      <h5 class="rating-name-display">Contact</h5>
+      <div class="chart-display" id="chart_contact"></div>
+    </div>
+    <div class="chart-justify">
+      <h5 class="rating-name-display">Gap Power</h5>
+      <div class="chart-display" id="chart_gap"></div>
+    </div>
+    <div class="chart-justify">
+      <h5 class="rating-name-display">Power</h5>
+      <div class="chart-display" id="chart_power"></div>
+    </div>
+    <div class="chart-justify">
+      <h5 class="rating-name-display">Eye</h5>
+      <div class="chart-display" id="chart_eye"></div>
+    </div>
+    <div class="chart-justify">
+      <h5 class="rating-name-display">Avoid K</h5>
+      <div class="chart-display" id="chart_avoid_k"></div>
+    </div>
+  </div>
+
+  <div class="column compare-rating right-divider">
+    <h3 class="rating-group-heading">Batting vs RHP</h3>
+    <div>
+      <h5 class="rating-name-display">Contact vs R</h5>
+      <div class="chart-display" id="chart_contact_vs_r"></div>
+    </div>
+    <div class="chart-justify">
+      <h5 class="rating-name-display">Gap Power vs R</h5>
+      <div class="chart-display" id="chart_gap_vs_r"></div>
+    </div>
+    <div class="chart-justify">
+      <h5 class="rating-name-display">Power vs R</h5>
+      <div class="chart-display" id="chart_power_vs_r"></div>
+    </div>
+    <div class="chart-justify">
+      <h5 class="rating-name-display">Eye vs R</h5>
+      <div class="chart-display" id="chart_eye_vs_r"></div>
+    </div>
+    <div class="chart-justify">
+      <h5 class="rating-name-display">Avoid K vs R</h5>
+      <div class="chart-display" id="chart_avoid_k_vs_r"></div>
+    </div>
+  </div>
+
+  <div class="column compare-rating right-divider">
+    <h3 class="rating-group-heading">Batting vs LHP</h3>
+    <div>
+      <h5 class="rating-name-display">Contact vs L</h5>
+      <div class="chart-display" id="chart_contact_vs_l"></div>
+    </div>
+    <div class="chart-justify">
+      <h5 class="rating-name-display">Gap Power vs L</h5>
+      <div class="chart-display" id="chart_gap_vs_l"></div>
+    </div>
+    <div class="chart-justify">
+      <h5 class="rating-name-display">Power vs L</h5>
+      <div class="chart-display" id="chart_power_vs_l"></div>
+    </div>
+    <div class="chart-justify">
+      <h5 class="rating-name-display">Eye vs L</h5>
+      <div class="chart-display" id="chart_eye_vs_l"></div>
+    </div>
+    <div class="chart-justify">
+      <h5 class="rating-name-display">Avoid K vs L</h5>
+      <div class="chart-display" id="chart_avoid_k_vs_l"></div>
+    </div>
+  </div>
+
+  <div class="column compare-rating right-divider">
+    <h3 class="rating-group-heading">Speed &amp; Bunting</h3>
+    <div>
+      <h5 class="rating-name-display">Speed</h5>
+      <div class="chart-display" id="chart_speed"></div>
+    </div>
+    <div class="chart-justify">
+      <h5 class="rating-name-display">Stealing</h5>
+      <div class="chart-display" id="chart_steal"></div>
+    </div>
+    <div class="chart-justify">
+      <h5 class="rating-name-display">Baserunning</h5>
+      <div class="chart-display" id="chart_baserunning"></div>
+    </div>
+    <div class="chart-justify">
+      <h5 class="rating-name-display">Sac Bunt</h5>
+      <div class="chart-display" id="chart_sac_bunt"></div>
+    </div>
+    <div class="chart-justify">
+      <h5 class="rating-name-display">Bunt for Hit</h5>
+      <div class="chart-display" id="chart_bunt_for_hit"></div>
+    </div>
+  </div>
+
+  <div class="column compare-rating right-divider">
+    <h3 class="rating-group-heading">Infield Defense</h3>
+    <div>
+      <h5 class="rating-name-display">Infield Range</h5>
+      <div class="chart-display" id="chart_inf_range"></div>
+    </div>
+    <div class="chart-justify">
+      <h5 class="rating-name-display">Infield Error</h5>
+      <div class="chart-display" id="chart_inf_error"></div>
+    </div>
+    <div class="chart-justify">
+      <h5 class="rating-name-display">Infield Arm</h5>
+      <div class="chart-display" id="chart_inf_arm"></div>
+    </div>
+    <div class="chart-justify">
+      <h5 class="rating-name-display">Turn DP</h5>
+      <div class="chart-display" id="chart_inf_turn"></div>
+    </div>
+    <div class="chart-justify">
+      <h5 class="rating-name-display">Catcher Ability</h5>
+      <div class="chart-display" id="chart_catcher_ability"></div>
+    </div>
+    <div class="chart-justify">
+      <h5 class="rating-name-display">Catcher Arm</h5>
+      <div class="chart-display" id="chart_catcher_arm"></div>
+    </div>
+  </div>
+
+  <div class="column compare-rating">
+    <h3 class="rating-group-heading">Outfield Defense</h3>
+    <div>
+      <h5 class="rating-name-display">Outfield Range</h5>
+      <div class="chart-display" id="chart_of_range"></div>
+    </div>
+    <div class="chart-justify">
+      <h5 class="rating-name-display">Outfield Error</h5>
+      <div class="chart-display" id="chart_of_error"></div>
+    </div>
+    <div class="chart-justify">
+      <h5 class="rating-name-display">Outfield Arm</h5>
+      <div class="chart-display" id="chart_of_arm"></div>
+    </div>
+  </div>
+
+</div>

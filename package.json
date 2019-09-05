@@ -24,6 +24,7 @@
   },
   "homepage": "https://github.com/neugey24/PerfectScout#readme",
   "dependencies": {
+    "apexcharts": "^3.8.5",
     "better-sqlite3": "^5.4.2",
     "bulma-accordion": "^2.0.1",
     "bulma-slider": "^2.0.0",
