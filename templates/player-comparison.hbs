@@ -1,6 +1,6 @@
 <div class="compare-heading-wrapper">
-{{#if beforeCards}}<a style="float:left;" class="button" onClick="compareToHigher();">&lt;-- Compare to higher listed</a>{{/if}}
-{{#if afterCards}}<a style="float:right;" class="button" onClick="compareToLower();">Compare to lower listed --&gt;</a>{{/if}}
+{{#if beforeCards}}<a style="float:left;" class="button" onClick="presentPlayerComparison({{playerZeroId}}, false);">&lt;-- Compare higher listed</a>{{/if}}
+{{#if afterCards}}<a style="float:right;" class="button" onClick="presentPlayerComparison({{playerTwoId}}, false);">Compare lower listed --&gt;</a>{{/if}}
 <div class="compare-heading is-bigger">Player Comparison</div>
 </div>
 

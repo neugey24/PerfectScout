@@ -52,9 +52,11 @@ ipcMain.on('executePlayerCompare', (event, inputData) => {
   var dataReturn = {playerData:playerData, selPos:inputData.currentPosition};
   if (inputData.beforeCards) {
     dataReturn.beforeCards = 'Y';
+    dataReturn.playerZeroId = playerData[0].card_id;
   }
   if (inputData.afterCards) {
     dataReturn.afterCards = 'Y';
+    dataReturn.playerTwoId = playerData[2].card_id;
   }
   event.returnValue = dataReturn;
 });

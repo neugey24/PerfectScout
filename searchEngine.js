@@ -1,5 +1,6 @@
 module.exports = {
   executeSearch: function (conn, typeIn, moreTables, moreJoins, clauses, sortBy) {
+    const SEARCH_RESULT_LIMIT = 100;
 
     let material_columns = ['PC.card_id', 'PC.first_name', 'PC.last_name',
       'PC.card_overall', 'CTIER.tier_abbrev', 'CTYPE.card_type_name',
@@ -20,11 +21,12 @@ module.exports = {
     let lengthMinusOne = clauses.length - 1;
     let queryData = clauses[lengthMinusOne];
     clauses.pop();
+    queryData.push(SEARCH_RESULT_LIMIT);
 
     let queryStr = 'SELECT ' + material_columns.join(', ') + ' FROM ' +
       material_tables.join(', ') + ' WHERE ' + material_joins.join(' AND ') +
-      ' AND ' + clauses.join(' AND ')
-      ' ORDER BY ' + sortBy;
+      ' AND ' + clauses.join(' AND ') +
+      ' ORDER BY ' + sortBy + ' LIMIT ?';
     //console.log(`QUERY STRING: ${queryStr}`);
     //console.log(`QUERY DATA is: ${queryData.toString()}`);
 
@@ -41,12 +43,15 @@ module.exports = {
       let currentValue = filters.get(currentKey);
       let inBuild = new Array();
       let dataIsArray = false;
+      let likeClause = false;
 
       switch(currentKey) {
         case 'batter_player_first_name':
-            clauses.push('PC.first_name = ?'); break;
+            likeClause = true;
+            clauses.push('PC.first_name LIKE ? COLLATE NOCASE '); break;
         case 'batter_player_last_name':
-            clauses.push('PC.last_name = ?'); break;
+            likeClause = true;
+            clauses.push('PC.last_name LIKE ?COLLATE NOCASE '); break;
         case 'batter_card_ovr_min':
             clauses.push('PC.card_overall >= ?'); break;
         case 'batter_card_ovr_max':
@@ -141,7 +146,12 @@ module.exports = {
         if (dataIsArray) {
           currentValue.forEach(function(element) { data.push(element); });
         } else {
-          data.push(currentValue);
+          if (likeClause) {
+            data.push(currentValue + '%');
+          } else {
+            data.push(currentValue);
+          }
+
         }
 
       }

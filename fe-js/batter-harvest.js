@@ -30,8 +30,11 @@ function batterHarvest() {
 
   processOnField('batter_card_ovr_min');
   processOnField('batter_card_ovr_max');
+  sanityCheckMinMax('batter_card_ovr');
+
   processOnField('batter_card_year_min');
   processOnField('batter_card_year_max');
+  sanityCheckMinMax('batter_card_year');
 
   processOnField('batter_contact_min');
   processOnField('batter_contact_vs_r_min');
@@ -101,6 +104,16 @@ function batterHarvest() {
 
   return batterFilters;
 
+}
+
+function sanityCheckMinMax(fieldPrefixIn) {
+  // if max is equal or less to the min and is contradictory, throw
+  // away the max value for search filtering
+  var minField = batterFilters.get(fieldPrefixIn + '_min');
+  var maxField = batterFilters.get(fieldPrefixIn + '_max');
+  if (minField !=null && maxField != null && maxField <= minField) {
+    batterFilters.delete(fieldPrefixIn + '_max');
+  }
 }
 
 function mapToConsole(value, key) {

@@ -63,8 +63,8 @@ function presentPlayerComparison(selectedCardId, fromResults) {
   let comparisonArea = document.querySelector('#player_comparison_area');
   comparisonArea.innerHTML = results;
 
-  if (fromResults) {
-    producePSBarCharts(resultData.playerData);
+  producePSBarCharts(resultData.playerData);
+  if (fromResults) {    
     toggleModal();
   }
 
