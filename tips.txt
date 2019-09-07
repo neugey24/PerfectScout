@@ -29,3 +29,5 @@ It's much better!!!!
 
 Charting solution for player comparison - we may have a winner
 https://apexcharts.com/docs/datalabels/
+
+slide in from left effect for graphs
