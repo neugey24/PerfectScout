@@ -1,0 +1,33 @@
+Tips and Tricks:
+
+considerations for UI and basic display tips:
+https://blog.avocode.com/4-must-know-tips-for-building-cross-platform-electron-apps-f3ae9c2bffff
+https://blog.dcpos.ch/how-to-make-your-electron-app-sexy
+
+utils:
+Bulma CSS https://bulma.io/
+https://wikiki.github.io/form/slider/
+
+SASS for CSS processing
+https://sass-lang.com/guide
+
+to rebuild stylesheet do this
+(separate window and stay active)
+sass --watch css/ps.scss css/ps.out.css
+
+(one time)
+sass css/ps.scss css/ps.out.css
+
+Font Awesome icons
+give credit, cite license https://fontawesome.com/license for use
+
+Abandoned default sqlite3 implementation for https://github.com/JoshuaWise/better-sqlite3
+It's much better!!!!
+
+// To rebuild Electron, run -
+// npm run elreb
+
+Charting solution for player comparison - we may have a winner
+https://apexcharts.com/docs/datalabels/
+
+slide in from left effect for graphs

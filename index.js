@@ -1,49 +1,80 @@
 // Modules to control application life and create native browser window
-const {app, BrowserWindow} = require('electron');
+const {app, BrowserWindow, ipcMain} = require('electron');
 const path = require('path');
 const http = require('http');
-const { ipcMain } = require('electron')
 
-const sqlite3 = require('sqlite3');
+const Sqlite3Database = require('better-sqlite3');
+const psDataConn = new Sqlite3Database('db/ps.db', { verbose: console.log });
 
+let psDebugMode = process.argv[2]=='debug' ? true : false;
 
+var searchEngine = require('./searchEngine');
+var playerRetrieval = require('./playerRetrieval');
 
-
-//Receive and reply to synchronous message
+// Receive and reply to synchronous message
 ipcMain.on('filterMessage', (event, current_tier) => {
  //do something with args
  console.log('Current tier is ' + current_tier);
  event.returnValue = 'Your current tier ID is ' + current_tier;
 });
 
-
-let db = new sqlite3.Database('ps.db', (err) => {
-  if (err) {
-    console.error(err.message);
+function makeMap(jsonIn) {
+  let result = new Map();
+  for (var key in jsonIn) {
+    if (jsonIn.hasOwnProperty(key)) {
+      var val = jsonIn[key];
+      result.set(key, val);
+    }
   }
-  console.log('Connected to the PerfectScout database.');
+  return result;
+}
+
+// Receive and reply to synchronous messages
+ipcMain.on('executeSearch', (event, typeIn, filters, sortBy) => {
+  let filtersMap = makeMap(filters);
+  let additionalTables = searchEngine.buildAdditionalTables(typeIn, filtersMap);
+  let additionalJoins = searchEngine.buildAdditionalJoins(additionalTables);
+  let clauses = searchEngine.buildClauses(typeIn, filtersMap);
+  let srData = searchEngine.executeSearch(psDataConn, typeIn, additionalTables,
+    additionalJoins, clauses, sortBy);
+  event.returnValue = srData;
 });
+
+ipcMain.on('executePlayerCompare', (event, inputData) => {
+  let playerData = new Array();
+  playerData.push(playerRetrieval.retrieve(psDataConn, inputData.leftCard, 'left'));
+  if (inputData.midCard != null) {
+    playerData.push(playerRetrieval.retrieve(psDataConn, inputData.midCard, 'mid'));
+  }
+  if (inputData.rightCard != null) {
+    playerData.push(playerRetrieval.retrieve(psDataConn, inputData.rightCard, 'right'));
+  }
+  var dataReturn = {playerData:playerData, selPos:inputData.currentPosition};
+  if (inputData.beforeCards) {
+    dataReturn.beforeCards = 'Y';
+    dataReturn.playerZeroId = playerData[0].card_id;
+  }
+  if (inputData.afterCards) {
+    dataReturn.afterCards = 'Y';
+    dataReturn.playerTwoId = playerData[2].card_id;
+  }
+  event.returnValue = dataReturn;
+});
+
+var dbLoader = require('./dbLoader');
+let teamNamesForFilter = dbLoader.teamNames(psDataConn);
+let cardTypesProgramsForFilter = dbLoader.cardTypesPrograms(psDataConn);
 
 var dummy = "hello mike!";
 var tiers = new Array();
-var tierCtr = 0;
-db.serialize(() => {
-  db.each(`SELECT tier_id, tier_name
-           FROM card_tier ORDER by tier_order ASC`, (err, row) => {
-    if (err) {
-      console.error(err.message);
-    }
-    tiers[tierCtr++] = {tier_id:row.tier_id, tier_name:row.tier_name};
-  });
-});
-console.log('@@@' + dummy);
-
 
 require('electron-handlebars')({
   // Template bindings go here!
   title: 'Hello, World!',
   body: 'The quick brown fox jumps over the lazy dog.',
-  tiers: tiers
+  tiers: tiers,
+  teamNamesForFilter: teamNamesForFilter,
+  cardTypesProgramsForFilter: cardTypesProgramsForFilter
 });
 
 // Keep a global reference of the window object, if you don't, the window will
@@ -53,8 +84,8 @@ let win
 function createWindow () {
   // Create the browser window.
   win = new BrowserWindow({
-    width: 800,
-    height: 600,
+    width: 1160,
+    height: 740,
     webPreferences: {
        nodeIntegration: true
       //preload: path.join(__dirname, 'preload.js')
@@ -66,14 +97,15 @@ function createWindow () {
   // and load the index.html of the app.
   win.loadFile('index.hbs')
 
-  // Open the DevTools.
-  //win.webContents.openDevTools()
+  // ###### DEV TOOLS ############## Open the DevTools for debugging
+  if (psDebugMode) {
+    win.webContents.openDevTools()
+  }
 
   win.webContents.on('did-finish-load', () => {
     win.show();
     win.focus();
   });
-
 
     // Emitted when the window is closed.
     win.on('closed', () => {

@@ -1,0 +1,123 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Grouped Bar Chart</title> 
+    
+    <link href="../../assets/styles.css" rel="stylesheet" />
+    
+    <script defer src="fontawesome/js/all.min.js"></script>
+
+    <style>
+        #chart {
+        margin-top: -30px;
+        margin-left: -30px;
+        }
+        
+        .apexcharts-canvas { 
+  background-color: cyan;
+  }
+  
+  .apexcharts-canvas g {  
+  }
+  
+  .apexcharts-inner { 
+  }
+  
+  
+    </style>
+</head>
+
+<body>
+ 
+    <div id="chart" >
+
+    </div> 
+
+    <div id="chart2">
+
+    </div>
+    
+    <script src="https://cdn.jsdelivr.net/npm/apexcharts@latest"></script>
+
+    <script>
+  var options = {
+            chart: { 
+            	width: 240,
+                height: 90,
+                type: 'bar',
+                toolbar: { show: false }
+            },
+            plotOptions: {
+                bar: {
+                    barHeight: '100%',
+                    distributed: true,
+                    horizontal: true
+                }
+            },
+            colors: ['#bb0000', '#008800', '#0000dd'],
+            series: [{
+                name: 'contact',
+                data: [48,49,2]
+            }],
+            stroke: {
+                width: 1,
+              colors: ['#fff']
+            },
+            tooltip: {
+                 theme: 'light',
+                x: {
+                    show: true
+                },
+                y: {
+                    show: false
+                }
+            },
+            xaxis: {
+             labels: {
+            show: false 
+            },   min:  0, max: 128, 
+            axisBorder: { show: false },
+            axisTicks: { show: false }, 
+            categories: ['Larry', 'Moe', 'Curly']
+            },
+            yaxis: {
+             labels: {
+            show: false }
+            }
+        }
+
+  
+
+       var chart = new ApexCharts(
+            document.querySelector("#chart"),
+            options
+        );
+        
+        chart.render();
+        
+        
+        var options = {
+  chart: {
+    type: 'bar'
+  },
+  series: [{
+    name: 'sales',
+    data: [30, 40, 35, 50, 49, 60, 70, 91, 125]
+  }],
+  xaxis: {
+    categories: [1991, 1992, 1993, 1994, 1995, 1996, 1997, 1998, 1999]
+  }
+}
+ 
+var chart = new ApexCharts(document.querySelector("#chart2"), options);
+chart.render();
+        
+        
+    </script> 
+</body>
+
+</html>

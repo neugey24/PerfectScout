@@ -1,0 +1,13 @@
+<h2>{{result_data.length}} results found.</h2>
+<script>sr_ids=[{{#each result_data}}{{card_id}}, {{/each}} -1];</script>
+<div class="invisble_holder" id="sr_ids_holder">{{#each result_data}}{{card_id}}, {{/each}} -1</div>
+<table class="sr-table">
+  {{#each result_data}}
+  <tr onclick="presentPlayerComparison({{card_id}}, true);">
+    <td class="tier-{{tier_abbrev}}">{{this.card_overall}}</td>
+    <td class="tier-{{tier_abbrev}}">{{this.position_abbrev}}</td>
+    <td class="tier-{{tier_abbrev}}">{{this.first_name}} {{this.last_name}}</td>
+    <td class="tier-{{tier_abbrev}}">{{this.card_type_name}}</td>
+  </tr>
+  {{/each}}
+</table>

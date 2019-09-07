@@ -1,0 +1,227 @@
+$ps-text-color: #f02;
+
+body {
+  color: $ps-text-color;
+}
+
+#pitcher_display {
+  display: none;
+}
+
+#batter_display {
+  display: block;
+}
+
+#batter_player_filter_area {
+  display: block;
+}
+
+#batter_card_filter_area, #batter_batting_filter_area, #batter_field_filter_area,
+  #batter_pitching_filter_area {
+  display: none;
+}
+
+#pitcher_player_filter_area {
+  display: block;
+}
+
+#pitcher_card_filter_area, #pitcher_batting_filter_area, #pitcher_field_filter_area,
+  #pitcher_pitching_filter_area {
+  display: none;
+}
+
+.field label {
+  font-size: 11px;
+}
+
+.lefty {
+  transform: scaleX(-1);
+}
+
+.hand_icons {
+  font-size: 26px; color: Dodgerblue;
+}
+
+.tier-strip {
+  color: #eee;
+  width: 80%;
+  margin-left: 8px;
+}
+
+.tier-strip td {
+  text-align: center;
+  width: 50px;
+}
+
+.tier-select-one {
+  background-color: #ddd;
+  color: #888;
+}
+
+.tier-perfect, .tier-p {
+  background-color: #222;
+  color: #ffff80;
+}
+
+.tier-diamond, .tier-d {
+  background-color: #6ccad7;
+  color: #111;
+}
+
+.tier-gold, .tier-g {
+  background-color: #e6ac00;
+}
+
+.tier-silver, .tier-s {
+  background-color: #999;
+}
+
+.tier-bronze, .tier-b {
+  background-color: #bf8040;
+}
+
+.tier-iron, .tier-i {
+  background-color: #555;
+}
+
+.ps-slider {
+  width: 230px;
+}
+
+.ps-slider.year {
+  width: 190px;
+}
+
+.ps-slider-label {
+  text-align: right;
+  background-color: #d00;
+  color: #eee;
+  font-weight: 900;
+  font-size: 12px;
+  padding: 4px;
+}
+
+#batter_display .accordion-body {
+  background-color: lime;
+  height: 428px;
+  vertical-align: top;
+}
+
+.invisible_holder {
+  display: none;
+}
+
+.sr-table {
+  width: 90%;
+  align: center;
+}
+
+.sr-table tr {
+  border: 2px solid #aaa;
+}
+
+.sr-table tr:hover {
+  border: 2px solid #fff;
+  cursor: pointer;
+}
+
+.modal-content {
+  width: 88%;
+  height: 88%;
+  background-color: #f5f5dc;
+  color: #333;
+  padding: 6px;
+}
+
+.compare-heading-wrapper {
+  background-color: #aaa;
+  padding: 6px;
+}
+
+.compare-heading-wrapper a { 
+}
+
+.compare-heading {
+  margin: auto;
+  width: 40%;
+  text-align: center;
+  font-size: 20px;
+  font-weight: 900;
+}
+
+.compare-panel {
+  margin: 3px;
+  width: 96%;
+  font-weight: 900;
+}
+
+.compare-card {
+  color: #eee;
+  margin: 3px;
+  font-weight: 900;
+}
+
+.player-stripe {
+  padding: 4px;
+}
+
+.compare-card.left {
+  background-color: #b00;
+}
+
+.compare-card.mid {
+  background-color: #080;
+}
+
+.compare-card.right {
+  background-color: #00d;
+}
+
+.compare-card-details {
+  font-size: 12px;
+}
+
+.rating-group-heading {
+  font-weight: 900;
+  font-size: 14px;
+}
+
+.rating-name-display {
+  font-weight: 900;
+  font-size: 12px;
+}
+
+.rating-panel {
+  margin: 3px;
+  width: 96%;
+}
+
+.right-divider {
+  border-right: 2px ridge #666;
+}
+
+.chart-display {
+  margin-top: -30px;
+  margin-left: -28px;
+}
+
+.chart-justify {
+  margin-top: -26px;
+}
+
+.apexcharts-canvas {
+  }
+
+.apexcharts-tooltip {
+    color: #333;
+    margin-left: 44px;
+    margin-top: -32px;
+  }
+
+.tryit {
+  background-color: brown; color: white;
+}
+
+.tryit:checked  {
+  background-color: green; color: black; font-weight: 900; font-size: 14px;
+}
