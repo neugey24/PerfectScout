@@ -61,8 +61,11 @@ module.exports = {
         case 'batter_card_year_max':
             clauses.push(`PC.card_year != 'PEAK' AND PC.card_year <= ?`); break;
         case 'batter_card_type_program':
-            clauses.push('CTYPE.card_type_abbrev = ?'); break;
-        case 'batter_player_team':
+            currentValue.forEach(function(element) { inBuild.push('?'); });
+            dataIsArray = true;
+            clauses.push('CTYPE.card_type_abbrev IN (' + inBuild.join(',') + ')'); break;
+        case 'batter_player_team_current':
+        case 'batter_player_team_historical':
             currentValue.forEach(function(element) { inBuild.push('?'); });
             dataIsArray = true;
             clauses.push('PC.team_id IN (' + inBuild.join(',') + ')'); break;

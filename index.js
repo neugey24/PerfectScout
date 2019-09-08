@@ -62,7 +62,8 @@ ipcMain.on('executePlayerCompare', (event, inputData) => {
 });
 
 var dbLoader = require('./dbLoader');
-let teamNamesForFilter = dbLoader.teamNames(psDataConn);
+let teamNamesForFilter = dbLoader.teamNames(psDataConn, 'Y');
+let historicalTeamNamesForFilter = dbLoader.teamNames(psDataConn, 'N');
 let cardTypesProgramsForFilter = dbLoader.cardTypesPrograms(psDataConn);
 
 var dummy = "hello mike!";
@@ -70,10 +71,11 @@ var tiers = new Array();
 
 require('electron-handlebars')({
   // Template bindings go here!
-  title: 'Hello, World!',
+  title: 'Perfect Scout',
   body: 'The quick brown fox jumps over the lazy dog.',
   tiers: tiers,
   teamNamesForFilter: teamNamesForFilter,
+  historicalTeamNamesForFilter: historicalTeamNamesForFilter,
   cardTypesProgramsForFilter: cardTypesProgramsForFilter
 });
 
@@ -85,7 +87,7 @@ function createWindow () {
   // Create the browser window.
   win = new BrowserWindow({
     width: 1160,
-    height: 740,
+    height: 720,
     webPreferences: {
        nodeIntegration: true
       //preload: path.join(__dirname, 'preload.js')

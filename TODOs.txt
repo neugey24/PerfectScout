@@ -1,3 +1,4 @@
 fix Filter Accordion click responsiveness
 add Target player and Remove player Icons to player comparison UI
 implement sort by
+make it so current and historical teams jive together in same IN list on search

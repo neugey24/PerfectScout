@@ -3,6 +3,7 @@
   <head>
     <meta charset="UTF-8">
     <title>{{ title }}</title>
+
     <link rel="stylesheet" href="css/bulma.css" />
     <link rel="stylesheet" href="css/bulma-switch.min.css" />
     <link rel="stylesheet" href="css/bulma-accordion.min.css" />
@@ -19,6 +20,436 @@
 
   </head>
   <body onLoad="psUIReady();">
+    <header class="ps"><div class="logo">PERFECT<br />SCOUT</div>
+      <div class="minor-info">
+        <span class="bolded">Current Version:</span> v0.2<br />
+        <span class="bolded">Last Card Roster Update:</span> Sept 2, 2019<br />
+        <span class="bolded">Player Database:</span> 1,166
+      </div>
+      <div class="taglines">
+        <h5>An Out of the Park Baseball Perfect Team Companion App<sup>*</sup></h5>
+        <h3>Make the Playoffs ... Win Tournaments ... <span class="climax">HUNT FOR PLAYERS!</span></h3>
+      </div>
+    </header>
+    <div class="columns search-body">
+      <nav class="filter-nav column is-one-quarter">
+
+        <div><a id="filter_toggle_new" class="filter-item ps-active" href="javascript:toggleFilter('new');">New Search</a></div>
+        <div class="group-heading">Filter by Player:</div>
+        <div class="tat-shade"><a id="filter_toggle_name" class="filter-item" href="javascript:toggleFilter('name');">First/Last Name</a><div class="filter-count" id="filter_count_name"></div></div>
+        <div class="bit-shade"><a id="filter_toggle_team" class="filter-item" href="javascript:toggleFilter('team');">MLB Team</a><div class="filter-count" id="filter_count_team"></div></div>
+        <div class="tat-shade"><a id="filter_toggle_position" class="filter-item" href="javascript:toggleFilter('position');">Listed Positions</a><div class="filter-count" id="filter_count_position"></div></div>
+        <div class="bit-shade"><a id="filter_toggle_hand" class="filter-item" href="javascript:toggleFilter('hand');">Bat/Throw Hand</a><div class="filter-count" id="filter_count_hand"></div></div>
+        <div class="group-heading">Filter by Card:</div>
+        <div class="tat-shade"><a id="filter_toggle_ovr" class="filter-item" href="javascript:toggleFilter('ovr');">Overall Rating</a><div class="filter-count" id="filter_count_ovr"></div></div>
+        <div class="bit-shade"><a id="filter_toggle_card_tier" class="filter-item" href="javascript:toggleFilter('card_tier');">Card Tier</a><div class="filter-count" id="filter_count_card_tier"></div></div>
+        <div class="tat-shade"><a id="filter_toggle_card_type" class="filter-item" href="javascript:toggleFilter('card_type');">Card Type</a><div class="filter-count" id="filter_count_card_type"></div></div>
+        <div class="bit-shade"><a id="filter_toggle_card_year" class="filter-item" href="javascript:toggleFilter('card_year');">Card Year</a><div class="filter-count" id="filter_count_card_year"></div></div>
+        <div class="group-heading">Filter by Offense:</div>
+        <div class="tat-shade"><a id="filter_toggle_contact" class="filter-item" href="#">Contact</a><div class="filter-count" id="filter_count_contact"></div></div>
+        <div class="bit-shade"><a id="filter_toggle_gap" class="filter-item" href="#">Gap</a><div class="filter-count" id="filter_count_gap"></div></div>
+        <div class="tat-shade"><a id="filter_toggle_power" class="filter-item" href="#">Power</a><div class="filter-count" id="filter_count_power"></div></div>
+        <div class="bit-shade"><a id="filter_toggle_eye" class="filter-item" href="#">Eye</a><div class="filter-count" id="filter_count_eye"></div></div>
+        <div class="tat-shade"><a id="filter_toggle_avoid_k" class="filter-item" href="#">Avoid K</a><div class="filter-count" id="filter_count_avoid_k"></div></div>
+        <div class="bit-shade"><a id="filter_toggle_running" class="filter-item" href="#">Running</a><div class="filter-count" id="filter_count_running"></div></div>
+        <div class="tat-shade"><a id="filter_toggle_bunting" class="filter-item" href="#">Bunting</a><div class="filter-count" id="filter_count_bunting"></div></div>
+        <div class="group-heading">Filter by Defense:</div>
+        <div class="tat-shade"><a id="filter_toggle_infield" class="filter-item" href="#">Infield</a><div class="filter-count" id="filter_count_infield"></div></div>
+        <div class="bit-shade"><a id="filter_toggle_outfield" class="filter-item" href="#">Outfield</a><div class="filter-count" id="filter_count_outfield"></div></div>
+        <div class="tat-shade"><a id="filter_toggle_catcher" class="filter-item" href="#">Catcher</a><div class="filter-count" id="filter_count_catcher"></div></div>
+
+
+      </nav>
+      <div id="filter_area" class="column is-half">
+        <section id="filter_new">
+          <heading>Welcome to Perfect Scout</heading>
+          <article>
+            <h4>FILTER</h4>
+            <p>Use Filter option(s) on the left to indicate specific kinds of players you wish to
+            search for.  You can use a single filter, or as many filters as you wish.</p>
+            <h4>SEARCH</h4>
+            <p>After you are satisfied with your selections, click the Search Now button and Perfect
+              Scout will display a list of players according to your filters.</p>
+            <h4>VIEW AND COMPARE</h4>
+            <p>Click on a player you would like to see more detail on.  You will also be able to
+            compare the selected players to other ones next to him on the list.</p>
+
+          </article>
+        </section>
+        <section id="filter_name" style="display: none;">
+          <heading>Filter by Player First and Last Name</heading>
+          <article>
+            <div class="fieldy">
+              <label for="batter_player_first_name">First Name:</label>
+              <div class="control">
+                <input id="batter_player_first_name" class="input name-input" type="text"
+                onchange="filterCountUpdate('text', 'batter_player_first_name', 'name', this.value);" placeholder="Player First Name">
+              </div>
+            </div>
+
+            <div class="fieldy">
+              <label for="batter_player_last_name">Last Name:</label>
+              <div class="control">
+                <input size="40" id="batter_player_last_name" class="input name-input" type="text"
+                onchange="filterCountUpdate('text', 'batter_player_last_name', 'name', this.value);" placeholder="Player Last Name">
+              </div>
+            </div>
+
+          </article>
+          <br />
+          <h6>TIP: Name search is NOT case-sensitive. </h6>
+          <h6>TIP: You can enter just the beginning letter(s) for first and last name searches ...
+            for example, you could just enter `yas` to attempt to search for `Yastrzemski`.</h6>
+
+        </section>
+
+        <section id="filter_team" style="display: none;">
+          <heading>Filter by Team Names</heading>
+          <article>
+
+            <div class="columns">
+              <div class="column is-half">
+                <div class="fieldy">
+                  <label for="batter_player_team_current">Current MLB Teams:</label>
+                  <div class="control">
+                    <div class="select is-small is-multiple" size="8">
+                      <select size="10" multiple class="team-input" id="batter_player_team_current"
+                        onchange="filterCountUpdate('multiselect', 'batter_player_team_current',
+                        'team', this.value);">
+                          {{#each teamNamesForFilter}}
+                          <option value="{{this.id}}">{{this.name}}</option>
+                          {{/each}}
+                      </select>
+                    </div>
+                    <br /><br /><a href="javascript:clearSelections('batter_player_team_current', 'team')" class="team-input button is-small">(Clear above selections)</a>
+                  </div>
+                </div>
+              </div>
+              <div class="column is-half">
+                <div class="fieldy">
+                  <label for="batter_player_team_historical">Historical MLB Teams:</label>
+                  <div class="control">
+                    <div class="select is-primary is-small is-multiple" >
+                      <select size="10" multiple class="team-input" id="batter_player_team_historical"
+                        onchange="filterCountUpdate('multiselect', 'batter_player_team_historical',
+                        'team', this.value);">
+                        {{#each historicalTeamNamesForFilter}}
+                        <option value="{{this.id}}">{{this.name}}</option>
+                        {{/each}}
+                      </select>
+                    </div>
+                    <br /><br /><a href="javascript:clearSelections('batter_player_team_historical', 'team')" class="team-input button is-small">(Clear above selections)</a>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </article>
+          <br />
+          <h6>TIP: Select as many teams as you like from either or both of these lists.
+          Players will match this filter if they played for ANY of the teams selected.</h6>
+
+        </section>
+
+        <section id="filter_position" style="display: none;">
+          <heading>Filter by Listed Position</heading>
+          <article>
+          <div style="z-index: 1; position: absolute; top: 330px; left: 474px;">
+            <a id="pos_3b" class="pos-sel" href="javascript:toggleDiamondPosition('3B');">3B</a>
+          </div>
+          <div style="z-index: 1; position: absolute; top: 330px; left: 574px;">
+            <a id="pos_1b" class="pos-sel" href="javascript:toggleDiamondPosition('1B');">1B</a>
+          </div>
+          <div style="z-index: 1; position: absolute; top: 414px; left: 529px;">
+            <a id="pos_c" class="pos-sel" href="javascript:toggleDiamondPosition('C');">C</a>
+          </div>
+          <div style="z-index: 1; position: absolute; top: 304px; left: 496px;">
+            <a id="pos_ss" class="pos-sel" href="javascript:toggleDiamondPosition('SS');">SS</a>
+          </div>
+          <div style="z-index: 1; position: absolute; top: 304px; left: 552px;">
+            <a id="pos_2b" class="pos-sel" href="javascript:toggleDiamondPosition('2B');">2B</a>
+          </div>
+          <div style="z-index: 1; position: absolute; top: 258px; left: 450px;">
+            <a id="pos_lf" class="pos-sel" href="javascript:toggleDiamondPosition('LF');">LF</a>
+          </div>
+          <div style="z-index: 1; position: absolute; top: 218px; left: 522px;">
+            <a id="pos_cf" class="pos-sel" href="javascript:toggleDiamondPosition('CF');">CF</a>
+          </div>
+          <div style="z-index: 1; position: absolute; top: 258px; left: 602px;">
+            <a id="pos_rf" class="pos-sel" href="javascript:toggleDiamondPosition('RF');">RF</a>
+          </div>
+
+          <svg class="bb-diamond" style="position: absolute; top: 210px; left: 340px;">
+        		<line x1="50" y1="50" x2="200" y2="200" />
+        		<line x1="200" y1="200" x2="350" y2="50" />
+        		<line x1="150" y1="150" x2="200" y2="100" />
+        		<line x1="200" y1="100" x2="250" y2="150" />
+
+        		<polygon points="200 200, 206 194, 200 188, 194 194" />
+        		<polygon points="200 100, 206 106, 200 112, 194 106" />
+        		<polygon points="150 150, 156 144, 162 150, 156 156" />
+        		<polygon points="250 150, 244 144, 238 150, 244 156" />
+      	   </svg>
+
+           <h6 style="margin-top: 330px; margin-left: 38px;">TIP: Select as many player positions as you like from the graphic above.</h6>
+          </article>
+
+
+        </section>
+
+        <section id="filter_hand" style="display: none;">
+          <heading>Filter by Batting and/or Throwing Hand</heading>
+          <article>
+            <div class="fieldy">
+              <label for="batter_player_batting_hands">Batting Hand:</label>
+              <div class="control">
+                <div id="batter_player_batting_hands">
+                  <span class="hand_icons"><a href="javascript:toggleBattingHand('left');"><i id="batter_player_batting_hand_left" class="lefty far fa-hand-paper"></i></a></span> Left
+                  &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; Right
+                  <span class="hand_icons"><a href="javascript:toggleBattingHand('right');"><i id="batter_player_batting_hand_right" class="far fa-hand-paper"></i></a></span>
+                  &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; Switch
+                  <span class="hand_icons"><a href="javascript:toggleBattingHand('bswitch');"><i id="batter_player_batting_hand_bswitch" class="far fa-hand-paper"></i></a></span>
+              </div>
+            </div>
+          </div>
+            <div class="fieldy">
+              <label for="batter_player_throwing_hands">Throwing Hand:</label>
+              <div class="control">
+                <div id="batter_player_throwing_hands">
+                  <span class="hand_icons"><a href="javascript:toggleThrowingHand('left');"><i id="batter_player_throwing_hand_left" class="lefty far fa-hand-paper"></i></a></span> Left
+                  &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; Right
+                  <span class="hand_icons"><a href="javascript:toggleThrowingHand('right');"><i id="batter_player_throwing_hand_right" class="far fa-hand-paper"></i></a></span>
+              </div>
+            </div>
+          </div>
+          <br />
+           <h6>TIP: Use controls above if you would like to filter by batting hand and/or throwing hand.</h6>
+           <h6>TIP: Only one of each group can be selected at a time.  Click the solid hand a second time to de-select.</h6>
+          </article>
+
+
+        </section>
+
+        <section id="filter_ovr" style="display: none;">
+          <heading>Filter by Card Overall</heading>
+          <article>
+
+            <div class="columns">
+              <div class="column is-three-quarters">
+
+                <div class="fieldy">
+                  <div class="control">
+                    <label for="batter_card_ovr_min">Card Overall (minimum):</label>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="ps-slider-label" id="batter_card_ovr_min_output">70</span>
+                    <br />40 <input oninput="rangeChange(this, 'ovr');" class="ps-slider" id="batter_card_ovr_min" step="1" min="40" max="100" value="70" type="range" /> 100
+                  </div>
+                </div>
+              </div>
+              <div class="column is-one-quarter">
+
+                <div class="fieldy"><br />
+                  <input onchange="rangeChangeUse(this, 'batter_card_ovr_min', 'ovr');" id="batter_card_ovr_min_on" type="checkbox" name="switchExample" class="switch">
+                  <label for="batter_card_ovr_min_on">Use</label>
+                </div>
+              </div>
+            </div>
+
+            <div class="columns">
+              <div class="column is-three-quarters">
+
+                <div class="fieldy">
+                  <div class="control">
+                    <label for="batter_card_ovr_max">Card Overall (maximum):</label>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="ps-slider-label" id="batter_card_ovr_max_output">70</span>
+                    <br />40 <input oninput="rangeChange(this, 'ovr');" class="ps-slider" id="batter_card_ovr_max" step="1" min="40" max="100" value="70" type="range" /> 100
+                  </div>
+                </div>
+              </div>
+              <div class="column is-one-quarter">
+
+                <div class="fieldy"><br />
+                  <input oninput="rangeChangeUse(this, 'batter_card_ovr_max', 'ovr');" id="batter_card_ovr_max_on" type="checkbox" name="switchExample" class="switch">
+                  <label for="batter_card_ovr_max_on">Use</label>
+                </div>
+              </div>
+            </div>
+
+
+          <br />
+           <h6>TIP: Use the slider above to set the desired value.  If you want to turn on/off the slider for filtering,
+           click the Use switch.</h6>
+           <h6>TIP: If you set the maximum less than or equal to the minimum, the maximum will be disregarded.</h6>
+          </article>
+
+
+        </section>
+
+
+        <section id="filter_card_tier" style="display: none;">
+          <heading>Filter by Card Tier</heading>
+          <article>
+
+            <div class="columns card-tier-columns">
+              <div class="column is-one-third">
+
+                <div class="card-tier-hl" id="batter_card_tier_p" onclick="toggleCardTier('p');">
+                  <div class="card-tier-ext tier-p">
+                    <div class="card-tier-int tier-p">
+                      Perfect<br />
+                      (100 OVR)
+                    </div>
+                  </div>
+                </div>
+                <br />
+                <div class="card-tier-hl" id="batter_card_tier_s" onclick="toggleCardTier('s');">
+                  <div class="card-tier-ext tier-s">
+                    <div class="card-tier-int tier-s">
+                      Silver<br />
+                      (70-79 OVR)
+                    </div>
+                  </div>
+                </div>
+
+              </div>
+
+              <div class="column is-one-third">
+
+              <div class="card-tier-hl" id="batter_card_tier_d" onclick="toggleCardTier('d');">
+                <div class="card-tier-ext tier-d">
+                  <div class="card-tier-int tier-d">
+                    Diamond<br />
+                    (90-99 OVR)
+                  </div>
+                </div>
+              </div>
+              <br />
+              <div class="card-tier-hl" id="batter_card_tier_b" onclick="toggleCardTier('b');">
+                <div class="card-tier-ext tier-b">
+                  <div class="card-tier-int tier-b">
+                    Bronze<br />
+                    (60-69 OVR)
+                  </div>
+                </div>
+              </div>
+
+            </div>
+
+            <div class="column is-one-third">
+
+            <div class="card-tier-hl" id="batter_card_tier_g" onclick="toggleCardTier('g');">
+              <div class="card-tier-ext tier-g">
+                <div class="card-tier-int tier-g">
+                  Gold<br />
+                  (80-89 OVR)
+                </div>
+              </div>
+            </div>
+            <br />
+            <div class="card-tier-hl" id="batter_card_tier_i" onclick="toggleCardTier('i');">
+              <div class="card-tier-ext tier-i">
+                <div class="card-tier-int tier-i">
+                  Iron<br />
+                  (40-59 OVR)
+                </div>
+              </div>
+            </div>
+
+          </div>
+
+            </div> <!-- end columns -->
+           <h6>TIP: Select and de-select one or more card tier(s) above to filter.</h6>
+          </article>
+
+
+        </section>
+
+        <section id="filter_card_type" style="display: none;">
+          <heading>Filter by Card Types</heading>
+          <article>
+
+
+                <div class="fieldy">
+                  <label for="batter_card_type_program">Card Types:</label>
+                  <div class="control">
+                    <div class="select is-small is-multiple" size="8">
+                      <select size="8" multiple class="team-input" id="batter_card_type_program"
+                        onchange="filterCountUpdate('multiselect', 'batter_card_type_program',
+                        'card_type', this.value);">
+                          {{#each cardTypesProgramsForFilter}}
+                            <option value="{{this.abbrev}}">{{this.name}}</option>
+                          {{/each}}
+                      </select>
+                    </div>
+                    <br /><br /><a href="javascript:clearSelections('batter_card_type_program', 'card_type')" class="team-input button is-small">(Clear above selections)</a>
+                  </div>
+                </div>
+          </article>
+          <br />
+          <h6>TIP: Select as many card types as you like from the list above.
+          Players will match this filter if they are ANY of the card types selected.</h6>
+
+        </section>
+
+                <section id="filter_card_year" style="display: none;">
+                  <heading>Filter by Card Year</heading>
+                  <article>
+
+                    <div class="columns">
+                      <div class="column is-three-quarters">
+
+                        <div class="fieldy">
+                          <div class="control">
+                            <label for="batter_card_year_min">Card Year (minimum):</label>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="ps-slider-label" id="batter_card_year_min_output">1954</span>
+                            <br />1886 <input oninput="rangeChange(this, 'card_year');" class="ps-slider year" id="batter_card_year_min" step="1" min="1886" max="2019" value="1954" type="range" /> 2019
+                          </div>
+                        </div>
+                      </div>
+                      <div class="column is-one-quarter">
+
+                        <div class="fieldy"><br />
+                          <input oninput="rangeChangeUse(this, 'batter_card_year_min', 'card_year');" id="batter_card_year_min_on" type="checkbox" name="switchExample" class="switch">
+                          <label for="batter_card_year_min_on">Use</label>
+                        </div>
+                      </div>
+                    </div>
+
+                    <div class="columns">
+                      <div class="column is-three-quarters">
+
+                        <div class="fieldy">
+                          <div class="control">
+                            <label for="batter_card_year_max">Card Year (maximum):</label>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="ps-slider-label" id="batter_card_year_max_output">1954</span>
+                            <br />1886 <input oninput="rangeChange(this, 'card_year');" class="ps-slider year" id="batter_card_year_max" step="1" min="1886" max="2019" value="1954" type="range" /> 2019
+                          </div>
+                        </div>
+                      </div>
+                      <div class="column is-one-quarter">
+
+                        <div class="fieldy"><br />
+                          <input oninput="rangeChangeUse(this, 'batter_card_year_max', 'card_year');" id="batter_card_year_max_on" type="checkbox" name="switchExample" class="switch">
+                          <label for="batter_card_year_max_on">Use</label>
+                        </div>
+                      </div>
+                    </div>
+
+
+                  <br />
+                   <h6>TIP: Use the slider above to set the desired value.  If you want to turn on/off the slider for filtering,
+                   click the Use switch.</h6>
+                   <h6>TIP: If you set the maximum less than or equal to the minimum, the maximum will be disregarded.</h6>
+                  </article>
+
+
+                </section>
+
+      </div>
+    <aside class="search-result-panel column is-one-quarter">
+      <a class="button">Search Now</a>
+      <br />
+      <h4>Note:</h4>
+      <p>Your search results will be limited to the top 50 players to keep the number of players
+        you wish to compare to manageable.  If you aren't satisfied with the players returned,
+        consider using additional filters.</p>
+    </aside>
+  </div>
+  <footer>Footer - something goes here</footer>
 <!--
     <script src="https://cdn.jsdelivr.net/npm/apexcharts"></script> -->
 <section class="section">
@@ -29,7 +460,7 @@
       <li id="pitcher_main_tab"><a>Pitchers</a></li>
     </ul>
   </div>
-
+  <br /><br /><br /><br /><br /><br /><br /><br />
   <div class="container" id="main_display">
 
     <!-- BEGIN: ********** BATTER DISPLAY *********** -->
@@ -41,93 +472,6 @@
           <section class="accordions">
             <article class="accordion is-active">
 
-        <div class="accordion-header toggle">
-            <p>Filter by Player Information:</p>
-        </div>
-        <div class="accordion-body">
-          <div class="accordion-content">
-
-              <div class="columns">
-              <div class="column is-half">
-
-                <div class="field">
-                  <label for="batter_player_first_name">First Name:</label>
-                  <div class="control">
-                    <input id="batter_player_first_name" class="input is-primary is-small" type="text" placeholder="Player First Name">
-                  </div>
-                </div>
-
-                <div class="field">
-                  <label for="batter_player_last_name">Last Name:</label>
-                  <div class="control">
-                    <input id="batter_player_last_name" class="input is-primary is-small" type="text" placeholder="Player Last Name">
-                  </div>
-                </div>
-
-                <div class="field">
-                  <label for="batter_player_team">Team(s):</label>
-                  <div class="control">
-                    <div class="select is-primary is-small is-multiple" size="4">
-                      <select multiple id="batter_player_team">
-                          {{#each teamNamesForFilter}}
-                          <option value="{{this.id}}">
-                            <script>jsIfElse('{{this.is_active}}','Y','{{this.name}} *', '{{this.name}}');</script>
-                          </option>
-                          {{/each}}
-                      </select>
-                    </div>
-                  </div>
-                </div>
-
-              </div>
-              <div class="column is-half">
-
-                <div class="field">
-                  <label for="batter_player_batting_hands">Batting Hand:</label>
-                  <div class="control">
-                    <div id="batter_player_batting_hands">
-                      <span class="hand_icons"><a href="javascript:toggleBattingHand('left');"><i id="batter_player_batting_hand_left" class="lefty far fa-hand-paper"></i></a></span> L
-                      &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; R
-                      <span class="hand_icons"><a href="javascript:toggleBattingHand('right');"><i id="batter_player_batting_hand_right" class="far fa-hand-paper"></i></a></span>
-                      &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; S
-                      <span class="hand_icons"><a href="javascript:toggleBattingHand('bswitch');"><i id="batter_player_batting_hand_bswitch" class="far fa-hand-paper"></i></a></span>
-                  </div>
-                </div>
-              </div>
-                <div class="field">
-                  <label for="batter_player_throwing_hands">Throwing Hand:</label>
-                  <div class="control">
-                    <div id="batter_player_throwing_hands">
-                      <span class="hand_icons"><a href="javascript:toggleThrowingHand('left');"><i id="batter_player_throwing_hand_left" class="lefty far fa-hand-paper"></i></a></span> L
-                      &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; R
-                      <span class="hand_icons"><a href="javascript:toggleThrowingHand('right');"><i id="batter_player_throwing_hand_right" class="far fa-hand-paper"></i></a></span>
-                  </div>
-                </div>
-              </div>
-
-
-                <div class="field">
-                  <label for="batter_player_prim_pos">Primary Position(s):</label>
-                  <div class="control">
-                    <div class="select is-multiple is-primary is-small" size="4">
-                      <select multiple id="batter_player_prim_pos">
-                        <option value="C">Catcher (C)</option>
-                        <option class="1B" value="1B">First Base (1B)</option>
-                        <option value="2B">Second Base (2B)</option>
-                        <option value="3B">Third Base (3B)</option>
-                        <option value="SS">Shortstop (SS)</option>
-                        <option value="LF">Left Field (LF)</option>
-                        <option value="CF">Center Field (CF)</option>
-                        <option value="RF">Right Field (RF)</option>
-                      </select>
-                    </div>
-                  </div>
-                </div>
-
-              </div>
-            </div>
-          </div>
-      </div>
     </article>
 
             <!-- BEGIN: ********** Batter CARD Filters *********** -->
@@ -153,131 +497,8 @@
                     </div>
                   </div>
 
-                  <div class="field">
-                    <label for="batter_card_tier">Tier:</label>
-                    <table class="tier-strip">
-                      <tr>
-                      <td align="center" class="tier-select-one">
-                          <label class="radio">
-                            Any<br />
-                            <input type="radio" name="batter_card_tier" value="*" checked="checked" />
-                          </label>
-                      </td>
-                      <td align="center" class="tier-perfect">
-                          <label class="radio">
-                            Perfect<br />
-                            <input type="radio" name="batter_card_tier" value="p" />
-                          </label>
-                      </td>
-                      <td align="center" class="tier-diamond">
-                          <label class="radio">
-                            Diamond<br />
-                            <input type="radio" name="batter_card_tier" value="d" />
-                          </label>
-                      </td>
-                      <td align="center" class="tier-gold">
-                          <label class="radio">
-                            Gold<br />
-                            <input type="radio" name="batter_card_tier" value="g" />
-                          </label>
-                      </td>
-                      <td align="center" class="tier-silver">
-                          <label class="radio">
-                            Silver<br />
-                            <input type="radio" name="batter_card_tier" value="s" />
-                          </label>
-                      </td>
-                      <td align="center" class="tier-bronze">
-                          <label class="radio">
-                            Bronze<br />
-                            <input type="radio" name="batter_card_tier" value="b" />
-                          </label>
-                      </td>
-                      <td align="center" class="tier-iron">
-                          <label class="radio">
-                            Iron<br />
-                            <input type="radio" name="batter_card_tier" value="i" />
-                          </label>
-                      </td>
-                    </tr>
-                  </table>
-                  </div>
 
-                  <div class="columns">
-                    <div class="column is-three-quarters">
 
-                      <div class="field">
-                        <div class="control">
-                          <label for="batter_card_ovr_min">Card Overall (minimum):</label>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="ps-slider-label" id="batter_card_ovr_min_output">70</span>
-                          <br />40 <input oninput="rangeChange(this);" class="ps-slider" id="batter_card_ovr_min" step="1" min="40" max="100" value="70" type="range" /> 100
-                        </div>
-                      </div>
-                    </div>
-                    <div class="column is-one-quarter">
-
-                      <div class="field"><br />
-                        <input id="batter_card_ovr_min_on" type="checkbox" name="switchExample" class="switch">
-                        <label for="batter_card_ovr_min_on">Use</label>
-                      </div>
-                    </div>
-                  </div>
-
-                  <div class="columns">
-                    <div class="column is-three-quarters">
-
-                      <div class="field">
-                        <div class="control">
-                          <label for="batter_card_ovr_max">Card Overall (maximum):</label>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="ps-slider-label" id="batter_card_ovr_max_output">70</span>
-                          <br />40 <input oninput="rangeChange(this);" class="ps-slider" id="batter_card_ovr_max" step="1" min="40" max="100" value="70" type="range" /> 100
-                        </div>
-                      </div>
-                    </div>
-                    <div class="column is-one-quarter">
-
-                      <div class="field"><br />
-                        <input id="batter_card_ovr_max_on" type="checkbox" name="switchExample" class="switch">
-                        <label for="batter_card_ovr_max_on">Use</label>
-                      </div>
-                    </div>
-                  </div>
-
-                  <div class="columns">
-                    <div class="column is-three-quarters">
-
-                      <div class="field">
-                        <div class="control">
-                          <label for="batter_card_year_min">Card Year (minimum):</label>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="ps-slider-label" id="batter_card_year_min_output">1954</span>
-                          <br />1886 <input oninput="rangeChange(this);" class="ps-slider year" id="batter_card_year_min" step="1" min="1886" max="2019" value="1954" type="range" /> 2019
-                        </div>
-                      </div>
-                    </div>
-                    <div class="column is-one-quarter">
-
-                      <div class="field"><br />
-                        <input id="batter_card_year_min_on" type="checkbox" name="switchExample" class="switch">
-                        <label for="batter_card_year_min_on">Use</label>
-                      </div>
-                    </div>
-                  </div>
-
-                  <div class="columns">
-                    <div class="column is-three-quarters">
-
-                      <div class="field">
-                        <div class="control">
-                          <label for="batter_card_year_max">Card Year (maximum):</label>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="ps-slider-label" id="batter_card_year_max_output">1954</span>
-                          <br />1886 <input oninput="rangeChange(this);" class="ps-slider year" id="batter_card_year_max" step="1" min="1886" max="2019" value="1954" type="range" /> 2019
-                        </div>
-                      </div>
-                    </div>
-                    <div class="column is-one-quarter">
-
-                      <div class="field"><br />
-                        <input id="batter_card_year_max_on" type="checkbox" name="switchExample" class="switch">
-                        <label for="batter_card_year_max_on">Use</label>
-                      </div>
-                    </div>
-                  </div>
 
 
 

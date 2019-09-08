@@ -1,7 +1,259 @@
-$ps-text-color: #f02;
+$ps-text-color: #fff;
 
 body {
   color: $ps-text-color;
+  background-color: #1c1411;
+  font-family: Lucida Grande, Tahoma;
+}
+
+header.ps {
+  background-color: #cf4420;
+  width: 100%;
+  height: 90px;
+  color: #fff;
+}
+
+.logo {
+  padding: 4px 0px 0px 8px;
+  font-size: 24px;
+  font-weight: 900;
+  float: left;
+}
+
+.taglines {
+  margin: 0;
+  padding-top: 10px;
+  text-align: center;
+}
+
+.taglines h5 {
+  font-size: 12px;
+  color: #f5f5dc;
+}
+
+.taglines h3 {
+  padding-top: 10px;
+  font-style: italic;
+}
+
+.climax {
+  font-size: 24px;
+  font-weight: 900;
+}
+
+.bolded {
+  font-weight: 900;
+}
+
+.minor-info {
+  color: #f5f5dc;
+  float: right;
+  font-size: 10px;
+  padding-right: 26px;
+  padding-top: 28px;
+}
+
+.search-body {
+  margin-top: 0px;
+  height: 580px;
+}
+
+
+.filter-nav {
+  background-color: #630031;
+}
+
+.search-result-panel {
+}
+
+heading {
+  font-size: 26px;
+  font-weight: 900;
+  color: #cf4420;
+}
+
+article {
+  font-size: 14px;
+}
+
+.footer {
+  height: 20px;
+}
+
+.filter-nav {
+  font-size: 14px;
+}
+
+.filter-nav > div {
+  padding-left: 6px;
+}
+
+a.filter-item {
+  color: #fff;
+  padding: 6px;
+  font-weight: 900;
+}
+
+a.filter-item:hover {
+  color: #00d6b3;
+}
+
+.group-heading {
+  background-color: #cf4420;
+  color: #f5f5dc;
+  opacity: 0.8;
+  padding: 2px;
+  margin-left: 5px;
+}
+
+a.ps-active {
+  color: #cf4420;
+  cursor: default;
+}
+
+.bit-shade {
+  background-color: #6d0a3b;
+  margin-left: 5px;
+}
+
+.tat-shade {
+  background-color: #590027;
+  margin-left: 5px;
+}
+
+.filter-count {
+  float: right;
+  background-color: #00d6b3;
+  font-size: 12px;
+  font-weight: 900;
+  border-radius: 2px;
+  color: #463028;
+  margin-right: 4px;
+}
+
+article h4, aside h4 {
+  margin-top: 6px;
+  font-style: italic;
+  font-size: 18px;
+  color: #f5f5dc;
+}
+
+article p, aside p {
+  color: #ccc;
+  margin-bottom: 16px;
+}
+
+aside p {
+  font-size: 12px;
+}
+
+label {
+  font-size: 16px;
+  color: #f5f5dc;
+}
+
+.fieldy {
+  margin-top: 14px;
+}
+
+.name-input {
+  width: 50%
+}
+
+.team-input {
+  min-width: 220px;
+}
+
+h6 {
+  margin-top: 10px;
+  font-size: 12px;
+  color: #aaa;
+}
+
+svg.bb-diamond {
+  height: 290px;
+  width: 400px;
+}
+
+svg.bb-diamond line, svg.bb-diamond polygon {
+  fill: #fff;
+  stroke:rgb(255,255,255);
+  stroke-width:3;
+}
+
+a.pos-sel {
+  color: #fff;
+  padding: 6px;
+  font-weight: 900;
+}
+
+a.pos-sel:hover {
+  color: #00d6b3;
+  cursor: pointer;
+}
+
+a.pos-sel.pos-toggled {
+  color: #cf4420;
+  border: 1px solid orange;
+}
+
+.card-tier-columns {
+  padding: 6px;
+}
+
+.card-tier-ext {
+  width: 140px;
+  height: 210px;
+  padding: 8px;
+}
+
+.card-tier-int {
+  border-radius: 6px;
+  width: 120px;
+  height: 190px;
+  text-align: center;
+  padding-top: 64px;
+
+}
+
+.card-tier-ext.tier-p, .card-tier-int.tier-p {
+  border: 2px solid #ffff80;
+}
+
+.card-tier-ext.tier-d, .card-tier-int.tier-d {
+  border: 2px solid #111;
+}
+
+.card-tier-ext.tier-g, .card-tier-int.tier-g {
+  border: 2px solid #111;
+}
+
+.card-tier-ext.tier-s, .card-tier-int.tier-s {
+  border: 2px solid #333;
+}
+
+.card-tier-ext.tier-b, .card-tier-int.tier-b {
+  border: 2px solid #593919;
+}
+
+.card-tier-ext.tier-i, .card-tier-int.tier-i {
+  border: 2px solid #bbb;
+}
+
+.card-tier-hl {
+  border: 2px solid #1c1411;
+  width: 144px;
+  height: 214px;
+  padding: 0px;
+}
+
+.card-tier-hl:hover {
+  border: 2px solid #00d6b3;
+  cursor: pointer;
+}
+
+.card-tier-hl.hl-show {
+  border: 2px solid #cf4420;
 }
 
 #pitcher_display {
@@ -34,12 +286,17 @@ body {
   font-size: 11px;
 }
 
+.fa-hand-paper {
+  color: #cf4420;
+}
+
 .lefty {
   transform: scaleX(-1);
 }
 
 .hand_icons {
-  font-size: 26px; color: Dodgerblue;
+  font-size: 26px;
+  color: #cf4420;
 }
 
 .tier-strip {
@@ -70,26 +327,30 @@ body {
 
 .tier-gold, .tier-g {
   background-color: #e6ac00;
+  color: #111;
 }
 
 .tier-silver, .tier-s {
   background-color: #999;
+  color: #333;
 }
 
 .tier-bronze, .tier-b {
   background-color: #bf8040;
+  color: #593919;
 }
 
 .tier-iron, .tier-i {
   background-color: #555;
+  color: #bbb;
 }
 
 .ps-slider {
-  width: 230px;
+  width: 330px;
 }
 
 .ps-slider.year {
-  width: 190px;
+  width: 310px;
 }
 
 .ps-slider-label {
@@ -138,7 +399,7 @@ body {
   padding: 6px;
 }
 
-.compare-heading-wrapper a { 
+.compare-heading-wrapper a {
 }
 
 .compare-heading {

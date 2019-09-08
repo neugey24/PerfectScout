@@ -14,9 +14,10 @@ function batterHarvest() {
     batterFilters.set('batter_player_last_name', current.value.trim());
   }
 
-  processMultiSelect('batter_player_team');
+  processMultiSelect('batter_player_team_current');
+  processMultiSelect('batter_player_team_historical');
   processMultiSelect('batter_player_prim_pos');
-  processSingleSelect('batter_card_type_program');
+  processMultiSelect('batter_card_type_program');
 
   let radioItems = document.getElementsByName('batter_card_tier');
   for (var ii=0, radioLength = radioItems.length; ii < radioLength; ii++) {

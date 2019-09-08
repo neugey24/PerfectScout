@@ -15,3 +15,10 @@ Hunt for Players
 Find Players
 and
 Go Places
+
+Hokies color scheme:
+#463028 // brownish alternate ... main area
+#f5f5dc // beige from my page
+#cf4420; // hokie orange ... top stripe
+#630031; // hokie magenta .. left nav stripe
+#ffffff; white
