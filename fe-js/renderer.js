@@ -2,7 +2,7 @@ const { ipcRenderer } = require('electron');
 //const console = require('console');
 var templateProcessor = require('./templateProcessor');
 
-let replyDiv = document.querySelector('#filter_reply');
+let replyDiv = document.querySelector('#search_results_area');
 
 function executeSearch(typeIn) {
   if (typeIn=='batter') {
@@ -64,7 +64,7 @@ function presentPlayerComparison(selectedCardId, fromResults) {
   comparisonArea.innerHTML = results;
 
   producePSBarCharts(resultData.playerData);
-  if (fromResults) {    
+  if (fromResults) {
     toggleModal();
   }
 

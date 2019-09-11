@@ -55,7 +55,7 @@ header.ps {
 
 .search-body {
   margin-top: 0px;
-  height: 580px;
+  height: 560px;
 }
 
 
@@ -216,27 +216,27 @@ a.pos-sel.pos-toggled {
 
 }
 
-.card-tier-ext.tier-p, .card-tier-int.tier-p {
+.card-tier-ext.tier-p, .card-tier-int.tier-p, .compare-card > .tier-p {
   border: 2px solid #ffff80;
 }
 
-.card-tier-ext.tier-d, .card-tier-int.tier-d {
+.card-tier-ext.tier-d, .card-tier-int.tier-d, .compare-card > .tier-d {
   border: 2px solid #111;
 }
 
-.card-tier-ext.tier-g, .card-tier-int.tier-g {
+.card-tier-ext.tier-g, .card-tier-int.tier-g, .compare-card > .tier-g {
   border: 2px solid #111;
 }
 
-.card-tier-ext.tier-s, .card-tier-int.tier-s {
+.card-tier-ext.tier-s, .card-tier-int.tier-s, .compare-card > .tier-s {
   border: 2px solid #333;
 }
 
-.card-tier-ext.tier-b, .card-tier-int.tier-b {
+.card-tier-ext.tier-b, .card-tier-int.tier-b, .compare-card > .tier-b {
   border: 2px solid #593919;
 }
 
-.card-tier-ext.tier-i, .card-tier-int.tier-i {
+.card-tier-ext.tier-i, .card-tier-int.tier-i, .compare-card > .tier-i {
   border: 2px solid #bbb;
 }
 
@@ -256,31 +256,6 @@ a.pos-sel.pos-toggled {
   border: 2px solid #cf4420;
 }
 
-#pitcher_display {
-  display: none;
-}
-
-#batter_display {
-  display: block;
-}
-
-#batter_player_filter_area {
-  display: block;
-}
-
-#batter_card_filter_area, #batter_batting_filter_area, #batter_field_filter_area,
-  #batter_pitching_filter_area {
-  display: none;
-}
-
-#pitcher_player_filter_area {
-  display: block;
-}
-
-#pitcher_card_filter_area, #pitcher_batting_filter_area, #pitcher_field_filter_area,
-  #pitcher_pitching_filter_area {
-  display: none;
-}
 
 .field label {
   font-size: 11px;
@@ -362,28 +337,54 @@ a.pos-sel.pos-toggled {
   padding: 4px;
 }
 
-#batter_display .accordion-body {
-  background-color: lime;
-  height: 428px;
-  vertical-align: top;
-}
-
 .invisible_holder {
   display: none;
 }
 
-.sr-table {
-  width: 90%;
-  align: center;
+#search_results_area h5 {
+  font-size: 14px;
+  font-style: italic;
+  margin-top: 8px;
 }
 
-.sr-table tr {
-  border: 2px solid #aaa;
+.search-results-listing {
+    overflow-y: auto;
+    height: 320px;
+    font-size: 12px;
+    width: 90%;
 }
 
-.sr-table tr:hover {
+.search-result-line {
+  border: 2px solid #630031;
+}
+
+.search-result-line:hover {
   border: 2px solid #fff;
   cursor: pointer;
+}
+
+.sr-col1 {
+  float: left;
+  width: 9%;
+}
+
+.sr-col2 {
+  float: left;
+  width: 7%;
+}
+
+.sr-col3 {
+  float: left;
+  width: 46%;
+}
+
+.sr-col4 {
+  float: left;
+  width: 38%;
+}
+
+#sr_ids_holder {
+  display: none;
 }
 
 .modal-content {
@@ -395,8 +396,9 @@ a.pos-sel.pos-toggled {
 }
 
 .compare-heading-wrapper {
-  background-color: #aaa;
+  background-color: #c5c5ac;
   padding: 6px;
+  color: #000;
 }
 
 .compare-heading-wrapper a {
@@ -426,16 +428,16 @@ a.pos-sel.pos-toggled {
   padding: 4px;
 }
 
-.compare-card.left {
-  background-color: #b00;
+.compare-card.left, .chart-bar0 {
+  background-color: #1c1411;
 }
 
-.compare-card.mid {
-  background-color: #080;
+.compare-card.mid, .chart-bar1 {
+  background-color: #cf4420;
 }
 
-.compare-card.right {
-  background-color: #00d;
+.compare-card.right, .chart-bar2 {
+  background-color: #630031;
 }
 
 .compare-card-details {
@@ -462,22 +464,20 @@ a.pos-sel.pos-toggled {
 }
 
 .chart-display {
-  margin-top: -30px;
-  margin-left: -28px;
+  text-align: center;
+  color: #fff;
+  font-size: 11px;
+  font-weight: 900;
 }
 
 .chart-justify {
-  margin-top: -26px;
+  margin-top: 4px;
+  border-top: 1px solid #000;
 }
 
-.apexcharts-canvas {
-  }
-
-.apexcharts-tooltip {
-    color: #333;
-    margin-left: 44px;
-    margin-top: -32px;
-  }
+.chart-justify, .chart-justify-top {
+  padding-bottom: 6px;
+}
 
 .tryit {
   background-color: brown; color: white;

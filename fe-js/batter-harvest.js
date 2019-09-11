@@ -16,8 +16,12 @@ function batterHarvest() {
 
   processMultiSelect('batter_player_team_current');
   processMultiSelect('batter_player_team_historical');
-  processMultiSelect('batter_player_prim_pos');
   processMultiSelect('batter_card_type_program');
+
+  if (gPositionArray.length > 0 ) {
+    batterFilters.set('batter_player_prim_pos', gPositionArray);
+  }
+
 
   let radioItems = document.getElementsByName('batter_card_tier');
   for (var ii=0, radioLength = radioItems.length; ii < radioLength; ii++) {
@@ -49,31 +53,16 @@ function batterHarvest() {
   processOnField('batter_eye_min');
   processOnField('batter_eye_vs_r_min');
   processOnField('batter_eye_vs_l_min');
-  processOnField('batter_avoid-k_min');
-  processOnField('batter_avoid-k_vs_r_min');
-  processOnField('batter_avoid-k_vs_l_min');
+  processOnField('batter_avoid_k_min');
+  processOnField('batter_avoid_k_vs_r_min');
+  processOnField('batter_avoid_k_vs_l_min');
 
   processOnField('batter_speed_min');
   processOnField('batter_steal_min');
   processOnField('batter_baserunning_min');
 
-  processOnField('batter_sacbunt_min');
+  processOnField('batter_sac_bunt_min');
   processOnField('batter_bunthit_min');
-
-/*
-  processSingleSelect('batter_batted_ball');
-  processSingleSelect('batter_groundball_tend');
-  processSingleSelect('batter_flyball_tend');
-
-
-  processOnField('batter_1b_min');
-  processOnField('batter_2b_min');
-  processOnField('batter_3b_min');
-  processOnField('batter_ss_min');
-  processOnField('batter_lf_min');
-  processOnField('batter_cf_min');
-  processOnField('batter_rf_min');
-  */
 
   processOnField('batter_if_range_min');
   processOnField('batter_if_error_min');
@@ -82,7 +71,6 @@ function batterHarvest() {
   processOnField('batter_of_range_min');
   processOnField('batter_of_error_min');
   processOnField('batter_of_arm_min');
-  processOnField('batter_c_min');
   processOnField('batter_c_ab_min');
   processOnField('batter_c_arm_min');
 
@@ -145,6 +133,7 @@ function processMultiSelect(nameIn) {
 }
 
 function processOnField(nameIn) {
+  //alert(nameIn);
   let current = document.querySelector('#' + nameIn + '_on');
   let valueField = document.querySelector('#' + nameIn);
   if (current.checked) {

@@ -1,6 +1,6 @@
 <div class="compare-heading-wrapper">
-{{#if beforeCards}}<a style="float:left;" class="button" onClick="presentPlayerComparison({{playerZeroId}}, false);">&lt;-- Compare higher listed</a>{{/if}}
-{{#if afterCards}}<a style="float:right;" class="button" onClick="presentPlayerComparison({{playerTwoId}}, false);">Compare lower listed --&gt;</a>{{/if}}
+{{#if beforeCards}}<a style="float:left;" class="button is-small" onClick="presentPlayerComparison({{playerZeroId}}, false);">&lt;-- Compare higher listed</a>{{/if}}
+{{#if afterCards}}<a style="float:right;" class="button is-small" onClick="presentPlayerComparison({{playerTwoId}}, false);">Compare lower listed --&gt;</a>{{/if}}
 <div class="compare-heading is-bigger">Player Comparison</div>
 </div>
 
@@ -20,7 +20,7 @@
 <div class="columns rating-panel">
   <div class="column compare-rating right-divider">
     <h3 class="rating-group-heading">Overall Batting</h3>
-    <div>
+    <div class="chart-justify-top">
       <h5 class="rating-name-display">Contact</h5>
       <div class="chart-display" id="chart_contact"></div>
     </div>
@@ -44,7 +44,7 @@
 
   <div class="column compare-rating right-divider">
     <h3 class="rating-group-heading">Batting vs RHP</h3>
-    <div>
+    <div class="chart-justify-top">
       <h5 class="rating-name-display">Contact vs R</h5>
       <div class="chart-display" id="chart_contact_vs_r"></div>
     </div>
@@ -68,7 +68,7 @@
 
   <div class="column compare-rating right-divider">
     <h3 class="rating-group-heading">Batting vs LHP</h3>
-    <div>
+    <div class="chart-justify-top">
       <h5 class="rating-name-display">Contact vs L</h5>
       <div class="chart-display" id="chart_contact_vs_l"></div>
     </div>
@@ -92,7 +92,7 @@
 
   <div class="column compare-rating right-divider">
     <h3 class="rating-group-heading">Speed &amp; Bunting</h3>
-    <div>
+    <div class="chart-justify-top">
       <h5 class="rating-name-display">Speed</h5>
       <div class="chart-display" id="chart_speed"></div>
     </div>
@@ -115,8 +115,8 @@
   </div>
 
   <div class="column compare-rating right-divider">
-    <h3 class="rating-group-heading">Infield Defense</h3>
-    <div>
+    <h3 class="rating-group-heading">Infield DEF</h3>
+    <div class="chart-justify-top">
       <h5 class="rating-name-display">Infield Range</h5>
       <div class="chart-display" id="chart_inf_range"></div>
     </div>
@@ -132,19 +132,11 @@
       <h5 class="rating-name-display">Turn DP</h5>
       <div class="chart-display" id="chart_inf_turn"></div>
     </div>
-    <div class="chart-justify">
-      <h5 class="rating-name-display">Catcher Ability</h5>
-      <div class="chart-display" id="chart_catcher_ability"></div>
-    </div>
-    <div class="chart-justify">
-      <h5 class="rating-name-display">Catcher Arm</h5>
-      <div class="chart-display" id="chart_catcher_arm"></div>
-    </div>
   </div>
 
   <div class="column compare-rating">
-    <h3 class="rating-group-heading">Outfield Defense</h3>
-    <div>
+    <h3 class="rating-group-heading">Outfield/C DEF</h3>
+    <div class="chart-justify-top">
       <h5 class="rating-name-display">Outfield Range</h5>
       <div class="chart-display" id="chart_of_range"></div>
     </div>
@@ -155,6 +147,14 @@
     <div class="chart-justify">
       <h5 class="rating-name-display">Outfield Arm</h5>
       <div class="chart-display" id="chart_of_arm"></div>
+    </div>
+    <div class="chart-justify">
+      <h5 class="rating-name-display">Catcher Ability</h5>
+      <div class="chart-display" id="chart_catcher_ability"></div>
+    </div>
+    <div class="chart-justify">
+      <h5 class="rating-name-display">Catcher Arm</h5>
+      <div class="chart-display" id="chart_catcher_arm"></div>
     </div>
   </div>
 

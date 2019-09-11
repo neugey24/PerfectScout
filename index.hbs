@@ -6,17 +6,10 @@
 
     <link rel="stylesheet" href="css/bulma.css" />
     <link rel="stylesheet" href="css/bulma-switch.min.css" />
-    <link rel="stylesheet" href="css/bulma-accordion.min.css" />
     <link rel="stylesheet" href="css/ps.out.css" />
 
     <script src='fe-js/template-helpers.js'></script>
     <script defer src="fontawesome/js/all.min.js"></script>
-
-    <script src='fe-js/apexcharts.min.js'></script>
-
-
-
-
 
   </head>
   <body onLoad="psUIReady();">
@@ -32,7 +25,7 @@
       </div>
     </header>
     <div class="columns search-body">
-      <nav class="filter-nav column is-one-quarter">
+      <nav class="filter-nav column is-2">
 
         <div><a id="filter_toggle_new" class="filter-item ps-active" href="javascript:toggleFilter('new');">New Search</a></div>
         <div class="group-heading">Filter by Player:</div>
@@ -46,21 +39,21 @@
         <div class="tat-shade"><a id="filter_toggle_card_type" class="filter-item" href="javascript:toggleFilter('card_type');">Card Type</a><div class="filter-count" id="filter_count_card_type"></div></div>
         <div class="bit-shade"><a id="filter_toggle_card_year" class="filter-item" href="javascript:toggleFilter('card_year');">Card Year</a><div class="filter-count" id="filter_count_card_year"></div></div>
         <div class="group-heading">Filter by Offense:</div>
-        <div class="tat-shade"><a id="filter_toggle_contact" class="filter-item" href="#">Contact</a><div class="filter-count" id="filter_count_contact"></div></div>
-        <div class="bit-shade"><a id="filter_toggle_gap" class="filter-item" href="#">Gap</a><div class="filter-count" id="filter_count_gap"></div></div>
-        <div class="tat-shade"><a id="filter_toggle_power" class="filter-item" href="#">Power</a><div class="filter-count" id="filter_count_power"></div></div>
-        <div class="bit-shade"><a id="filter_toggle_eye" class="filter-item" href="#">Eye</a><div class="filter-count" id="filter_count_eye"></div></div>
-        <div class="tat-shade"><a id="filter_toggle_avoid_k" class="filter-item" href="#">Avoid K</a><div class="filter-count" id="filter_count_avoid_k"></div></div>
-        <div class="bit-shade"><a id="filter_toggle_running" class="filter-item" href="#">Running</a><div class="filter-count" id="filter_count_running"></div></div>
-        <div class="tat-shade"><a id="filter_toggle_bunting" class="filter-item" href="#">Bunting</a><div class="filter-count" id="filter_count_bunting"></div></div>
+        <div class="tat-shade"><a id="filter_toggle_contact" class="filter-item" href="javascript:toggleFilter('contact');">Contact</a><div class="filter-count" id="filter_count_contact"></div></div>
+        <div class="bit-shade"><a id="filter_toggle_gap" class="filter-item" href="javascript:toggleFilter('gap');">Gap</a><div class="filter-count" id="filter_count_gap"></div></div>
+        <div class="tat-shade"><a id="filter_toggle_power" class="filter-item" href="javascript:toggleFilter('power');">Power</a><div class="filter-count" id="filter_count_power"></div></div>
+        <div class="bit-shade"><a id="filter_toggle_eye" class="filter-item" href="javascript:toggleFilter('eye');">Eye</a><div class="filter-count" id="filter_count_eye"></div></div>
+        <div class="tat-shade"><a id="filter_toggle_avoid_k" class="filter-item" href="javascript:toggleFilter('avoid_k');">Avoid K</a><div class="filter-count" id="filter_count_avoid_k"></div></div>
+        <div class="bit-shade"><a id="filter_toggle_running" class="filter-item" href="javascript:toggleFilter('running');">Running</a><div class="filter-count" id="filter_count_running"></div></div>
+        <div class="tat-shade"><a id="filter_toggle_bunting" class="filter-item" href="javascript:toggleFilter('bunting');">Bunting</a><div class="filter-count" id="filter_count_bunting"></div></div>
         <div class="group-heading">Filter by Defense:</div>
-        <div class="tat-shade"><a id="filter_toggle_infield" class="filter-item" href="#">Infield</a><div class="filter-count" id="filter_count_infield"></div></div>
-        <div class="bit-shade"><a id="filter_toggle_outfield" class="filter-item" href="#">Outfield</a><div class="filter-count" id="filter_count_outfield"></div></div>
-        <div class="tat-shade"><a id="filter_toggle_catcher" class="filter-item" href="#">Catcher</a><div class="filter-count" id="filter_count_catcher"></div></div>
+        <div class="tat-shade"><a id="filter_toggle_infield" class="filter-item" href="javascript:toggleFilter('infield');">Infield</a><div class="filter-count" id="filter_count_infield"></div></div>
+        <div class="bit-shade"><a id="filter_toggle_outfield" class="filter-item" href="javascript:toggleFilter('outfield');">Outfield</a><div class="filter-count" id="filter_count_outfield"></div></div>
+        <div class="tat-shade"><a id="filter_toggle_catcher" class="filter-item" href="javascript:toggleFilter('catcher');">Catcher</a><div class="filter-count" id="filter_count_catcher"></div></div>
 
 
       </nav>
-      <div id="filter_area" class="column is-half">
+      <div id="filter_area" class="column is-6">
         <section id="filter_new">
           <heading>Welcome to Perfect Scout</heading>
           <article>
@@ -439,10 +432,513 @@
 
                 </section>
 
+                <section id="filter_contact" style="display: none;">
+                  <heading>Filter by Batter Contact Rating</heading>
+                  <article>
+
+                    <div class="columns">
+                      <div class="column is-three-quarters">
+
+                        <div class="fieldy">
+                          <div class="control">
+                            <label for="batter_contact_min">Contact Overall (minimum):</label>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="ps-slider-label" id="batter_contact_min_output">50</span>
+                            <br />0 <input oninput="rangeChange(this, 'contact');" class="ps-slider" id="batter_contact_min" step="1" min="0" max="100" value="50" type="range" /> 100
+                          </div>
+                        </div>
+                        <div class="fieldy">
+                          <div class="control">
+                            <label for="batter_contact_vs_r_min">Contact vs R (minimum):</label>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="ps-slider-label" id="batter_contact_vs_r_min_output">50</span>
+                            <br />0 <input oninput="rangeChange(this, 'contact');" class="ps-slider" id="batter_contact_vs_r_min" step="1" min="0" max="100" value="50" type="range" /> 100
+                          </div>
+                        </div>
+                        <div class="fieldy">
+                          <div class="control">
+                            <label for="batter_contact_vs_l_min">Contact vs L (minimum):</label>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="ps-slider-label" id="batter_contact_vs_l_min_output">50</span>
+                            <br />0 <input oninput="rangeChange(this, 'contact');" class="ps-slider" id="batter_contact_vs_l_min" step="1" min="0" max="100" value="50" type="range" /> 100
+                          </div>
+                        </div>
+                      </div>
+                      <div class="column is-one-quarter">
+
+                        <div class="fieldy"><br />
+                          <input onchange="rangeChangeUse(this, 'batter_contact_min', 'contact');" id="batter_contact_min_on" type="checkbox" name="switchExample" class="switch">
+                          <label for="batter_contact_min_on">Use</label>
+                        </div>
+                        <div class="fieldy"><br />
+                          <input onchange="rangeChangeUse(this, 'batter_contact_vs_r_min', 'contact');" id="batter_contact_vs_r_min_on" type="checkbox" name="switchExample" class="switch">
+                          <label for="batter_contact_vs_r_min_on">Use</label>
+                        </div>
+                        <div class="fieldy"><br />
+                          <input onchange="rangeChangeUse(this, 'batter_contact_vs_l_min', 'contact');" id="batter_contact_vs_l_min_on" type="checkbox" name="switchExample" class="switch">
+                          <label for="batter_contact_vs_l_min_on">Use</label>
+                        </div>
+                      </div>
+                    </div>
+
+                  <br />
+                   <h6>TIP: Use the slider above to set the desired value.  If you want to turn on/off the slider for filtering,
+                   click the Use switch.</h6>
+                  </article>
+
+
+                </section>
+
+                <section id="filter_gap" style="display: none;">
+                  <heading>Filter by Batter Gap Rating</heading>
+                  <article>
+
+                    <div class="columns">
+                      <div class="column is-three-quarters">
+
+                        <div class="fieldy">
+                          <div class="control">
+                            <label for="batter_gap_min">Gap Overall (minimum):</label>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="ps-slider-label" id="batter_gap_min_output">50</span>
+                            <br />0 <input oninput="rangeChange(this, 'gap');" class="ps-slider" id="batter_gap_min" step="1" min="0" max="100" value="50" type="range" /> 100
+                          </div>
+                        </div>
+                        <div class="fieldy">
+                          <div class="control">
+                            <label for="batter_gap_vs_r_min">Gap vs R (minimum):</label>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="ps-slider-label" id="batter_gap_vs_r_min_output">50</span>
+                            <br />0 <input oninput="rangeChange(this, 'gap');" class="ps-slider" id="batter_gap_vs_r_min" step="1" min="0" max="100" value="50" type="range" /> 100
+                          </div>
+                        </div>
+                        <div class="fieldy">
+                          <div class="control">
+                            <label for="batter_gap_vs_l_min">Gap vs L (minimum):</label>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="ps-slider-label" id="batter_gap_vs_l_min_output">50</span>
+                            <br />0 <input oninput="rangeChange(this, 'gap');" class="ps-slider" id="batter_gap_vs_l_min" step="1" min="0" max="100" value="50" type="range" /> 100
+                          </div>
+                        </div>
+                      </div>
+                      <div class="column is-one-quarter">
+
+                        <div class="fieldy"><br />
+                          <input onchange="rangeChangeUse(this, 'batter_gap_min', 'gap');" id="batter_gap_min_on" type="checkbox" name="switchExample" class="switch">
+                          <label for="batter_gap_min_on">Use</label>
+                        </div>
+                        <div class="fieldy"><br />
+                          <input onchange="rangeChangeUse(this, 'batter_gap_vs_r_min', 'gap');" id="batter_gap_vs_r_min_on" type="checkbox" name="switchExample" class="switch">
+                          <label for="batter_gap_vs_r_min_on">Use</label>
+                        </div>
+                        <div class="fieldy"><br />
+                          <input onchange="rangeChangeUse(this, 'batter_gap_vs_l_min', 'gap');" id="batter_gap_vs_l_min_on" type="checkbox" name="switchExample" class="switch">
+                          <label for="batter_gap_vs_l_min_on">Use</label>
+                        </div>
+                      </div>
+                    </div>
+
+                  <br />
+                   <h6>TIP: Use the slider above to set the desired value.  If you want to turn on/off the slider for filtering,
+                   click the Use switch.</h6>
+                  </article>
+
+
+                </section>
+
+                <section id="filter_power" style="display: none;">
+                  <heading>Filter by Batter Power Rating</heading>
+                  <article>
+
+                    <div class="columns">
+                      <div class="column is-three-quarters">
+
+                        <div class="fieldy">
+                          <div class="control">
+                            <label for="batter_power_min">Power Overall (minimum):</label>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="ps-slider-label" id="batter_power_min_output">50</span>
+                            <br />0 <input oninput="rangeChange(this, 'power');" class="ps-slider" id="batter_power_min" step="1" min="0" max="100" value="50" type="range" /> 100
+                          </div>
+                        </div>
+                        <div class="fieldy">
+                          <div class="control">
+                            <label for="batter_power_vs_r_min">Power vs R (minimum):</label>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="ps-slider-label" id="batter_power_vs_r_min_output">50</span>
+                            <br />0 <input oninput="rangeChange(this, 'power');" class="ps-slider" id="batter_power_vs_r_min" step="1" min="0" max="100" value="50" type="range" /> 100
+                          </div>
+                        </div>
+                        <div class="fieldy">
+                          <div class="control">
+                            <label for="batter_power_vs_l_min">Power vs L (minimum):</label>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="ps-slider-label" id="batter_power_vs_l_min_output">50</span>
+                            <br />0 <input oninput="rangeChange(this, 'power');" class="ps-slider" id="batter_power_vs_l_min" step="1" min="0" max="100" value="50" type="range" /> 100
+                          </div>
+                        </div>
+                      </div>
+                      <div class="column is-one-quarter">
+
+                        <div class="fieldy"><br />
+                          <input onchange="rangeChangeUse(this, 'batter_power_min', 'power');" id="batter_power_min_on" type="checkbox" name="switchExample" class="switch">
+                          <label for="batter_power_min_on">Use</label>
+                        </div>
+                        <div class="fieldy"><br />
+                          <input onchange="rangeChangeUse(this, 'batter_power_vs_r_min', 'power');" id="batter_power_vs_r_min_on" type="checkbox" name="switchExample" class="switch">
+                          <label for="batter_power_vs_r_min_on">Use</label>
+                        </div>
+                        <div class="fieldy"><br />
+                          <input onchange="rangeChangeUse(this, 'batter_power_vs_l_min', 'power');" id="batter_power_vs_l_min_on" type="checkbox" name="switchExample" class="switch">
+                          <label for="batter_power_vs_l_min_on">Use</label>
+                        </div>
+                      </div>
+                    </div>
+
+                  <br />
+                   <h6>TIP: Use the slider above to set the desired value.  If you want to turn on/off the slider for filtering,
+                   click the Use switch.</h6>
+                  </article>
+
+
+                </section>
+
+                <section id="filter_eye" style="display: none;">
+                  <heading>Filter by Batter Eye Rating</heading>
+                  <article>
+
+                    <div class="columns">
+                      <div class="column is-three-quarters">
+
+                        <div class="fieldy">
+                          <div class="control">
+                            <label for="batter_eye_min">Eye Overall (minimum):</label>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="ps-slider-label" id="batter_eye_min_output">50</span>
+                            <br />0 <input oninput="rangeChange(this, 'eye');" class="ps-slider" id="batter_eye_min" step="1" min="0" max="100" value="50" type="range" /> 100
+                          </div>
+                        </div>
+                        <div class="fieldy">
+                          <div class="control">
+                            <label for="batter_eye_vs_r_min">Eye vs R (minimum):</label>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="ps-slider-label" id="batter_eye_vs_r_min_output">50</span>
+                            <br />0 <input oninput="rangeChange(this, 'eye');" class="ps-slider" id="batter_eye_vs_r_min" step="1" min="0" max="100" value="50" type="range" /> 100
+                          </div>
+                        </div>
+                        <div class="fieldy">
+                          <div class="control">
+                            <label for="batter_eye_vs_l_min">Eye vs L (minimum):</label>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="ps-slider-label" id="batter_eye_vs_l_min_output">50</span>
+                            <br />0 <input oninput="rangeChange(this, 'eye');" class="ps-slider" id="batter_eye_vs_l_min" step="1" min="0" max="100" value="50" type="range" /> 100
+                          </div>
+                        </div>
+                      </div>
+                      <div class="column is-one-quarter">
+
+                        <div class="fieldy"><br />
+                          <input onchange="rangeChangeUse(this, 'batter_eye_min', 'eye');" id="batter_eye_min_on" type="checkbox" name="switchExample" class="switch">
+                          <label for="batter_eye_min_on">Use</label>
+                        </div>
+                        <div class="fieldy"><br />
+                          <input onchange="rangeChangeUse(this, 'batter_eye_vs_r_min', 'eye');" id="batter_eye_vs_r_min_on" type="checkbox" name="switchExample" class="switch">
+                          <label for="batter_eye_vs_r_min_on">Use</label>
+                        </div>
+                        <div class="fieldy"><br />
+                          <input onchange="rangeChangeUse(this, 'batter_eye_vs_l_min', 'eye');" id="batter_eye_vs_l_min_on" type="checkbox" name="switchExample" class="switch">
+                          <label for="batter_eye_vs_l_min_on">Use</label>
+                        </div>
+                      </div>
+                    </div>
+
+                  <br />
+                   <h6>TIP: Use the slider above to set the desired value.  If you want to turn on/off the slider for filtering,
+                   click the Use switch.</h6>
+                  </article>
+
+
+                </section>
+
+                <section id="filter_avoid_k" style="display: none;">
+                  <heading>Filter by Avoid K Rating</heading>
+                  <article>
+
+                    <div class="columns">
+                      <div class="column is-three-quarters">
+
+                        <div class="fieldy">
+                          <div class="control">
+                            <label for="batter_avoid_k_min">Avoid K Overall (minimum):</label>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="ps-slider-label" id="batter_avoid_k_min_output">50</span>
+                            <br />0 <input oninput="rangeChange(this, 'avoid_k');" class="ps-slider" id="batter_avoid_k_min" step="1" min="0" max="100" value="50" type="range" /> 100
+                          </div>
+                        </div>
+                        <div class="fieldy">
+                          <div class="control">
+                            <label for="batter_avoid_k_vs_r_min">Avoid K vs R (minimum):</label>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="ps-slider-label" id="batter_avoid_k_vs_r_min_output">50</span>
+                            <br />0 <input oninput="rangeChange(this, 'avoid_k');" class="ps-slider" id="batter_avoid_k_vs_r_min" step="1" min="0" max="100" value="50" type="range" /> 100
+                          </div>
+                        </div>
+                        <div class="fieldy">
+                          <div class="control">
+                            <label for="batter_avoid_k_vs_l_min">Avoid K vs L (minimum):</label>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="ps-slider-label" id="batter_avoid_k_vs_l_min_output">50</span>
+                            <br />0 <input oninput="rangeChange(this, 'avoid_k');" class="ps-slider" id="batter_avoid_k_vs_l_min" step="1" min="0" max="100" value="50" type="range" /> 100
+                          </div>
+                        </div>
+                      </div>
+                      <div class="column is-one-quarter">
+
+                        <div class="fieldy"><br />
+                          <input onchange="rangeChangeUse(this, 'batter_avoid_k_min', 'avoid_k');" id="batter_avoid_k_min_on" type="checkbox" name="switchExample" class="switch">
+                          <label for="batter_avoid_k_min_on">Use</label>
+                        </div>
+                        <div class="fieldy"><br />
+                          <input onchange="rangeChangeUse(this, 'batter_avoid_k_vs_r_min', 'avoid_k');" id="batter_avoid_k_vs_r_min_on" type="checkbox" name="switchExample" class="switch">
+                          <label for="batter_avoid_k_vs_r_min_on">Use</label>
+                        </div>
+                        <div class="fieldy"><br />
+                          <input onchange="rangeChangeUse(this, 'batter_avoid_k_vs_l_min', 'avoid_k');" id="batter_avoid_k_vs_l_min_on" type="checkbox" name="switchExample" class="switch">
+                          <label for="batter_avoid_k_vs_l_min_on">Use</label>
+                        </div>
+                      </div>
+                    </div>
+
+                  <br />
+                   <h6>TIP: Use the slider above to set the desired value.  If you want to turn on/off the slider for filtering,
+                   click the Use switch.</h6>
+                  </article>
+
+
+                </section>
+
+                <section id="filter_running" style="display: none;">
+                  <heading>Filter by Running Ratings</heading>
+                  <article>
+
+                    <div class="columns">
+                      <div class="column is-three-quarters">
+
+                        <div class="fieldy">
+                          <div class="control">
+                            <label for="batter_speed_min">Speed (minimum):</label>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="ps-slider-label" id="batter_speed_min_output">50</span>
+                            <br />0 <input oninput="rangeChange(this, 'running');" class="ps-slider" id="batter_speed_min" step="1" min="0" max="100" value="50" type="range" /> 100
+                          </div>
+                        </div>
+                        <div class="fieldy">
+                          <div class="control">
+                            <label for="batter_steal_min">Steal (minimum):</label>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="ps-slider-label" id="batter_steal_min_output">50</span>
+                            <br />0 <input oninput="rangeChange(this, 'running');" class="ps-slider" id="batter_steal_min" step="1" min="0" max="100" value="50" type="range" /> 100
+                          </div>
+                        </div>
+                        <div class="fieldy">
+                          <div class="control">
+                            <label for="batter_baserunning_min">Baserunning (minimum):</label>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="ps-slider-label" id="batter_baserunning_min_output">50</span>
+                            <br />0 <input oninput="rangeChange(this, 'running');" class="ps-slider" id="batter_baserunning_min" step="1" min="0" max="100" value="50" type="range" /> 100
+                          </div>
+                        </div>
+                      </div>
+                      <div class="column is-one-quarter">
+
+                        <div class="fieldy"><br />
+                          <input onchange="rangeChangeUse(this, 'batter_speed_min', 'running');" id="batter_speed_min_on" type="checkbox" name="switchExample" class="switch">
+                          <label for="batter_speed_min_on">Use</label>
+                        </div>
+                        <div class="fieldy"><br />
+                          <input onchange="rangeChangeUse(this, 'batter_steal_min', 'running');" id="batter_steal_min_on" type="checkbox" name="switchExample" class="switch">
+                          <label for="batter_steal_min_on">Use</label>
+                        </div>
+                        <div class="fieldy"><br />
+                          <input onchange="rangeChangeUse(this, 'batter_baserunning_min', 'running');" id="batter_baserunning_min_on" type="checkbox" name="switchExample" class="switch">
+                          <label for="batter_baserunning_min_on">Use</label>
+                        </div>
+                      </div>
+                    </div>
+
+                  <br />
+                   <h6>TIP: Use the slider above to set the desired value.  If you want to turn on/off the slider for filtering,
+                   click the Use switch.</h6>
+                  </article>
+
+
+                </section>
+
+
+                <section id="filter_bunting" style="display: none;">
+                  <heading>Filter by Bunting Ratings</heading>
+                  <article>
+
+                    <div class="columns">
+                      <div class="column is-three-quarters">
+
+                        <div class="fieldy">
+                          <div class="control">
+                            <label for="batter_sac_bunt_min">Sacrifice Bunt (minimum):</label>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="ps-slider-label" id="batter_sac_bunt_min_output">50</span>
+                            <br />0 <input oninput="rangeChange(this, 'bunting');" class="ps-slider" id="batter_sac_bunt_min" step="1" min="0" max="100" value="50" type="range" /> 100
+                          </div>
+                        </div>
+                        <div class="fieldy">
+                          <div class="control">
+                            <label for="batter_bunthit_min">Bunt For Hit (minimum):</label>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="ps-slider-label" id="batter_bunthit_min_output">50</span>
+                            <br />0 <input oninput="rangeChange(this, 'bunting');" class="ps-slider" id="batter_bunthit_min" step="1" min="0" max="100" value="50" type="range" /> 100
+                          </div>
+                        </div>
+                      </div>
+                      <div class="column is-one-quarter">
+
+                        <div class="fieldy"><br />
+                          <input onchange="rangeChangeUse(this, 'batter_sac_bunt_min', 'bunting');" id="batter_sac_bunt_min_on" type="checkbox" name="switchExample" class="switch">
+                          <label for="batter_sac_bunt_min_on">Use</label>
+                        </div>
+                        <div class="fieldy"><br />
+                          <input onchange="rangeChangeUse(this, 'batter_bunthit_min', 'bunting');" id="batter_bunthit_min_on" type="checkbox" name="switchExample" class="switch">
+                          <label for="batter_bunthit_min_on">Use</label>
+                        </div>
+                      </div>
+                    </div>
+
+                  <br />
+                   <h6>TIP: Use the slider above to set the desired value.  If you want to turn on/off the slider for filtering,
+                   click the Use switch.</h6>
+                  </article>
+
+
+                </section>
+
+                <section id="filter_infield" style="display: none;">
+                  <heading>Filter by Infield Ratings</heading>
+                  <article>
+
+                    <div class="columns">
+                      <div class="column is-three-quarters">
+
+                        <div class="fieldy">
+                          <div class="control">
+                            <label for="batter_if_range_min">Range (minimum):</label>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="ps-slider-label" id="batter_if_range_min_output">50</span>
+                            <br />0 <input oninput="rangeChange(this, 'infield');" class="ps-slider" id="batter_if_range_min" step="1" min="0" max="100" value="50" type="range" /> 100
+                          </div>
+                        </div>
+                        <div class="fieldy">
+                          <div class="control">
+                            <label for="batter_if_error_min">Error (minimum):</label>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="ps-slider-label" id="batter_if_error_min_output">50</span>
+                            <br />0 <input oninput="rangeChange(this, 'infield');" class="ps-slider" id="batter_if_error_min" step="1" min="0" max="100" value="50" type="range" /> 100
+                          </div>
+                        </div>
+                        <div class="fieldy">
+                          <div class="control">
+                            <label for="batter_if_arm_min">Arm (minimum):</label>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="ps-slider-label" id="batter_if_arm_min_output">50</span>
+                            <br />0 <input oninput="rangeChange(this, 'infield');" class="ps-slider" id="batter_if_arm_min" step="1" min="0" max="100" value="50" type="range" /> 100
+                          </div>
+                        </div>
+                        <div class="fieldy">
+                          <div class="control">
+                            <label for="batter_if_turn_min">Turn DP (minimum):</label>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="ps-slider-label" id="batter_if_turn_min_output">50</span>
+                            <br />0 <input oninput="rangeChange(this, 'infield');" class="ps-slider" id="batter_if_turn_min" step="1" min="0" max="100" value="50" type="range" /> 100
+                          </div>
+                        </div>
+                      </div>
+                      <div class="column is-one-quarter">
+
+                        <div class="fieldy"><br />
+                          <input onchange="rangeChangeUse(this, 'batter_if_range_min', 'infield');" id="batter_if_range_min_on" type="checkbox" name="switchExample" class="switch">
+                          <label for="batter_if_range_min_on">Use</label>
+                        </div>
+                        <div class="fieldy"><br />
+                          <input onchange="rangeChangeUse(this, 'batter_if_error_min', 'infield');" id="batter_if_error_min_on" type="checkbox" name="switchExample" class="switch">
+                          <label for="batter_if_error_min_on">Use</label>
+                        </div>
+                        <div class="fieldy"><br />
+                          <input onchange="rangeChangeUse(this, 'batter_if_arm_min', 'infield');" id="batter_if_arm_min_on" type="checkbox" name="switchExample" class="switch">
+                          <label for="batter_if_arm_min_on">Use</label>
+                        </div>
+                        <div class="fieldy"><br />
+                          <input onchange="rangeChangeUse(this, 'batter_if_turn_min', 'infield');" id="batter_if_turn_min_on" type="checkbox" name="switchExample" class="switch">
+                          <label for="batter_if_turn_min_on">Use</label>
+                        </div>
+                      </div>
+                    </div>
+
+                  <br />
+                   <h6>TIP: Use the slider above to set the desired value.  If you want to turn on/off the slider for filtering,
+                   click the Use switch.</h6>
+                  </article>
+
+
+                </section>
+
+                <section id="filter_outfield" style="display: none;">
+                  <heading>Filter by Outfield Ratings</heading>
+                  <article>
+
+                    <div class="columns">
+                      <div class="column is-three-quarters">
+
+                        <div class="fieldy">
+                          <div class="control">
+                            <label for="batter_of_range_min">Range (minimum):</label>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="ps-slider-label" id="batter_of_range_min_output">50</span>
+                            <br />0 <input oninput="rangeChange(this, 'outfield');" class="ps-slider" id="batter_of_range_min" step="1" min="0" max="100" value="50" type="range" /> 100
+                          </div>
+                        </div>
+                        <div class="fieldy">
+                          <div class="control">
+                            <label for="batter_of_error_min">Error (minimum):</label>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="ps-slider-label" id="batter_of_error_min_output">50</span>
+                            <br />0 <input oninput="rangeChange(this, 'outfield');" class="ps-slider" id="batter_of_error_min" step="1" min="0" max="100" value="50" type="range" /> 100
+                          </div>
+                        </div>
+                        <div class="fieldy">
+                          <div class="control">
+                            <label for="batter_of_arm_min">Arm (minimum):</label>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="ps-slider-label" id="batter_of_arm_min_output">50</span>
+                            <br />0 <input oninput="rangeChange(this, 'outfield');" class="ps-slider" id="batter_of_arm_min" step="1" min="0" max="100" value="50" type="range" /> 100
+                          </div>
+                        </div>
+                      </div>
+                      <div class="column is-one-quarter">
+
+                        <div class="fieldy"><br />
+                          <input onchange="rangeChangeUse(this, 'batter_of_range_min', 'outfield');" id="batter_of_range_min_on" type="checkbox" name="switchExample" class="switch">
+                          <label for="batter_of_range_min_on">Use</label>
+                        </div>
+                        <div class="fieldy"><br />
+                          <input onchange="rangeChangeUse(this, 'batter_of_error_min', 'outfield');" id="batter_of_error_min_on" type="checkbox" name="switchExample" class="switch">
+                          <label for="batter_of_error_min_on">Use</label>
+                        </div>
+                        <div class="fieldy"><br />
+                          <input onchange="rangeChangeUse(this, 'batter_of_arm_min', 'outfield');" id="batter_of_arm_min_on" type="checkbox" name="switchExample" class="switch">
+                          <label for="batter_of_arm_min_on">Use</label>
+                        </div>
+                      </div>
+                    </div>
+
+                  <br />
+                   <h6>TIP: Use the slider above to set the desired value.  If you want to turn on/off the slider for filtering,
+                   click the Use switch.</h6>
+                  </article>
+
+
+                </section>
+
+                <section id="filter_catcher" style="display: none;">
+                  <heading>Filter by Catcher Ratings</heading>
+                  <article>
+
+                    <div class="columns">
+                      <div class="column is-three-quarters">
+
+                        <div class="fieldy">
+                          <div class="control">
+                            <label for="batter_c_ab_min">Catcher Ability (minimum):</label>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="ps-slider-label" id="batter_c_ab_min_output">50</span>
+                            <br />0 <input oninput="rangeChange(this, 'catcher');" class="ps-slider" id="batter_c_ab_min" step="1" min="0" max="100" value="50" type="range" /> 100
+                          </div>
+                        </div>
+                        <div class="fieldy">
+                          <div class="control">
+                            <label for="batter_c_arm_min">Catcher Arm (minimum):</label>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="ps-slider-label" id="batter_c_arm_min_output">50</span>
+                            <br />0 <input oninput="rangeChange(this, 'catcher');" class="ps-slider" id="batter_c_arm_min" step="1" min="0" max="100" value="50" type="range" /> 100
+                          </div>
+                        </div>
+
+                      </div>
+                      <div class="column is-one-quarter">
+
+                        <div class="fieldy"><br />
+                          <input onchange="rangeChangeUse(this, 'batter_c_ab_min', 'catcher');" id="batter_c_ab_min_on" type="checkbox" name="switchExample" class="switch">
+                          <label for="batter_c_ab_min_on">Use</label>
+                        </div>
+                        <div class="fieldy"><br />
+                          <input onchange="rangeChangeUse(this, 'batter_c_arm_min', 'catcher');" id="batter_c_arm_min_on" type="checkbox" name="switchExample" class="switch">
+                          <label for="batter_c_arm_min_on">Use</label>
+                        </div>
+                      </div>
+                    </div>
+
+                  <br />
+                   <h6>TIP: Use the slider above to set the desired value.  If you want to turn on/off the slider for filtering,
+                   click the Use switch.</h6>
+                  </article>
+
+
+                </section>
+
       </div>
-    <aside class="search-result-panel column is-one-quarter">
-      <a class="button">Search Now</a>
-      <br />
+    <aside class="search-result-panel column is-4">
+      <a class="button is-large" onclick="executeSearch('batter');">Search Now</a>
+      <br clear="all" />
+      <div id="search_results_area">abc</div>
       <h4>Note:</h4>
       <p>Your search results will be limited to the top 50 players to keep the number of players
         you wish to compare to manageable.  If you aren't satisfied with the players returned,
@@ -450,923 +946,6 @@
     </aside>
   </div>
   <footer>Footer - something goes here</footer>
-<!--
-    <script src="https://cdn.jsdelivr.net/npm/apexcharts"></script> -->
-<section class="section">
-
-  <div class="tabs is-toggle is-toggle-rounded is-medium is-fullwidth">
-    <ul>
-      <li id="batter_main_tab" class="is-active"><a>Batters</a></li>
-      <li id="pitcher_main_tab"><a>Pitchers</a></li>
-    </ul>
-  </div>
-  <br /><br /><br /><br /><br /><br /><br /><br />
-  <div class="container" id="main_display">
-
-    <!-- BEGIN: ********** BATTER DISPLAY *********** -->
-    <div id="batter_display" style="background-color: brown;">
-    <div class="columns">
-        <div class="column is-half" id="batter_filter">
-
-          <!-- BEGIN: ********** Batter PLAYER Filters *********** -->
-          <section class="accordions">
-            <article class="accordion is-active">
-
-    </article>
-
-            <!-- BEGIN: ********** Batter CARD Filters *********** -->
-            <article class="accordion">
-            <div class="accordion-header">
-                <p>Filter by Card Information:</p>
-                <button class="toggle" aria-label="toggle"></button>
-            </div>
-            <div class="accordion-body">
-              <div class="accordion-content">
-
-                  <div class="field">
-                    <label for="batter_card_type_program">Card Type/Program:</label>
-                    <div class="control">
-                      <div class="select is-primary is-small">
-                        <select id="batter_card_type_program">
-                          <option value="*">(Any Type/Program)</option>
-                          {{#each cardTypesProgramsForFilter}}
-                            <option value="{{this.abbrev}}">{{this.name}}</option>
-                          {{/each}}
-                        </select>
-                      </div>
-                    </div>
-                  </div>
-
-
-
-
-
-
-            </div>
-          </div>
-          </article>
-
-          <!-- BEGIN: ********** Batter BATTING RATING Filters *********** -->
-          <article class="accordion">
-          <div class="accordion-header">
-              <p>Filter by BATTING RATINGS:</p>
-              <button class="toggle" aria-label="toggle"></button>
-          </div>
-          <div class="accordion-body">
-            <div class="accordion-content">
-
-              <div class="field">
-                <label>Batter Filter Groups:</label>
-                <div class="control">
-                  <div class="select is-primary is-small">
-                    <select id="batter_bat_rat_group" onchange="toggleRatingGroup(this, 'bat');">
-                      <option value="contact">Contact Ratings</option>
-                      <option value="gap">Gap Ratings</option>
-                      <option value="power">Power Ratings</option>
-                      <option value="eye">Eye Ratings</option>
-                      <option value="avoid-k">Avoid K Ratings</option>
-                      <option value="runner">Runner Ratings</option>
-                      <option value="bunter">Bunter Ratings</option>
-                      <!-- <option value="tend">Hitter Tendencies</option> -->
-                    </select>
-                  </div>
-                </div>
-              </div>
-
-              <!-- Batter Contact Ratings group -->
-              <section id="batter_bat_rat_group_contact">
-              <div class="columns" >
-                <div class="column is-three-quarters">
-
-                  <div class="field">
-                    <div class="control">
-                      <label for="batter_contact_min">Contact (main) Rating (minimum):</label>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="ps-slider-label" id="batter_contact_min_output">64</span>
-                      <br />0 <input oninput="rangeChange(this);" class="ps-slider" id="batter_contact_min" step="1" min="0" max="128" value="64" type="range" /> 128
-                    </div>
-                  </div>
-
-                  <div class="field">
-                    <div class="control">
-                      <label for="batter_contact_vs_r_min">Contact (VS R) Rating (minimum):</label>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="ps-slider-label" id="batter_contact_vs_r_min_output">64</span>
-                      <br />0 <input oninput="rangeChange(this);" class="ps-slider" id="batter_contact_vs_r_min" step="1" min="0" max="128" value="64" type="range" /> 128
-                    </div>
-                  </div>
-
-                  <div class="field">
-                    <div class="control">
-                      <label for="batter_contact_vs_l_min">Contact (VS L) Rating (minimum):</label>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="ps-slider-label" id="batter_contact_vs_l_min_output">64</span>
-                      <br />0 <input oninput="rangeChange(this);" class="ps-slider" id="batter_contact_vs_l_min" step="1" min="0" max="128" value="64" type="range" /> 128
-                    </div>
-                  </div>
-
-
-                </div>
-                <div class="column is-one-quarter">
-
-                  <div class="field"><br />
-                    <input id="batter_contact_min_on" type="checkbox" name="switchExample" class="switch">
-                    <label for="batter_contact_min_on">Use</label>
-                  </div>
-                  <div class="field"><br />
-                    <input id="batter_contact_vs_r_min_on" type="checkbox" name="switchExample" class="switch">
-                    <label for="batter_contact_vs_r_min_on">Use</label>
-                  </div>
-                  <div class="field"><br />
-                    <input id="batter_contact_vs_l_min_on" type="checkbox" name="switchExample" class="switch">
-                    <label for="batter_contact_vs_l_min_on">Use</label>
-                  </div>
-
-                </div>
-              </div>
-            </section>
-
-              <!-- Batter Gap Ratings group -->
-              <section id="batter_bat_rat_group_gap" style="display:none;">
-              <div class="columns">
-                <div class="column is-three-quarters">
-
-                  <div class="field">
-                    <div class="control">
-                      <label for="batter_gap_min">Gap (main) Rating (minimum):</label>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="ps-slider-label" id="batter_gap_min_output">64</span>
-                      <br />0 <input oninput="rangeChange(this);" class="ps-slider" id="batter_gap_min" step="1" min="0" max="128" value="64" type="range" /> 128
-                    </div>
-                  </div>
-
-                  <div class="field">
-                    <div class="control">
-                      <label for="batter_gap_vs_r_min">Gap (VS R) Rating (minimum):</label>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="ps-slider-label" id="batter_gap_vs_r_min_output">64</span>
-                      <br />0 <input oninput="rangeChange(this);" class="ps-slider" id="batter_gap_vs_r_min" step="1" min="0" max="128" value="64" type="range" /> 128
-                    </div>
-                  </div>
-
-                  <div class="field">
-                    <div class="control">
-                      <label for="batter_gap_vs_l_min">Gap (VS L) Rating (minimum):</label>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="ps-slider-label" id="batter_gap_vs_l_min_output">64</span>
-                      <br />0 <input oninput="rangeChange(this);" class="ps-slider" id="batter_gap_vs_l_min" step="1" min="0" max="128" value="64" type="range" /> 128
-                    </div>
-                  </div>
-
-
-                </div>
-                <div class="column is-one-quarter">
-
-                  <div class="field"><br />
-                    <input id="batter_gap_min_on" type="checkbox" name="switchExample" class="switch">
-                    <label for="batter_gap_min_on">Use</label>
-                  </div>
-                  <div class="field"><br />
-                    <input id="batter_gap_vs_r_min_on" type="checkbox" name="switchExample" class="switch">
-                    <label for="batter_gap_vs_r_min_on">Use</label>
-                  </div>
-                  <div class="field"><br />
-                    <input id="batter_gap_vs_l_min_on" type="checkbox" name="switchExample" class="switch">
-                    <label for="batter_gap_vs_l_min_on">Use</label>
-                  </div>
-
-                </div>
-              </div>
-            </section>
-
-            <!-- Batter Power Ratings group -->
-            <section id="batter_bat_rat_group_power" style="display:none;">
-            <div class="columns">
-              <div class="column is-three-quarters">
-
-                <div class="field">
-                  <div class="control">
-                    <label for="batter_power_min">Power (main) Rating (minimum):</label>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="ps-slider-label" id="batter_power_min_output">64</span>
-                    <br />0 <input oninput="rangeChange(this);" class="ps-slider" id="batter_power_min" step="1" min="0" max="128" value="64" type="range" /> 128
-                  </div>
-                </div>
-
-                <div class="field">
-                  <div class="control">
-                    <label for="batter_power_vs_r_min">Power (VS R) Rating (minimum):</label>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="ps-slider-label" id="batter_power_vs_r_min_output">64</span>
-                    <br />0 <input oninput="rangeChange(this);" class="ps-slider" id="batter_power_vs_r_min" step="1" min="0" max="128" value="64" type="range" /> 128
-                  </div>
-                </div>
-
-                <div class="field">
-                  <div class="control">
-                    <label for="batter_power_vs_l_min">Power (VS L) Rating (minimum):</label>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="ps-slider-label" id="batter_power_vs_l_min_output">64</span>
-                    <br />0 <input oninput="rangeChange(this);" class="ps-slider" id="batter_power_vs_l_min" step="1" min="0" max="128" value="64" type="range" /> 128
-                  </div>
-                </div>
-
-
-              </div>
-              <div class="column is-one-quarter">
-
-                <div class="field"><br />
-                  <input id="batter_power_min_on" type="checkbox" name="switchExample" class="switch">
-                  <label for="batter_power_min_on">Use</label>
-                </div>
-                <div class="field"><br />
-                  <input id="batter_power_vs_r_min_on" type="checkbox" name="switchExample" class="switch">
-                  <label for="batter_power_vs_r_min_on">Use</label>
-                </div>
-                <div class="field"><br />
-                  <input id="batter_power_vs_l_min_on" type="checkbox" name="switchExample" class="switch">
-                  <label for="batter_power_vs_l_min_on">Use</label>
-                </div>
-
-              </div>
-            </div>
-          </section>
-
-          <!-- Batter Eye Ratings group -->
-          <section id="batter_bat_rat_group_eye" style="display:none;">
-          <div class="columns">
-            <div class="column is-three-quarters">
-
-              <div class="field">
-                <div class="control">
-                  <label for="batter_eye_min">Eye (main) Rating (minimum):</label>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="ps-slider-label" id="batter_eye_min_output">64</span>
-                  <br />0 <input oninput="rangeChange(this);" class="ps-slider" id="batter_eye_min" step="1" min="0" max="128" value="64" type="range" /> 128
-                </div>
-              </div>
-
-              <div class="field">
-                <div class="control">
-                  <label for="batter_eye_vs_r_min">Eye (VS R) Rating (minimum):</label>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="ps-slider-label" id="batter_eye_vs_r_min_output">64</span>
-                  <br />0 <input oninput="rangeChange(this);" class="ps-slider" id="batter_eye_vs_r_min" step="1" min="0" max="128" value="64" type="range" /> 128
-                </div>
-              </div>
-
-              <div class="field">
-                <div class="control">
-                  <label for="batter_eye_vs_l_min">Eye (VS L) Rating (minimum):</label>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="ps-slider-label" id="batter_eye_vs_l_min_output">64</span>
-                  <br />0 <input oninput="rangeChange(this);" class="ps-slider" id="batter_eye_vs_l_min" step="1" min="0" max="128" value="64" type="range" /> 128
-                </div>
-              </div>
-
-
-            </div>
-            <div class="column is-one-quarter">
-
-              <div class="field"><br />
-                <input id="batter_eye_min_on" type="checkbox" name="switchExample" class="switch">
-                <label for="batter_eye_min_on">Use</label>
-              </div>
-              <div class="field"><br />
-                <input id="batter_eye_vs_r_min_on" type="checkbox" name="switchExample" class="switch">
-                <label for="batter_eye_vs_r_min_on">Use</label>
-              </div>
-              <div class="field"><br />
-                <input id="batter_eye_vs_l_min_on" type="checkbox" name="switchExample" class="switch">
-                <label for="batter_eye_vs_l_min_on">Use</label>
-              </div>
-
-            </div>
-          </div>
-        </section>
-
-        <!-- Batter Avoid K Ratings group -->
-        <section id="batter_bat_rat_group_avoid-k" style="display:none;">
-        <div class="columns">
-          <div class="column is-three-quarters">
-
-            <div class="field">
-              <div class="control">
-                <label for="batter_avoid-k_min">Avoid K (main) Rating (minimum):</label>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="ps-slider-label" id="batter_avoid-k_min_output">64</span>
-                <br />0 <input oninput="rangeChange(this);" class="ps-slider" id="batter_avoid-k_min" step="1" min="0" max="128" value="64" type="range" /> 128
-              </div>
-            </div>
-
-            <div class="field">
-              <div class="control">
-                <label for="batter_avoid-k_vs_r_min">Avoid K (VS R) Rating (minimum):</label>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="ps-slider-label" id="batter_avoid-k_vs_r_min_output">64</span>
-                <br />0 <input oninput="rangeChange(this);" class="ps-slider" id="batter_avoid-k_vs_r_min" step="1" min="0" max="128" value="64" type="range" /> 128
-              </div>
-            </div>
-
-            <div class="field">
-              <div class="control">
-                <label for="batter_avoid-k_vs_l_min">Avoid K (VS L) Rating (minimum):</label>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="ps-slider-label" id="batter_avoid-k_vs_l_min_output">64</span>
-                <br />0 <input oninput="rangeChange(this);" class="ps-slider" id="batter_avoid-k_vs_l_min" step="1" min="0" max="128" value="64" type="range" /> 128
-              </div>
-            </div>
-
-
-          </div>
-          <div class="column is-one-quarter">
-
-            <div class="field"><br />
-              <input id="batter_avoid-k_min_on" type="checkbox" name="switchExample" class="switch">
-              <label for="batter_avoid-k_min_on">Use</label>
-            </div>
-            <div class="field"><br />
-              <input id="batter_avoid-k_vs_r_min_on" type="checkbox" name="switchExample" class="switch">
-              <label for="batter_avoid-k_vs_r_min_on">Use</label>
-            </div>
-            <div class="field"><br />
-              <input id="batter_avoid-k_vs_l_min_on" type="checkbox" name="switchExample" class="switch">
-              <label for="batter_avoid-k_vs_l_min_on">Use</label>
-            </div>
-
-          </div>
-        </div>
-      </section>
-
-      <!-- Batter Runner Ratings group -->
-      <section id="batter_bat_rat_group_runner" style="display:none;">
-      <div class="columns">
-        <div class="column is-three-quarters">
-
-          <div class="field">
-            <div class="control">
-              <label for="batter_speed_min">Speed Rating (minimum):</label>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="ps-slider-label" id="batter_speed_min_output">64</span>
-              <br />0 <input oninput="rangeChange(this);" class="ps-slider" id="batter_speed_min" step="1" min="0" max="128" value="64" type="range" /> 128
-            </div>
-          </div>
-
-          <div class="field">
-            <div class="control">
-              <label for="batter_steal_min">Steal Rating (minimum):</label>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="ps-slider-label" id="batter_steal_min_output">64</span>
-              <br />0 <input oninput="rangeChange(this);" class="ps-slider" id="batter_steal_min" step="1" min="0" max="128" value="64" type="range" /> 128
-            </div>
-          </div>
-
-          <div class="field">
-            <div class="control">
-              <label for="batter_baserunning_min">Baserunning Rating (minimum):</label>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="ps-slider-label" id="batter_baserunning_min_output">64</span>
-              <br />0 <input oninput="rangeChange(this);" class="ps-slider" id="batter_baserunning_min" step="1" min="0" max="128" value="64" type="range" /> 128
-            </div>
-          </div>
-
-
-        </div>
-        <div class="column is-one-quarter">
-
-          <div class="field"><br />
-            <input id="batter_speed_min_on" type="checkbox" name="switchExample" class="switch">
-            <label for="batter_speed_min_on">Use</label>
-          </div>
-          <div class="field"><br />
-            <input id="batter_steal_min_on" type="checkbox" name="switchExample" class="switch">
-            <label for="batter_steal_min_on">Use</label>
-          </div>
-          <div class="field"><br />
-            <input id="batter_baserunning_min_on" type="checkbox" name="switchExample" class="switch">
-            <label for="batter_baserunning_min_on">Use</label>
-          </div>
-
-        </div>
-      </div>
-    </section>
-
-    <!-- Batter Bunter Ratings group -->
-    <section id="batter_bat_rat_group_bunter" style="display:none;">
-    <div class="columns">
-      <div class="column is-three-quarters">
-
-        <div class="field">
-          <div class="control">
-            <label for="batter_sacbunt_min">Sacrifice Bunt Rating (minimum):</label>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="ps-slider-label" id="batter_sacbunt_min_output">64</span>
-            <br />0 <input oninput="rangeChange(this);" class="ps-slider" id="batter_sacbunt_min" step="1" min="0" max="128" value="64" type="range" /> 128
-          </div>
-        </div>
-
-        <div class="field">
-          <div class="control">
-            <label for="batter_bunthit_min">Bunt For Hit Rating (minimum):</label>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="ps-slider-label" id="batter_bunthit_min_output">64</span>
-            <br />0 <input oninput="rangeChange(this);" class="ps-slider" id="batter_bunthit_min" step="1" min="0" max="128" value="64" type="range" /> 128
-          </div>
-        </div>
-
-
-      </div>
-      <div class="column is-one-quarter">
-
-        <div class="field"><br />
-          <input id="batter_sacbunt_min_on" type="checkbox" name="switchExample" class="switch">
-          <label for="batter_sacbunt_min_on">Use</label>
-        </div>
-        <div class="field"><br />
-          <input id="batter_bunthit_min_on" type="checkbox" name="switchExample" class="switch">
-          <label for="batter_bunthit_min_on">Use</label>
-        </div>
-
-      </div>
-    </div>
-  </section>
-
-  <!-- Batter Hitter Tendendency Ratings group -->
-  <!--
-  <section id="batter_bat_rat_group_tend" style="display:none;">
-
-    <div class="field">
-      <label>Batted Ball Profile:</label>
-      <div class="control">
-        <div class="select is-primary is-small">
-          <select id="batter_batted_ball">
-            <option value="*">(Any Type)</option>
-            <option value="Normal">Normal</option>
-            <option value="Flyball">Flyball</option>
-            <option value="Groundball">Groundball</option>
-            <option value="Line Drive">Line Drive</option>
-          </select>
-        </div>
-      </div>
-    </div>
-
-    <div class="field">
-      <label>Groundball Tendency:</label>
-      <div class="control">
-        <div class="select is-primary is-small">
-          <select id="batter_groundball_tend">
-            <option value="*">(Any Type)</option>
-            <option value="Normal">Normal</option>
-            <option value="Pull">Pull</option>
-            <option value="Extreme Pull">Extreme Pull</option>
-            <option value="Spray Hitter">Spray Hitter</option>
-          </select>
-        </div>
-      </div>
-    </div>
-
-    <div class="field">
-      <label>Flyball Tendency:</label>
-      <div class="control">
-        <div class="select is-primary is-small">
-          <select id="batter_flyball_tend">
-            <option value="*">(Any Type)</option>
-            <option value="Normal">Normal</option>
-            <option value="Pull">Pull</option>
-            <option value="Extreme Pull">Extreme Pull</option>
-            <option value="Spray Hitter">Spray Hitter</option>
-          </select>
-        </div>
-      </div>
-    </div>
-
-  </section>
-  -->
-
-            </div>
-          </div>
-        </article>
-
-        <!-- BEGIN: ********** Batter FIELDING RATING Filters *********** -->
-        <article class="accordion">
-          <div class="accordion-header toggle">
-              <p>Filter by FIELDING RATINGS:</p>
-              <button class="toggle" aria-label="toggle"></button>
-          </div>
-          <div class="accordion-body">
-            <div class="accordion-content">
-
-              <div class="field">
-                <label>Fielder Filter Groups:</label>
-                <div class="control">
-                  <div class="select is-primary is-small">
-                    <select id="batter_fld_rat_group" onchange="toggleRatingGroup(this, 'fld');">
-                      <!--
-                      <option value="if_pos">Infield Position Ratings</option>
-                      <option value="of_pos">Outfield Position Ratings</option>
-                      -->
-                      <option value="if_sk">Infield Skill Ratings</option>
-                      <option value="of_sk">Outfield Skill Ratings</option>
-                      <option value="c_rat">Catcher Position and Skill Ratings</option>
-                    </select>
-                  </div>
-                </div>
-              </div>
-
-              <!-- Batter Infield Position Ratings group -->
-              <!--
-              <section id="batter_fld_rat_group_if_pos">
-              <div class="columns">
-                <div class="column is-three-quarters">
-
-                  <div class="field">
-                    <div class="control">
-                      <label for="batter_1b_min">1B Rating (minimum):</label>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="ps-slider-label" id="batter_1b_min_output">64</span>
-                      <br />0 <input oninput="rangeChange(this);" class="ps-slider" id="batter_1b_min" step="1" min="0" max="128" value="64" type="range" /> 128
-                    </div>
-                  </div>
-
-                  <div class="field">
-                    <div class="control">
-                      <label for="batter_2b_min">2B Rating (minimum):</label>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="ps-slider-label" id="batter_2b_min_output">64</span>
-                      <br />0 <input oninput="rangeChange(this);" class="ps-slider" id="batter_2b_min" step="1" min="0" max="128" value="64" type="range" /> 128
-                    </div>
-                  </div>
-
-                  <div class="field">
-                    <div class="control">
-                      <label for="batter_3b_min">3B Rating (minimum):</label>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="ps-slider-label" id="batter_3b_min_output">64</span>
-                      <br />0 <input oninput="rangeChange(this);" class="ps-slider" id="batter_3b_min" step="1" min="0" max="128" value="64" type="range" /> 128
-                    </div>
-                  </div>
-
-                  <div class="field">
-                    <div class="control">
-                      <label for="batter_ss_min">SS Rating (minimum):</label>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="ps-slider-label" id="batter_ss_min_output">64</span>
-                      <br />0 <input oninput="rangeChange(this);" class="ps-slider" id="batter_ss_min" step="1" min="0" max="128" value="64" type="range" /> 128
-                    </div>
-                  </div>
-
-
-                </div>
-                <div class="column is-one-quarter">
-
-                  <div class="field"><br />
-                    <input id="batter_1b_min_on" type="checkbox" name="switchExample" class="switch">
-                    <label for="batter_1b_min_on">Use</label>
-                  </div>
-                  <div class="field"><br />
-                    <input id="batter_2b_min_on" type="checkbox" name="switchExample" class="switch">
-                    <label for="batter_2b_min_on">Use</label>
-                  </div>
-                  <div class="field"><br />
-                    <input id="batter_3b_min_on" type="checkbox" name="switchExample" class="switch">
-                    <label for="batter_3b_min_on">Use</label>
-                  </div>
-                  <div class="field"><br />
-                    <input id="batter_ss_min_on" type="checkbox" name="switchExample" class="switch">
-                    <label for="batter_ss_min_on">Use</label>
-                  </div>
-
-                </div>
-              </div>
-            </section>
-            -->
-            <!-- Batter Outfield Position Ratings group -->
-            <!--
-            <section id="batter_fld_rat_group_of_pos" style="display:none;">
-            <div class="columns">
-              <div class="column is-three-quarters">
-
-                <div class="field">
-                  <div class="control">
-                    <label for="batter_lf_min">LF Rating (minimum):</label>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="ps-slider-label" id="batter_lf_min_output">64</span>
-                    <br />0 <input oninput="rangeChange(this);" class="ps-slider" id="batter_lf_min" step="1" min="0" max="128" value="64" type="range" /> 128
-                  </div>
-                </div>
-
-                <div class="field">
-                  <div class="control">
-                    <label for="batter_cf_min">CF Rating (minimum):</label>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="ps-slider-label" id="batter_cf_min_output">64</span>
-                    <br />0 <input oninput="rangeChange(this);" class="ps-slider" id="batter_cf_min" step="1" min="0" max="128" value="64" type="range" /> 128
-                  </div>
-                </div>
-
-                <div class="field">
-                  <div class="control">
-                    <label for="batter_rf_min">RF Rating (minimum):</label>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="ps-slider-label" id="batter_rf_min_output">64</span>
-                    <br />0 <input oninput="rangeChange(this);" class="ps-slider" id="batter_rf_min" step="1" min="0" max="128" value="64" type="range" /> 128
-                  </div>
-                </div>
-
-
-              </div>
-              <div class="column is-one-quarter">
-
-                <div class="field"><br />
-                  <input id="batter_lf_min_on" type="checkbox" name="switchExample" class="switch">
-                  <label for="batter_lf_min_on">Use</label>
-                </div>
-                <div class="field"><br />
-                  <input id="batter_cf_min_on" type="checkbox" name="switchExample" class="switch">
-                  <label for="batter_cf_min_on">Use</label>
-                </div>
-                <div class="field"><br />
-                  <input id="batter_rf_min_on" type="checkbox" name="switchExample" class="switch">
-                  <label for="batter_rf_min_on">Use</label>
-                </div>
-
-              </div>
-            </div>
-          </section>
-          -->
-
-          <!-- Batter Infield Skill Ratings group -->
-          <section id="batter_fld_rat_group_if_sk">
-          <div class="columns">
-            <div class="column is-three-quarters">
-
-              <div class="field">
-                <div class="control">
-                  <label for="batter_if_range_min">Infield Range Rating (minimum):</label>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="ps-slider-label" id="batter_if_range_min_output">64</span>
-                  <br />0 <input oninput="rangeChange(this);" class="ps-slider" id="batter_if_range_min" step="1" min="0" max="128" value="64" type="range" /> 128
-                </div>
-              </div>
-
-              <div class="field">
-                <div class="control">
-                  <label for="batter_if_error_min">Infield Error Rating (minimum):</label>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="ps-slider-label" id="batter_if_error_min_output">64</span>
-                  <br />0 <input oninput="rangeChange(this);" class="ps-slider" id="batter_if_error_min" step="1" min="0" max="128" value="64" type="range" /> 128
-                </div>
-              </div>
-
-              <div class="field">
-                <div class="control">
-                  <label for="batter_if_arm_min">Infield Arm Rating  (minimum):</label>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="ps-slider-label" id="batter_if_arm_min_output">64</span>
-                  <br />0 <input oninput="rangeChange(this);" class="ps-slider" id="batter_if_arm_min" step="1" min="0" max="128" value="64" type="range" /> 128
-                </div>
-              </div>
-
-              <div class="field">
-                <div class="control">
-                  <label for="batter_if_turn_min">Infield Turn DP Rating  (minimum):</label>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="ps-slider-label" id="batter_if_turn_min_output">64</span>
-                  <br />0 <input oninput="rangeChange(this);" class="ps-slider" id="batter_if_turn_min" step="1" min="0" max="128" value="64" type="range" /> 128
-                </div>
-              </div>
-
-
-            </div>
-            <div class="column is-one-quarter">
-
-              <div class="field"><br />
-                <input id="batter_if_range_min_on" type="checkbox" name="switchExample" class="switch">
-                <label for="batter_if_range_min_on">Use</label>
-              </div>
-              <div class="field"><br />
-                <input id="batter_if_error_min_on" type="checkbox" name="switchExample" class="switch">
-                <label for="batter_if_error_min_on">Use</label>
-              </div>
-              <div class="field"><br />
-                <input id="batter_if_arm_min_on" type="checkbox" name="switchExample" class="switch">
-                <label for="batter_if_arm_min_on">Use</label>
-              </div>
-              <div class="field"><br />
-                <input id="batter_if_turn_min_on" type="checkbox" name="switchExample" class="switch">
-                <label for="batter_if_turn_min_on">Use</label>
-              </div>
-
-            </div>
-          </div>
-        </section>
-
-        <!-- Batter Outfield Skill Ratings group -->
-        <section id="batter_fld_rat_group_of_sk" style="display:none;">
-        <div class="columns">
-          <div class="column is-three-quarters">
-
-            <div class="field">
-              <div class="control">
-                <label for="batter_of_range_min">Outfield Range Rating (minimum):</label>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="ps-slider-label" id="batter_of_range_min_output">64</span>
-                <br />0 <input oninput="rangeChange(this);" class="ps-slider" id="batter_of_range_min" step="1" min="0" max="128" value="64" type="range" /> 128
-              </div>
-            </div>
-
-            <div class="field">
-              <div class="control">
-                <label for="batter_of_error_min">Outfield Error Rating (minimum):</label>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="ps-slider-label" id="batter_of_error_min_output">64</span>
-                <br />0 <input oninput="rangeChange(this);" class="ps-slider" id="batter_of_error_min" step="1" min="0" max="128" value="64" type="range" /> 128
-              </div>
-            </div>
-
-            <div class="field">
-              <div class="control">
-                <label for="batter_of_arm_min">Outfield Arm Rating  (minimum):</label>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="ps-slider-label" id="batter_of_arm_min_output">64</span>
-                <br />0 <input oninput="rangeChange(this);" class="ps-slider" id="batter_of_arm_min" step="1" min="0" max="128" value="64" type="range" /> 128
-              </div>
-            </div>
-
-
-          </div>
-          <div class="column is-one-quarter">
-
-            <div class="field"><br />
-              <input id="batter_of_range_min_on" type="checkbox" name="switchExample" class="switch">
-              <label for="batter_of_range_min_on">Use</label>
-            </div>
-            <div class="field"><br />
-              <input id="batter_of_error_min_on" type="checkbox" name="switchExample" class="switch">
-              <label for="batter_of_error_min_on">Use</label>
-            </div>
-            <div class="field"><br />
-              <input id="batter_of_arm_min_on" type="checkbox" name="switchExample" class="switch">
-              <label for="batter_of_arm_min_on">Use</label>
-            </div>
-
-          </div>
-        </div>
-      </section>
-
-      <!-- Catcher Skill Ratings group -->
-      <section id="batter_fld_rat_group_c_rat" style="display:none;">
-      <div class="columns">
-        <div class="column is-three-quarters">
-
-          <div class="field">
-            <div class="control">
-              <label for="batter_c_min">Catcher Position Rating (minimum):</label>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="ps-slider-label" id="batter_c_min_output">64</span>
-              <br />0 <input oninput="rangeChange(this);" class="ps-slider" id="batter_c_min" step="1" min="0" max="128" value="64" type="range" /> 128
-            </div>
-          </div>
-
-          <div class="field">
-            <div class="control">
-              <label for="batter_c_ab_min">Catcher Ability Rating (minimum):</label>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="ps-slider-label" id="batter_c_ab_min_output">64</span>
-              <br />0 <input oninput="rangeChange(this);" class="ps-slider" id="batter_c_ab_min" step="1" min="0" max="128" value="64" type="range" /> 128
-            </div>
-          </div>
-
-          <div class="field">
-            <div class="control">
-              <label for="batter_c_arm_min">Catcher Arm Rating (minimum):</label>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="ps-slider-label" id="batter_c_arm_min_output">64</span>
-              <br />0 <input oninput="rangeChange(this);" class="ps-slider" id="batter_c_arm_min" step="1" min="0" max="128" value="64" type="range" /> 128
-            </div>
-          </div>
-
-
-        </div>
-        <div class="column is-one-quarter">
-
-          <div class="field"><br />
-            <input id="batter_c_min_on" type="checkbox" name="switchExample" class="switch">
-            <label for="batter_c_min_on">Use</label>
-          </div>
-          <div class="field"><br />
-            <input id="batter_c_ab_min_on" type="checkbox" name="switchExample" class="switch">
-            <label for="batter_c_ab_min_on">Use</label>
-          </div>
-          <div class="field"><br />
-            <input id="batter_c_arm_min_on" type="checkbox" name="switchExample" class="switch">
-            <label for="batter_c_arm_min_on">Use</label>
-          </div>
-
-        </div>
-      </div>
-    </section>
-
-            </div>
-          </div>
-        </article>
-      </section>
-
-      </div> <!-- end batter filter column -->
-      <div class="column is-half" id="batter_results">
-
-          <a class="button is-large" onclick="executeSearch('batter');">Search Now</a>
-          <br clear="all" />
-          results n stuff
-
-                  <!--
-                        <h1>{{ title }}</h1>
-                        <p>{{ body }}
-                        </p>
-                        <p>{{ dummie }}</p>
-                        TIERS: <br />
-                        <input type="text" id="tier_select_text" value="alpha" />
-                        <select id="tier_select">
-                        <option value="-9">(Any Tier)</option>
-                        {{#each tiers}}
-                        <option value="{{this.tier_id}}">{{this.tier_name}} ({{this.tier_id}})</option>
-                        {{/each}}
-                        </select>
-                        <button id="filter_button">Filter</button>
-                        <div id="read_it">hey there!!!!!!!!</div>
-                        <br /> -->
-                        ******* REPLY AREA *****<br />
-                        <div id="filter_reply">abc</div>
-                        <br clear="all" />
-                        <div id="test_chart"></div>
-                        <script>
-                        /*
-                        var options = {
-            chart: {
-                height: 380,
-                type: 'bar'
-            },
-            plotOptions: {
-                bar: {
-                    barHeight: '100%',
-                    distributed: true,
-                    horizontal: true,
-                    dataLabels: {
-                        position: 'bottom'
-                    },
-                }
-            },
-            colors: ['#33b2df', '#546E7A', '#d4526e', '#13d8aa', '#A5978B', '#2b908f', '#f9a3a4', '#90ee7e', '#f48024', '#69d2e7'],
-            dataLabels: {
-                enabled: true,
-                textAnchor: 'start',
-                style: {
-                    colors: ['#fff']
-                },
-                formatter: function(val, opt) {
-                    return opt.w.globals.labels[opt.dataPointIndex] + ":  " + val
-                },
-                offsetX: 0,
-                dropShadow: {
-                  enabled: true
-                }
-            },
-            series: [{
-                data: [400, 430, 448, 470, 540, 580, 690, 1100, 1200, 1380]
-            }],
-            stroke: {
-                width: 1,
-              colors: ['#fff']
-            },
-            xaxis: {
-                categories: ['South Korea', 'Canada', 'United Kingdom', 'Netherlands', 'Italy', 'France', 'Japan', 'United States', 'China', 'India'],
-            },
-            yaxis: {
-                labels: {
-                    show: false
-                }
-            },
-            title: {
-                text: 'Custom DataLabels',
-                align: 'center',
-                floating: true
-            },
-            subtitle: {
-                text: 'Category Names as DataLabels inside bars',
-                align: 'center',
-            },
-            tooltip: {
-                theme: 'dark',
-                x: {
-                    show: false
-                },
-                y: {
-                    title: {
-                        formatter: function() {
-                            return ''
-                        }
-                    }
-                }
-            }
-        }
-
-        var options = {
-        chart: {
-          type: 'bar'
-        },
-        series: [{
-          data: [40,50,60]
-        }],
-        xaxis: {
-          categories: [1991,1992,1993,1994,1995,1996,1997, 1998,1999]
-        }
-      }
-
-
-    var chart = new ApexCharts(document.querySelector("#test_chart"), options);
-    chart.render();
-    */
-                           </script>
-
-
-
-
-      </div> <!-- end batter results column -->
-    </div> <!-- end batter column group div -->
-  </div> <!-- end batter display area -->
-
-  <div id="pitcher_display">
-    <div class="columns">
-        <div class="column is-half" id="pitcher_filter">
-            <div class="tabs is-boxed">
-              <ul id="pitcher_filters_tabs">
-                <li id="pitcher_player_filter" class="pitcher-filter-tab player-filter-tab is-active"><a>Player</a></li>
-                <li id="pitcher_card_filter" class="pitcher-filter-tab card-filter-tab"><a>Card</a></li>
-                <li id="pitcher_pitching_filter" class="pitcher-filter-tab pitching-filter-tab"><a>Pitching</a></li>
-                <li id="pitcher_field_filter" class="pitcher-filter-tab fielding-filter-tab"><a>Fielding</a></li>
-                <li id="pitcher_batting_filter" class="pitcher-filter-tab batting-filter-tab"><a>Batting</a></li>
-              </ul>
-            </div>
-
-            <div class="container" id="pitcher_filter_area">
-              <div id="pitcher_player_filter_area">
-                  Pitching - Filter by PLAYER
-
-              </div>
-              <div id="pitcher_card_filter_area">
-                Pitching - Filter by CARD
-              </div>
-              <div id="pitcher_pitching_filter_area">
-                Pitching - Filter by PITCHING RATINGS
-              </div>
-
-              <div id="pitcher_field_filter_area">
-                Pitching - Filter by FIELDING RATINGS
-              </div>
-
-              <div id="pitcher_batting_filter_area">
-                Pitching - Filter by BATTING RATINGS
-              </div>
-
-            </div> <!-- end batting_filter_area -->
-
-
-        </div>
-        <div class="column" id="pitcher_results">
-          Pitcher *results* stuff here
-        </div>
-    </div> <!-- end pitcher column group div -->
-  </div> <!-- end pitcher display area -->
-
-  </div> <!-- end main display container -->
-
-</section> <!-- end single page app main section -->
 
 <div class="modal">
   <div class="modal-background" onclick="toggleModal();"></div>

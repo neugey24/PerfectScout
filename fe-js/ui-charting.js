@@ -1,3 +1,6 @@
+const BAR_BASE_WIDTH = 24;
+const GRAPH_FACTOR = .8;
+
 function groomLabelData(dataIn) {
   var output = new Array();
   var firstValue = dataIn[0].card_overall + 'OVR ' + dataIn[0].last_name;
@@ -63,50 +66,18 @@ function producePSBarCharts(dataIn) {
 }
 
 function makePSBarChart(dataIn, namesIn, displayIdIn, ratingName) {
-  var options = {
-            chart: {
-                height: 90,
-                type: 'bar',
-                toolbar: { show: false }
-            },
-            plotOptions: {
-                bar: {
-                    barHeight: '100%',
-                    distributed: true,
-                    horizontal: true
-                }
-            },
-            colors: ['#bb0000', '#008800', '#0000dd'],
-            series: [{
-                name: ratingName,
-                data: dataIn
-            }],
-            stroke: {
-                width: 1,
-              colors: ['#fff']
-            },
-            tooltip: {
-                theme: 'light',
-                x: {
-                    show: true
-                },
-                y: {
-                    show: false
-                }
-            }, xaxis: {
-                labels: { show: false },
-                axisBorder: { show: false },
-                axisTicks: { show: false },
-                categories: namesIn
-              },
-              yaxis: {
-                labels: { show: false },
-                min: 0, max: 128
-              }
-        }
-
-var chart = new ApexCharts(document.querySelector(`#${displayIdIn}`), options);
-chart.render();
-//var display = chart.render();
-//document.write(display);
+  var htmlBuild = makeBar(dataIn[0], 0);
+  if (dataIn[1] != null) {
+    htmlBuild += makeBar(dataIn[1], 1);
+  }
+  if (dataIn[2] != null) {
+    htmlBuild += makeBar(dataIn[2], 2);
+  }
+  var displayElement = document.querySelector(`#${displayIdIn}`);
+  displayElement.innerHTML = htmlBuild;
 }
+
+function makeBar(dataIn, barNum) {
+  var widthCalc = BAR_BASE_WIDTH + Math.round(GRAPH_FACTOR * dataIn);
+  return `<div class="chart-bar${barNum}" style="width:${widthCalc}px;">${dataIn}</div>`;
+} 
